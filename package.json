@@ -1,0 +1,18 @@
+{
+  "name": "com.outrealxr.holomod",
+  "version": "0.1.4",
+  "displayName": "HoloMod",
+  "description": "HoloMod allows users to create a universally compatible venues in any unity project",
+  "unity": "2020.3",
+  "unityRelease": "0b5",
+  "keywords": [
+    "HoloMod",
+    "Modding",
+    "Customize"
+  ],
+  "author": {
+    "name": "Mohamed Eltawil",
+    "email": "mohammedzero43@gmail.com"
+  },
+  "type": "tool"
+}
