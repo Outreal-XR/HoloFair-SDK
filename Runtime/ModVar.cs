@@ -25,6 +25,6 @@ namespace OutrealXR.HoloMod.Runtime
         public string value = "";
         [SerializeField]
         public Type varType = 0;
-        public UnityEvent OnAction;//TODO Expose this one when type is unity event
+        
     }
 }

@@ -20,3 +20,6 @@ MonoBehaviour:
   - varName: OnGranted
     value: 
     varType: 5
+  - varName: Lists
+    value: 
+    varType: 4

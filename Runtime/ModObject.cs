@@ -31,7 +31,8 @@ namespace OutrealXR.HoloMod.Runtime
         public UnityEvent BeforeExecute;
         public UnityEvent AfterExecute;
         public mouseCursors OnHoverMouseCursor;
-
+        [HideInInspector]
+        public UnityEvent OnAction;
         // Start is called before the first frame update
         void Awake()
         {

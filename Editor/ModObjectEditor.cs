@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using OutrealXR.HoloMod.Runtime;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace OutrealXR.HoloMod.Editor
 {
     [CustomEditor(typeof(ModObject))]
     public class ModObjectEditor : UnityEditor.Editor
     {
+        SerializedProperty m_OnAction;
         private void OnEnable()
         {
+            m_OnAction = serializedObject.FindProperty("OnAction");
         }
         public override void OnInspectorGUI()
         {
@@ -76,6 +80,17 @@ namespace OutrealXR.HoloMod.Editor
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
+                            case ((int)ModVar.Type.List):
+                                string tmplist = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue);
+                                modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = tmplist;
+                                if (!ValidateJSON(tmplist))
+                                    EditorGUILayout.HelpBox("Please follow json formatting for lists", MessageType.Warning);
+                                break;
+
+                            case ((int)ModVar.Type.UnityEvent):
+                                EditorGUILayout.PropertyField(m_OnAction);
+                                break;
+
                             default:  // ,Float , STR
                                 newValue = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue);
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
@@ -102,6 +117,20 @@ namespace OutrealXR.HoloMod.Editor
 
             DrawDefaultInspector();
             serializedObject.ApplyModifiedProperties();
+        }
+
+
+        public static bool ValidateJSON(string s)
+        {
+            try
+            {
+                JToken.Parse(s);
+                return true;
+            }
+            catch (JsonReaderException ex)
+            { 
+                return false;
+            }
         }
     }
 }
