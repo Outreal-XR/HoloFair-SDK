@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OutrealXR.HoloMod.Runtime
 {
@@ -16,7 +15,7 @@ namespace OutrealXR.HoloMod.Runtime
         }
         public enum Type //Variable Types 
         {
-            Bool, Int, Float, String, List /*Use json syntax*/, UnityEvent//TODO: implement those
+            Bool, Int, Float, String, List, UnityEvent//TODO: implement those
         }
 
         //Variable properties
@@ -26,5 +25,6 @@ namespace OutrealXR.HoloMod.Runtime
         public string value = "";
         [SerializeField]
         public Type varType = 0;
+        public UnityEvent OnAction;//TODO Expose this one when type is unity event
     }
 }
