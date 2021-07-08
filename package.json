@@ -1,8 +1,8 @@
 {
   "name": "com.outrealxr.holomod",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "displayName": "HoloMod",
-  "description": "HoloMod allows users to create a universally compatible venues in any unity project",
+  "description": "HoloMod allows users to create a universally compatible unity scenes for any unity project that wants to enable mods and user content",
   "unity": "2020.3",
   "unityRelease": "0b5",
   "keywords": [
