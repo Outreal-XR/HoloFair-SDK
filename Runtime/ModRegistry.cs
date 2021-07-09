@@ -8,9 +8,8 @@ namespace OutrealXR.HoloMod.Runtime
     public class ModRegistry : MonoBehaviour
     {
         [SerializeField]
-        public ModObjectDataAsset modObjectDataAsset = null;              // List of avaialble Extentions/ModTypes
-        [HideInInspector]
-        public List<ModObject> ModObjects = new List<ModObject>(); // List of all Mods in the scene
+        public ModObjectDataAsset modObjectDataAsset = null;
+        List<ModObject> ModObjects = new List<ModObject>(); // List of all Mods in the scene
 
         //Register new modObject
         public int RegisterModObject(ModObject newModObj)
@@ -28,7 +27,10 @@ namespace OutrealXR.HoloMod.Runtime
 
         }
 
-
+        public List<ModObject> GetModObjects()
+        {
+            return ModObjects;
+        }
 
         //Singleton Mod//
         public static ModRegistry manager;
