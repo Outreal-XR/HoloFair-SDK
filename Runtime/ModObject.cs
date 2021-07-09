@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
 namespace OutrealXR.HoloMod.Runtime
 {
     [SerializeField]
@@ -19,6 +17,7 @@ namespace OutrealXR.HoloMod.Runtime
             Interactable,
             Seat
         }
+
         [HideInInspector]
         [SerializeField]
         public int type = -1;
@@ -33,16 +32,32 @@ namespace OutrealXR.HoloMod.Runtime
         public mouseCursors OnHoverMouseCursor;
         [HideInInspector]
         public UnityEvent OnAction;
-        // Start is called before the first frame update
+
         void Awake()
         {
             ModRegistry.Instance.RegisterModObject(this);
         }
 
-        // Update is called once per frame
-        void Update()
+        public bool SetModVarVal(string modVarName, string val)
         {
+            int index = GetModVarIndexByName(modVarName);
+            if (index >= 0) modVars[index].value = val;
+            return index >= 0;
+        }
 
+        public int GetModVarIndexByName(string modVarName)
+        {
+            for (int i = 0; i < modVars.Length; i++)
+                if (modVars[i].varName == modVarName)
+                    return i;
+            return -1;
+        }
+
+        public ModVar GetModVarByName(string modVarName)
+        {
+            int index = GetModVarIndexByName(modVarName);
+            if (index >= 0) return modVars[index];
+            return null;
         }
     }
 }

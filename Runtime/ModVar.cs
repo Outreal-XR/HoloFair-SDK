@@ -6,7 +6,6 @@ namespace OutrealXR.HoloMod.Runtime
     [System.Serializable]
     public class ModVar
     {
-
         public ModVar(ModVar other)
         {
             varName = other.varName;
