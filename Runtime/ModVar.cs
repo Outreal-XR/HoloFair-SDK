@@ -14,7 +14,12 @@ namespace OutrealXR.HoloMod.Runtime
         }
         public enum Type //Variable Types 
         {
-            Bool, Int, Float, String, List, UnityEvent//TODO: implement those
+            Bool,//if True then true
+            Int,
+            Float,
+            String,
+            List,//must be valid json array [1, 2, 3, ...], [1.1, 2.2, 3.3, ...] etc
+            UnityEvent
         }
 
         //Variable properties
