@@ -11,11 +11,6 @@ namespace OutrealXR.HoloMod.Editor
     [CustomEditor(typeof(ModObject))]
     public class ModObjectEditor : UnityEditor.Editor
     {
-        SerializedProperty m_OnAction;
-        private void OnEnable()
-        {
-            m_OnAction = serializedObject.FindProperty("OnAction");
-        }
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -62,7 +57,6 @@ namespace OutrealXR.HoloMod.Editor
                         string newValue;
                         switch (modVars.GetArrayElementAtIndex(i).FindPropertyRelative("varType").intValue)
                         {
-
                             case ((int)ModVar.Type.Bool):
                                 newValue = EditorGUILayout.Toggle(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue == "True").ToString();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
@@ -88,6 +82,7 @@ namespace OutrealXR.HoloMod.Editor
                                 break;
 
                             case ((int)ModVar.Type.UnityEvent):
+                                SerializedProperty m_OnAction = modVars.GetArrayElementAtIndex(i).FindPropertyRelative("OnAction");
                                 EditorGUILayout.PropertyField(m_OnAction);
                                 break;
 

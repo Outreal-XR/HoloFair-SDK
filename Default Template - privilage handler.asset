@@ -17,9 +17,24 @@ MonoBehaviour:
   - varName: MinimumPrivilage
     value: 
     varType: 3
+    OnAction:
+      m_PersistentCalls:
+        m_Calls: []
   - varName: OnGranted
     value: 
     varType: 5
+    OnAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - varName: OnBlocked
+    value: 
+    varType: 5
+    OnAction:
+      m_PersistentCalls:
+        m_Calls: []
   - varName: Lists
     value: 
     varType: 4
+    OnAction:
+      m_PersistentCalls:
+        m_Calls: []

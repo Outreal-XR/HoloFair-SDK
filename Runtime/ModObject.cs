@@ -30,8 +30,6 @@ namespace OutrealXR.HoloMod.Runtime
         public UnityEvent BeforeExecute;
         public UnityEvent AfterExecute;
         public mouseCursors OnHoverMouseCursor;
-        [HideInInspector]
-        public UnityEvent OnAction;
 
         void Awake()
         {

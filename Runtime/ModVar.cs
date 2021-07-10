@@ -29,6 +29,11 @@ namespace OutrealXR.HoloMod.Runtime
         public string value = "";
         [SerializeField]
         public Type varType = 0;
-        
+        public UnityEvent OnAction;
+
+        public void Act()
+        {
+            OnAction.Invoke();
+        }
     }
 }
