@@ -41,12 +41,7 @@ namespace OutrealXR.HoloMod.Runtime
             get
             {
                 if (manager == null)
-                    if (FindObjectOfType<ModRegistry>())
-                        manager = FindObjectOfType<ModRegistry>();
-                    else
-                        manager = new GameObject("ModRegistry").AddComponent<ModRegistry>();
-
-
+                    manager = FindObjectOfType<ModRegistry>();
                 return manager;
             }
             set
