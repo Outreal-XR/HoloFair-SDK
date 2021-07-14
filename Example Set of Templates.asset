@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d26d4b0a88d4d4cb241b301e6a59b9, type: 3}
-  m_Name: Default Set of Templates
+  m_Name: Example Set of Templates
   m_EditorClassIdentifier: 
   SupportedModifiers:
   - {fileID: 11400000, guid: 0ba9183cc8da66c46a279832f3a565ee, type: 2}
