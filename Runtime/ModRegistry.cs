@@ -16,7 +16,7 @@ namespace OutrealXR.HoloMod.Runtime
         {
             if (ModObjects.Contains(newModObj))
             {
-                Debug.LogError(string.Format("[ModRegistry] Mod ({0}) in Object {1} already exists in the Mods list!", newModObj.type, newModObj.gameObject.name));
+                Debug.LogWarning(string.Format("[ModRegistry] Mod ({0}) in Object {1} already exists in the Mods list!", newModObj.type, newModObj.gameObject.name));
                 return 1;//AlreadyExists
             }
             else
