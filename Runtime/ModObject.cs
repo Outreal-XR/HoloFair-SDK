@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,7 +32,8 @@ namespace OutrealXR.HoloMod.Runtime
         void Awake()
         {
             //TODO dirty fix, if better approach not found then it will cause a few seconds extra freeze on venue load
-            FindObjectOfType<ModRegistry>().RegisterModObject(this);
+            ModRegistry modRegistry = FindObjectOfType<ModRegistry>();
+            if(modRegistry != null && modRegistry.InitOnStart) modRegistry.RegisterModObject(this);
         }
 
         public bool SetModVarVal(string modVarName, string val)

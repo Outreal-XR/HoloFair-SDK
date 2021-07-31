@@ -10,6 +10,7 @@ namespace OutrealXR.HoloMod.Runtime
         [SerializeField]
         public ModObjectDataAsset modObjectDataAsset = null;
         List<ModObject> ModObjects = new List<ModObject>(); // List of all Mods in the scene
+        public bool InitOnStart;
 
         //Register new modObject
         public int RegisterModObject(ModObject newModObj)
