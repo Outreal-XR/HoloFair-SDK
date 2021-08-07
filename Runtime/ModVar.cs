@@ -12,6 +12,7 @@ namespace OutrealXR.HoloMod.Runtime
             value = other.value;
             varType = other.varType;
         }
+
         public enum Type //Variable Types 
         {
             Bool,//if True then true

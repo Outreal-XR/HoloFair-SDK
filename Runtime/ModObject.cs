@@ -18,14 +18,19 @@ namespace OutrealXR.HoloMod.Runtime
 
         [HideInInspector]
         [SerializeField]
+        [Tooltip("Should be selected based on dropdown menu")]
         public int type = -1;
         [HideInInspector]
         [SerializeField]
+        [Tooltip("Only of the variables can be updated")]
         public ModVar[] modVars = new ModVar[] { };
-        public bool syncronized = false;
+        [Tooltip("Execute modifer when it is initialized")]
         public bool executeOnInit = false;
+        [Tooltip("Execute modifer when it is updated")]
         public bool executeOnRecieve = false;
+        [Tooltip("Fires this event before modifier is executed")]
         public UnityEvent BeforeExecute;
+        [Tooltip("Fires this event after modifier is executed")]
         public UnityEvent AfterExecute;
         public mouseCursors OnHoverMouseCursor;
 
