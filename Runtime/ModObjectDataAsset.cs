@@ -9,7 +9,5 @@ namespace OutrealXR.HoloMod.Runtime
     public class ModObjectDataAsset : ScriptableObject
     {
         public ModObjectData[] SupportedModifiers;
-        public string targetTag;
-
     }
 }   

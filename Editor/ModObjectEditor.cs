@@ -26,17 +26,9 @@ namespace OutrealXR.HoloMod.Editor
 
 
                     List<string> choices = new List<string>();
-                    foreach (ModObjectData t in supportedMods.SupportedModifiers)
-                        choices.Add(t.mName);
-
-
-                    if (Selection.activeGameObject.tag != supportedMods.targetTag)
-                    {
-                        EditorGUILayout.HelpBox("The object Tag does not match the TargetTag in the selected ModObjectDataAsset!, Please select add or select the tag", MessageType.Warning);
-                    }
+                    foreach (ModObjectData t in supportedMods.SupportedModifiers) choices.Add(t.mName);
 
                     int newtype = EditorGUILayout.Popup("Modifier Type", type.intValue, choices.ToArray());
-
 
                     if (newtype != type.intValue)
                     {
