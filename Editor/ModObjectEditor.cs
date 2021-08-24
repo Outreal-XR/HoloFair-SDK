@@ -50,24 +50,24 @@ namespace OutrealXR.HoloMod.Editor
                         switch (modVars.GetArrayElementAtIndex(i).FindPropertyRelative("varType").intValue)
                         {
                             case ((int)ModVar.Type.Bool):
-                                newValue = EditorGUILayout.Toggle(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue == "True").ToString();
+                                newValue = EditorGUILayout.Toggle(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim() == "True").ToString();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
                             case ((int)ModVar.Type.Int):
-                                int tempint; System.Int32.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue,out tempint);
+                                int tempint; System.Int32.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim(), out tempint);
                                 newValue = EditorGUILayout.IntField(tempint).ToString();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
                             case ((int)ModVar.Type.Float):
-                                float tempfloat; float.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue,out tempfloat);
+                                float tempfloat; float.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim(), out tempfloat);
                                 newValue = EditorGUILayout.FloatField(tempfloat).ToString();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
                             case ((int)ModVar.Type.List):
-                                string tmplist = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue);
+                                string tmplist = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim());
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = tmplist;
                                 if (!ValidateJSON(tmplist))
                                     EditorGUILayout.HelpBox("Please follow json formatting for lists", MessageType.Warning);
