@@ -56,13 +56,13 @@ namespace OutrealXR.HoloMod.Editor
 
                             case ((int)ModVar.Type.Int):
                                 int tempint; System.Int32.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim(), out tempint);
-                                newValue = EditorGUILayout.IntField(tempint).ToString();
+                                newValue = EditorGUILayout.IntField(tempint).ToString().Trim();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
                             case ((int)ModVar.Type.Float):
                                 float tempfloat; float.TryParse(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim(), out tempfloat);
-                                newValue = EditorGUILayout.FloatField(tempfloat).ToString();
+                                newValue = EditorGUILayout.FloatField(tempfloat).ToString().Trim();
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
@@ -79,7 +79,7 @@ namespace OutrealXR.HoloMod.Editor
                                 break;
 
                             default:  // ,Float , STR
-                                newValue = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue);
+                                newValue = EditorGUILayout.TextField(modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue.Trim());
                                 modVars.GetArrayElementAtIndex(i).FindPropertyRelative("value").stringValue = newValue;
                                 break;
 
