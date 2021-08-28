@@ -4,6 +4,7 @@ using UnityEngine.Events;
 namespace OutrealXR.HoloMod.Runtime
 {
     [SerializeField]
+    [ExecuteInEditMode]
     public class ModObject : MonoBehaviour
     {
         public enum mouseCursors
@@ -33,11 +34,12 @@ namespace OutrealXR.HoloMod.Runtime
         [Tooltip("Fires this event after modifier is executed")]
         public UnityEvent AfterExecute;
         public mouseCursors OnHoverMouseCursor;
+        ModRegistry modRegistry;
 
         void Awake()
         {
             //TODO dirty fix, if better approach not found then it will cause a few seconds extra freeze on venue load
-            ModRegistry modRegistry = FindObjectOfType<ModRegistry>();
+            modRegistry = FindObjectOfType<ModRegistry>();
             if(modRegistry != null && modRegistry.InitOnStart) modRegistry.RegisterModObject(this);
         }
 

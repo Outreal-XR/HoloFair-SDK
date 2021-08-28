@@ -12,7 +12,12 @@ namespace OutrealXR.HoloMod.Runtime
         public ModObjectDataAsset modObjectDataAsset = null;
         List<ModObject> ModObjects = new List<ModObject>(); // List of all Mods in the scene
         [Tooltip("It used by ModObjects to decide wether they should init themselves or not on awake")]
-        public bool InitOnStart;
+        public bool InitOnStart = true;
+
+        public void ClearModObjects()
+        {
+            ModObjects.Clear();
+        }
 
         /// <summary>
         /// Register new modObject. Used by ModObject and can be used externally to cusomize initilization
@@ -32,7 +37,12 @@ namespace OutrealXR.HoloMod.Runtime
                 Debug.Log($"[ModRegistry] added {newModObj.name}");
                 return 0;//NoError
             }
+        }
 
+        public void UnregisterModObject(ModObject modObject)
+        {
+            if(ModObjects.Contains(modObject))
+                ModObjects.Remove(modObject);
         }
 
         public List<ModObject> GetModObjects()
