@@ -29,6 +29,8 @@ namespace OutrealXR.HoloMod.Runtime
         public bool executeOnInit = false;
         [Tooltip("Execute modifer when it is updated")]
         public bool executeOnRecieve = false;
+        [Tooltip("Syncronize Object's Transform across the network")]
+        public bool syncTransformation = true;
         [Tooltip("Fires this event before modifier is executed")]
         public UnityEvent BeforeExecute;
         [Tooltip("Fires this event after modifier is executed")]
