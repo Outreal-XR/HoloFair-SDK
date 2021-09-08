@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 namespace OutrealXR.HoloMod.Runtime
 {
@@ -13,18 +13,17 @@ namespace OutrealXR.HoloMod.Runtime
         List<ModObject> ModObjects = new List<ModObject>(); // List of all Mods in the scene
         [Tooltip("It used by ModObjects to decide wether they should init themselves or not on awake")]
         public bool InitOnStart = true;
-
+        [HideInInspector]public UnityEvent<ModObject> onNewObjectRegistered;
         public void ClearModObjects()
         {
             ModObjects.Clear();
         }
-
         /// <summary>
         /// Register new modObject. Used by ModObject and can be used externally to cusomize initilization
         /// </summary>
         /// <param name="newModObj">ModObjec that needs to be registered</param>
         /// <returns></returns>
-        public int RegisterModObject(ModObject newModObj)
+        public int RegisterModObject(ModObject newModObj,bool doneByModObj = false)
         {
             if (ModObjects.Contains(newModObj))
             {
@@ -35,6 +34,12 @@ namespace OutrealXR.HoloMod.Runtime
             {
                 ModObjects.Add(newModObj);
                 Debug.Log($"[ModRegistry] added {newModObj.name}");
+                if (doneByModObj)
+                {
+                    Debug.Log(newModObj.gameObject.name + " REGISTER EVENT INVOKE");
+                    onNewObjectRegistered.Invoke(newModObj);
+                    
+                }
                 return 0;//NoError
             }
         }
