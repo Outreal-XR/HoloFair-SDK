@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,7 +31,7 @@ namespace OutrealXR.HoloMod.Runtime
         [Tooltip("Execute modifer when it is updated")]
         public bool executeOnRecieve = false;
         [Tooltip("Syncronize Object's Transform across the network")]
-        public bool syncTransformation = true;
+        public bool syncTransformation = false;
         [Tooltip("Fires this event before modifier is executed")]
         public UnityEvent BeforeExecute;
         [Tooltip("Fires this event after modifier is executed")]
@@ -38,11 +39,19 @@ namespace OutrealXR.HoloMod.Runtime
         public mouseCursors OnHoverMouseCursor;
         ModRegistry modRegistry;
 
+
         void Awake()
         {
-            //TODO dirty fix, if better approach not found then it will cause a few seconds extra freeze on venue load
             modRegistry = FindObjectOfType<ModRegistry>();
-            if(modRegistry != null && modRegistry.InitOnStart) modRegistry.RegisterModObject(this);
+            //TODO dirty fix, if better approach not found then it will cause a few seconds extra freeze on venue load
+            StartCoroutine(Init());
+        }
+            IEnumerator Init()
+        {
+            yield return new WaitUntil(() => {return(FindObjectOfType<ModRegistry>()!=null);});
+            modRegistry = FindObjectOfType<ModRegistry>();
+            if (modRegistry != null) modRegistry.RegisterModObject(this, true);
+
         }
 
         public bool SetModVarVal(string modVarName, string val)

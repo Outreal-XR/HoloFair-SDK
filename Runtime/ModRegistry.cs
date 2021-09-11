@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 namespace OutrealXR.HoloMod.Runtime
 {
@@ -25,7 +25,6 @@ namespace OutrealXR.HoloMod.Runtime
         {
             ModObjects.Clear();
         }
-
         /// <summary>
         /// Register new modObject. Used by ModObject and can be used externally to cusomize initilization
         /// </summary>
