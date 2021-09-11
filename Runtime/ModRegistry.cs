@@ -14,6 +14,13 @@ namespace OutrealXR.HoloMod.Runtime
         [Tooltip("It used by ModObjects to decide wether they should init themselves or not on awake")]
         public bool InitOnStart = true;
 
+        public static ModRegistry Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         public void ClearModObjects()
         {
             ModObjects.Clear();
@@ -49,27 +56,5 @@ namespace OutrealXR.HoloMod.Runtime
         {
             return ModObjects;
         }
-
-        //Singleton Mod//
-        public static ModRegistry manager;
-
-        public static ModRegistry Instance
-        {
-            get
-            {
-                if (manager == null)
-                    manager = FindObjectOfType<ModRegistry>();
-                return manager;
-            }
-            set
-            {
-                manager = value;
-            }
-        }
-
     }
-
-
-
-
 }
