@@ -39,19 +39,18 @@ namespace OutrealXR.HoloMod.Runtime
         public mouseCursors OnHoverMouseCursor;
         ModRegistry modRegistry;
 
-
         void Awake()
         {
             modRegistry = FindObjectOfType<ModRegistry>();
             //TODO dirty fix, if better approach not found then it will cause a few seconds extra freeze on venue load
             StartCoroutine(Init());
         }
-            IEnumerator Init()
+
+        IEnumerator Init()
         {
             yield return new WaitUntil(() => {return(FindObjectOfType<ModRegistry>()!=null);});
             modRegistry = FindObjectOfType<ModRegistry>();
-            if (modRegistry != null) modRegistry.RegisterModObject(this, true);
-
+            if (modRegistry != null) modRegistry.RegisterModObject(this);
         }
 
         public bool SetModVarVal(string modVarName, string val)
