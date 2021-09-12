@@ -14,9 +14,10 @@ namespace OutrealXR.HoloMod.Editor
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            if (ModRegistry.Instance)
+            ModRegistry modRegistry = FindObjectOfType<ModRegistry>();
+            if (modRegistry)
             {
-                ModObjectDataAsset supportedMods = ModRegistry.Instance.modObjectDataAsset;
+                ModObjectDataAsset supportedMods = modRegistry.modObjectDataAsset;
                 if (supportedMods != null)
                 {
 
@@ -94,7 +95,7 @@ namespace OutrealXR.HoloMod.Editor
                     EditorGUILayout.HelpBox("Please choose a ModObjectDataAsset in ModRegistry", MessageType.Warning);
                     if (GUILayout.Button("Go to ModRegistry"))
                     {
-                        Selection.objects = new GameObject[] { ModRegistry.Instance.gameObject };
+                        Selection.objects = new GameObject[] { modRegistry.gameObject };
                     }
                 }
             }
