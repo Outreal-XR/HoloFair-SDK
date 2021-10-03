@@ -32,6 +32,8 @@ namespace OutrealXR.HoloMod.Runtime
         public bool executeOnRecieve = false;
         [Tooltip("Syncronize Object's Transform across the network")]
         public bool syncTransformation = false;
+        [Tooltip("This object will only be used locally (Multiplayer)")]
+        public bool isLocal = false;
         [Tooltip("Fires this event before modifier is executed")]
         public UnityEvent BeforeExecute;
         [Tooltip("Fires this event after modifier is executed")]
