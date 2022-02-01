@@ -1,21 +1,23 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class RespawnModel : BaseModel
+    public class RespawnModel : MonoBehaviour, IProvider
     {
         public float radius;
 
-        public override JObject ToJObject()
+        public JObject ToJObject()
         {
-            JObject data = base.ToJObject();
-            data.Add("radius", radius);
+            JObject data = new JObject
+            {
+                { "radius", radius }
+            };
             return data;
         }
 
-        public override void FromJObject(JObject data)
+        public void FromJObject(JObject data)
         {
-            base.FromJObject(data);
             radius = data.GetValue("radius").Value<float>();
         }
     }

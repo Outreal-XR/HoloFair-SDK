@@ -9,9 +9,9 @@ namespace outrealxr.holomod.Tests
         [Test]
         public void ExtensionsTestsSimplePasses()
         {
-            GameObject gameObject = new GameObject("BaseModel", typeof(BaseModel));
+            GameObject gameObject = new GameObject("BaseModel", typeof(Model));
             gameObject.transform.position = new Vector3(1, -1, 4);
-            BaseModel baseModel = gameObject.GetComponent<BaseModel>();
+            Model baseModel = gameObject.GetComponent<Model>();
             JObject jvector3 = baseModel.transform.position.ToJObject();
             Debug.Log($"[ExtensionsTests] jvector3 = {jvector3}");
             JObject jtransform = baseModel.ToJObject();

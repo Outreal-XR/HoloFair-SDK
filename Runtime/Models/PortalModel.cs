@@ -1,21 +1,23 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class PortalModel : BaseModel
+    public class PortalModel : MonoBehaviour, IProvider
     {
         public string sceneName;
 
-        public override JObject ToJObject()
+        public JObject ToJObject()
         {
-            JObject data = base.ToJObject();
-            data.Add("sceneName", sceneName);
+            JObject data = new JObject
+            {
+                { "sceneName", sceneName }
+            };
             return data;
         }
 
-        public override void FromJObject(JObject data)
+        public void FromJObject(JObject data)
         {
-            base.FromJObject(data);
             sceneName = data.GetValue("sceneName").Value<string>();
         }
     }
