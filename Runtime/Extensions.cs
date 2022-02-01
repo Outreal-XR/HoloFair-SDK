@@ -9,15 +9,9 @@ namespace outrealxr.holomod
         {
             JObject data = new JObject
             {
-                "localPosition", new JObject {
-                    transform.localPosition.ToJObject()
-                },
-                "localEulerAngles", new JObject {
-                    transform.localEulerAngles.ToJObject()
-                },
-                "localScale", new JObject {
-                    transform.localScale.ToJObject()
-                }
+                new JProperty("localPosition", transform.localPosition.ToJObject()),
+                new JProperty("localEulerAngles", transform.localEulerAngles.ToJObject()),
+                new JProperty("localScale", transform.localScale.ToJObject())
             };
             return data;
         }
@@ -26,9 +20,9 @@ namespace outrealxr.holomod
         {
             JObject data = new JObject
             {
-                { "x", JToken.FromObject(vector3.x) },
-                { "y", JToken.FromObject(vector3.y) },
-                { "z", JToken.FromObject(vector3.z) }
+                { "x", vector3.x },
+                { "y", vector3.y },
+                { "z", vector3.z }
             };
             return data;
         }
