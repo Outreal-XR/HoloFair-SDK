@@ -6,7 +6,7 @@ namespace outrealxr.holomod
     public class Model: MonoBehaviour
     {
 
-        public IProvider provider;
+        public Provider provider;
 
         public virtual JObject ToJObject()
         {

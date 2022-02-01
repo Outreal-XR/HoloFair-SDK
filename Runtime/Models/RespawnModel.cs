@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class RespawnModel : MonoBehaviour, IProvider
+    public class RespawnModel : Provider
     {
         public float radius;
 
-        public JObject ToJObject()
+        public override JObject ToJObject()
         {
             JObject data = new JObject
             {
@@ -16,7 +16,7 @@ namespace outrealxr.holomod
             return data;
         }
 
-        public void FromJObject(JObject data)
+        public override void FromJObject(JObject data)
         {
             radius = data.GetValue("radius").Value<float>();
         }

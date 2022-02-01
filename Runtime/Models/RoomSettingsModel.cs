@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class RoomSettingsModel : MonoBehaviour, IProvider
+    public class RoomSettingsModel : Provider
     {
         public Transform lowerBound, higherBound;
         public Vector3 AOI;
         public int maxSpectators, maxUsers, maxVariables, gameID;
 
-        public JObject ToJObject()
+        public override JObject ToJObject()
         {
             JObject data = new JObject();
             data.Add("lowerBound", lowerBound.position.ToJObject());
@@ -22,7 +22,7 @@ namespace outrealxr.holomod
             return data;
         }
 
-        public void FromJObject(JObject data)
+        public override void FromJObject(JObject data)
         {
 
         }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class PortalModel : MonoBehaviour, IProvider
+    public class PortalModel : Provider
     {
         public string sceneName;
 
-        public JObject ToJObject()
+        public override JObject ToJObject()
         {
             JObject data = new JObject
             {
@@ -16,7 +16,7 @@ namespace outrealxr.holomod
             return data;
         }
 
-        public void FromJObject(JObject data)
+        public override void FromJObject(JObject data)
         {
             sceneName = data.GetValue("sceneName").Value<string>();
         }

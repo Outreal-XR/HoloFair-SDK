@@ -1,6 +1,7 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
-public interface IProvider
+public abstract class Provider: MonoBehaviour
 {
     public abstract JObject ToJObject();
 

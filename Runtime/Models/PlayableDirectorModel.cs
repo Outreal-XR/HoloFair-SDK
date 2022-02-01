@@ -4,19 +4,19 @@ using UnityEngine.Playables;
 
 namespace outrealxr.holomod
 {
-    public class PlayableDirectorModel : MonoBehaviour, IProvider
+    public class PlayableDirectorModel : Provider
     {
         public PlayableDirector director;
         public double startTimestamp;
 
-        public JObject ToJObject()
+        public override JObject ToJObject()
         {
             JObject data = new JObject();
             data.Add("startTimestamp", startTimestamp);
             return data;
         }
 
-        public void FromJObject(JObject data)
+        public override void FromJObject(JObject data)
         {
             startTimestamp = data.GetValue("startTimestamp").Value<double>();
         }
