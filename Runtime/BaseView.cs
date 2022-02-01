@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public abstract class BaseController : MonoBehaviour
+    public abstract class BaseView : MonoBehaviour
     {
         public BaseModel model;
 
