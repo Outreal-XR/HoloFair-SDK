@@ -1,5 +1,5 @@
 {
-    "name": "OutrealXR.HoloMod.Editor",
+    "name": "outrealxr.holomod.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:cf382fda4304eac44a9a45dbac9df2de"

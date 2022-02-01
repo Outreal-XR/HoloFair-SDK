@@ -1,5 +1,5 @@
 {
-    "name": "OutrealXR.HoloMod.Runtime",
+    "name": "outrealxr.holomod",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
