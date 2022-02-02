@@ -7,8 +7,9 @@ namespace outrealxr.holomod
     {
         public static JObject ToJObject(this Transform transform)
         {
-            JObject data = new JObject
+            var data = new JObject
             {
+                new JProperty("name", transform.name),
                 new JProperty("localPosition", transform.localPosition.ToJObject()),
                 new JProperty("localEulerAngles", transform.localEulerAngles.ToJObject()),
                 new JProperty("localScale", transform.localScale.ToJObject())
@@ -18,7 +19,7 @@ namespace outrealxr.holomod
 
         public static JObject ToJObject(this Vector3 vector3)
         {
-            JObject data = new JObject
+            var data = new JObject
             {
                 { "x", vector3.x },
                 { "y", vector3.y },
