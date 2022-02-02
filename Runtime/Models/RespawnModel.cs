@@ -7,6 +7,8 @@ namespace outrealxr.holomod
     {
         public float radius;
 
+        public override string ModKey => "respawn";
+
         public override JObject ToJObject()
         {
             JObject data = new JObject

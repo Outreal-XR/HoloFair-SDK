@@ -7,6 +7,8 @@ namespace outrealxr.holomod
     {
         public string sceneName;
 
+        public override string ModKey => "portal";
+        
         public override JObject ToJObject()
         {
             JObject data = new JObject

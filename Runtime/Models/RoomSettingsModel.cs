@@ -9,6 +9,8 @@ namespace outrealxr.holomod
         public Vector3 AOI;
         public int maxSpectators, maxUsers, maxVariables, gameID;
 
+        public override string ModKey => "roomSettings";
+
         public override JObject ToJObject()
         {
             JObject data = new JObject();
