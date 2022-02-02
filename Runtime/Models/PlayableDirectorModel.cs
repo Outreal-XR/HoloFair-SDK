@@ -9,6 +9,8 @@ namespace outrealxr.holomod
         public PlayableDirector director;
         public double startTimestamp;
 
+        public override string ModKey => "playableDirector";
+
         public override JObject ToJObject()
         {
             JObject data = new JObject();
