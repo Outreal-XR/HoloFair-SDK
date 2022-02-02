@@ -1,5 +1,5 @@
+using System;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 using UnityEngine.Playables;
 
 namespace outrealxr.holomod
@@ -7,14 +7,20 @@ namespace outrealxr.holomod
     public class PlayableDirectorModel : Provider
     {
         public PlayableDirector director;
+        public double startDelay;
         public double startTimestamp;
-
+        
         public override string ModKey => "playableDirector";
 
+        public void Start() {
+            startTimestamp =
+                DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
+                    .TotalMilliseconds + startDelay;
+        }
+        
         public override JObject ToJObject()
         {
-            JObject data = new JObject();
-            data.Add("startTimestamp", startTimestamp);
+            var data = new JObject {{"startTimestamp", startTimestamp}};
             return data;
         }
 
