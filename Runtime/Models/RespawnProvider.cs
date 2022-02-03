@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class RespawnModel : Provider
+    public class RespawnProvider : Provider
     {
         public float radius;
 
@@ -21,6 +21,18 @@ namespace outrealxr.holomod
         public override void FromJObject(JObject data)
         {
             radius = data.GetValue("radius").Value<float>();
+        }
+
+        bool isDirty = true;
+
+        public override void SetIsDirty(bool val)
+        {
+            isDirty = val;
+        }
+
+        public override bool IsDirty()
+        {
+            return isDirty;
         }
     }
 }

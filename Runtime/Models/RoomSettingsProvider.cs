@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class RoomSettingsModel : Provider
+    public class RoomSettingsProvider : Provider
     {
         public Transform lowerBound, higherBound;
         public Vector3 AOI;
@@ -27,6 +27,18 @@ namespace outrealxr.holomod
         public override void FromJObject(JObject data)
         {
 
+        }
+
+        bool isDirty = true;
+
+        public override void SetIsDirty(bool val)
+        {
+            isDirty = val;
+        }
+
+        public override bool IsDirty()
+        {
+            return isDirty;
         }
     }
 }

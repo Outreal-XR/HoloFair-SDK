@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class PortalModel : Provider
+    public class PortalProvider : Provider
     {
         public string sceneName;
 
@@ -21,6 +21,18 @@ namespace outrealxr.holomod
         public override void FromJObject(JObject data)
         {
             sceneName = data.GetValue("sceneName").Value<string>();
+        }
+
+        bool isDirty = true;
+
+        public override void SetIsDirty(bool val)
+        {
+            isDirty = val;
+        }
+
+        public override bool IsDirty()
+        {
+            return isDirty;
         }
     }
 }
