@@ -20,7 +20,7 @@ namespace outrealxr.holomod
             transform.localPosition = data.GetValue("localPosition").ToObject<JObject>().FromJObject();
             transform.localEulerAngles = data.GetValue("localEulerAngles").ToObject<JObject>().FromJObject();
             transform.localScale = data.GetValue("localScale").ToObject<JObject>().FromJObject();
-            provider.FromJObject(data.GetValue("other").Value<JObject>());
+            provider.FromJObject(data.Value<JObject>());
         } 
     }
 }
