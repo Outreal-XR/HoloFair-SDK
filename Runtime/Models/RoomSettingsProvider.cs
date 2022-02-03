@@ -11,6 +11,8 @@ namespace outrealxr.holomod
 
         public override string ModKey => "roomSettings";
 
+        public override string providerType => GetType().Name;
+
         public override JObject ToJObject()
         {
             JObject data = new JObject();

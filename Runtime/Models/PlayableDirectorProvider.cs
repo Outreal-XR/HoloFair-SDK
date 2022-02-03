@@ -10,7 +10,9 @@ namespace outrealxr.holomod
         public double startTimestamp;
 
         public override string ModKey => "playableDirector";
-        
+
+        public override string providerType => GetType().Name;
+
         public override JObject ToJObject()
         {
             return new JObject { { "startTimestamp", startTimestamp } };

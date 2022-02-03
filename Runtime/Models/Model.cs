@@ -11,8 +11,8 @@ namespace outrealxr.holomod
         public virtual JObject ToJObject()
         {
             var data = transform.ToJObject();
-            data.Add(new JProperty("other", "provider"));
-            return transform.ToJObject();
+            data.Add(new JProperty("type", provider.providerType));
+            return data;
         }
 
         public virtual void FromJObject(JObject data)

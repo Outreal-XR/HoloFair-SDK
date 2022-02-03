@@ -12,4 +12,6 @@ public abstract class Provider: MonoBehaviour
     public abstract JObject ToJObject();
 
     public abstract void FromJObject(JObject data);
+
+    public abstract string providerType { get; }
 }
