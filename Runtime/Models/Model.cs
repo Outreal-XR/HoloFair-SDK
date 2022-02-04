@@ -7,6 +7,12 @@ namespace outrealxr.holomod
     {
 
         public Provider provider;
+        public View view;
+
+        private void Awake()
+        {
+            if (view == null) view = GetComponent<View>();
+        }
 
         public virtual JObject ToJObject()
         {
