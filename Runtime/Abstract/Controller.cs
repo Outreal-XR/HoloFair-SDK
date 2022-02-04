@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class Controller : MonoBehaviour
+    public abstract class Controller : MonoBehaviour
     {
         public Model model;
 
@@ -13,9 +13,6 @@ namespace outrealxr.holomod
             model = GetComponentInChildren<Model>();
         }
 
-        public void Handle()
-        {
-
-        }
+        public abstract void Handle();
     }
 }
