@@ -6,7 +6,14 @@ namespace outrealxr.holomod
     public class VideoProvider : ImageProvider
     {
 
+        public enum Control
+        {
+            OnClick,
+            OnTrigger
+        }
+
         public bool IsLive, IsSynced;
+        public Control control;
         [Tooltip("Must be UTC")]
         public double startTimestamp;
 

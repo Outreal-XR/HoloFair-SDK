@@ -3,11 +3,11 @@ using UnityEngine.Events;
 
 namespace outrealxr.holomod
 {
-    public class OnTriggerEnterHandler : ViewHandler
+    public class OnTriggerHandler : ViewHandler
     {
 
         public string TargetTag;
-        public UnityEvent _OnTriggerEnter;
+        public UnityEvent _OnTriggerEnter, _OnTriggerExit;
 
         public override void Handle()
         {
@@ -17,10 +17,13 @@ namespace outrealxr.holomod
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(TargetTag))
-            {
-                Handle();
-                _OnTriggerEnter.Invoke();// This may backfire if it is used to disable collider
-            }
+                _OnTriggerEnter.Invoke();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag(TargetTag))
+                _OnTriggerExit.Invoke();
         }
     }
 }
