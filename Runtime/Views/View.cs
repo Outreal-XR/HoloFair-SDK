@@ -12,24 +12,9 @@ namespace outrealxr.holomod
             this.controller = controller;
         }
 
-        public void SendMessageToController(string msg, bool arg)
+        public void SendMessageToController(string msg)
         {
-            controller.SendMessage(msg, arg, sendMessageOptions);
-        }
-
-        public void SendMessageToController(string msg, string arg)
-        {
-            controller.SendMessage(msg, arg, sendMessageOptions);
-        }
-
-        public void SendMessageToController(string msg, float arg)
-        {
-            controller.SendMessage(msg, arg, sendMessageOptions);
-        }
-
-        public void SendMessageToController(string msg, int arg)
-        {
-            controller.SendMessage(msg, arg, sendMessageOptions);
+            controller.SendMessage(msg, sendMessageOptions);
         }
     }
 }
