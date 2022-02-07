@@ -14,6 +14,8 @@ namespace outrealxr.holomod
 
         public bool IsLive, IsSynced;
         public Control control;
+        [TextArea(2,5)]
+        public string instructionsToCrossTheBarierToWatchInFullScreen = "Cross the barier to click and watch the video in full screen mode";
         [Tooltip("Must be UTC")]
         public double startTimestamp;
 
