@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace outrealxr.holomod
 {
@@ -6,6 +7,7 @@ namespace outrealxr.holomod
     {
 
         public string TargetTag;
+        public UnityEvent _OnTriggerEnter;
 
         public override void Handle()
         {
@@ -14,7 +16,11 @@ namespace outrealxr.holomod
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(TargetTag)) Handle();
+            if (other.CompareTag(TargetTag))
+            {
+                Handle();
+                _OnTriggerEnter.Invoke();
+            }
         }
     }
 }
