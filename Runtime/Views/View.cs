@@ -5,7 +5,7 @@ namespace outrealxr.holomod
     public class View : MonoBehaviour
     {
         public Controller controller;
-        public SendMessageOptions sendMessageOptions;
+        public SendMessageOptions sendMessageOptions = SendMessageOptions.DontRequireReceiver;
 
         public void SetController(Controller controller)
         {
