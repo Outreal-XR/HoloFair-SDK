@@ -19,7 +19,7 @@ namespace outrealxr.holomod
             if (other.CompareTag(TargetTag))
             {
                 Handle();
-                _OnTriggerEnter.Invoke();
+                _OnTriggerEnter.Invoke();// This may backfire if it is used to disable collider
             }
         }
     }
