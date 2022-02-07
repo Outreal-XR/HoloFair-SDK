@@ -6,6 +6,7 @@ namespace outrealxr.holomod
     {
 
         public MeshRenderer meshRenderer;
+        public string textureProperty = "_BaseMap";
 
         public override string ModKey => "image";
 
