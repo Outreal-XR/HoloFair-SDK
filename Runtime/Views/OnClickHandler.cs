@@ -6,7 +6,7 @@ namespace outrealxr.holomod
     public class OnClickHandler : ViewHandler
     {
 
-        public UnityEvent OnClick;
+        public UnityEvent OnEnter, OnDown, OnUp, OnExit, OnClick;
 
         public override void Handle()
         {
