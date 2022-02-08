@@ -26,9 +26,12 @@ namespace outrealxr.holomod
         public override void FromJObject(JObject data)
         {
             base.FromJObject(data);
-            IsLive = data.GetValue("IsLive").Value<bool>();
-            IsSynced = data.GetValue("IsSynced").Value<bool>();
-            startTimestamp = data.GetValue("startTimestamp").Value<double>();
+            if (data.ContainsKey("IsLive")) IsLive = data.GetValue("IsLive").Value<bool>();
+            else Debug.Log("[VideoProvider] Missing IsLive key");
+            if (data.ContainsKey("IsSynced")) IsSynced = data.GetValue("IsSynced").Value<bool>();
+            else Debug.Log("[VideoProvider] Missing IsSynced key");
+            if (data.ContainsKey("startTimestamp")) startTimestamp = data.GetValue("startTimestamp").Value<double>();
+            else Debug.Log("[VideoProvider] Missing startTimestamp key");
         }
 
         public override JObject ToJObject()

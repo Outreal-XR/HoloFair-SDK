@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
@@ -25,7 +26,8 @@ namespace outrealxr.holomod
 
         public override void FromJObject(JObject data)
         {
-            url = data.GetValue("url").Value<string>();
+            if (data.ContainsKey("url")) url = data.GetValue("url").Value<string>();
+            else Debug.Log("[LinkProvider] Missing url key");
         }
 
         public override JObject ToJObject()
