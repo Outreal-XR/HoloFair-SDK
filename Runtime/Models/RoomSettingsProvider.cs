@@ -7,6 +7,7 @@ namespace outrealxr.holomod
     {
         public Transform lowerBound, higherBound;
         public Vector3 AOI;
+        public string venueName;
         public int maxSpectators, maxUsers, maxVariables, gameID;
 
         public override string ModKey => "roomSettings";
@@ -15,14 +16,17 @@ namespace outrealxr.holomod
 
         public override JObject ToJObject()
         {
-            JObject data = new JObject();
-            data.Add("lowerBound", lowerBound.position.ToJObject());
-            data.Add("higherBound", higherBound.position.ToJObject());
-            data.Add("AOI", AOI.ToJObject());
-            data.Add("maxSpectators", maxSpectators);
-            data.Add("maxUsers", maxUsers);
-            data.Add("maxVariables", maxVariables);
-            data.Add("gameID", gameID);
+            JObject data = new JObject
+            {
+                { "lowerBound", lowerBound.position.ToJObject() },
+                { "higherBound", higherBound.position.ToJObject() },
+                { "AOI", AOI.ToJObject() },
+                { "maxSpectators", maxSpectators },
+                { "maxUsers", maxUsers },
+                { "maxVariables", maxVariables },
+                { "venueName", venueName },
+                { "gameID", gameID }
+            };
             return data;
         }
 
