@@ -25,8 +25,6 @@ namespace outrealxr.holomod
             sceneName = data.GetValue("sceneName").Value<string>();
         }
 
-        bool isDirty = true;
-
         public override void SetIsDirty(bool val)
         {
             isDirty = val;

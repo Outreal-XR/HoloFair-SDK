@@ -5,6 +5,8 @@ namespace outrealxr.holomod
 {
     public abstract class Provider : MonoBehaviour
     {
+        public bool isDirty = true;
+
         public abstract string ModKey { get; }
 
         public abstract void SetIsDirty(bool val);

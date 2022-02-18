@@ -18,6 +18,8 @@ namespace outrealxr.holomod
         public string instructionsToCrossTheBarierToWatchInFullScreen = "Cross the barier to click and watch the video in full screen mode";
         [Tooltip("Must be UTC")]
         public double startTimestamp;
+        public Texture2D thumbnail;
+        public GameObject loadingVisual;
 
         public override string ModKey => "video";
 
