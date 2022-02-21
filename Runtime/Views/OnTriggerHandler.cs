@@ -3,16 +3,11 @@ using UnityEngine.Events;
 
 namespace outrealxr.holomod
 {
-    public class OnTriggerHandler : ViewHandler
+    public class OnTriggerHandler : MonoBehaviour
     {
 
         public string TargetTag;
         public UnityEvent _OnTriggerEnter, _OnTriggerExit;
-
-        public override void Handle()
-        {
-            view.controller.Handle();
-        }
 
         private void OnTriggerEnter(Collider other)
         {
