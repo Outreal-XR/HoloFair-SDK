@@ -18,6 +18,7 @@ namespace outrealxr.holomod
         {
             var data = transform.ToJObject();
             data.Add(new JProperty("type", provider.providerType));
+            data.Merge(provider.ToJObject());
             return data;
         }
 
