@@ -35,8 +35,6 @@ namespace outrealxr.holomod
 
         }
 
-        bool isDirty = true;
-
         public override void SetIsDirty(bool val)
         {
             isDirty = val;

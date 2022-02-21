@@ -25,8 +25,6 @@ namespace outrealxr.holomod
             radius = data.GetValue("radius").Value<float>();
         }
 
-        bool isDirty = true;
-
         public override void SetIsDirty(bool val)
         {
             isDirty = val;

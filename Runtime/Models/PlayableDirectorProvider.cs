@@ -30,8 +30,6 @@ namespace outrealxr.holomod
             if (now >= startTimestamp) director.time = difference;
         }
 
-        bool isDirty = true;
-
         public override void SetIsDirty(bool val)
         {
             isDirty = val;

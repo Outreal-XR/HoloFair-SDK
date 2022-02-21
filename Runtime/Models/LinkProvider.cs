@@ -12,8 +12,6 @@ namespace outrealxr.holomod
 
         public override string providerType => GetType().Name;
 
-        public bool isDirty = false;
-
         public override bool IsDirty()
         {
             return isDirty;
