@@ -14,7 +14,7 @@ namespace outrealxr.holomod
         public string normalizedTimeParameterName = "progress";
         [Tooltip("UTC Timestamp in milliseconds")]
         public double now, startTime;
-        public float elapsedTime, currentTime;
+        public float elapsedTime;
         public float animationLength;
         public Animator animator;
 
@@ -50,17 +50,16 @@ namespace outrealxr.holomod
 
         void Sync()
         {
-            now = DateTime.Now.ToUniversalTime().Subtract(startDateTime).TotalMilliseconds;
             animator.Play(stateName);
             animationLength = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
-            elapsedTime = ((float)(now - startTime)) / 1000f;
         }
 
         void Update()
         {
-            currentTime = elapsedTime + Time.time;
+            now = DateTime.Now.ToUniversalTime().Subtract(startDateTime).TotalMilliseconds;
+            elapsedTime = ((float)(now - startTime)) / 1000f;
             if(animationLength > 0)
-                animator.SetFloat(normalizedTimeParameterName, currentTime / animationLength);
+                animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }
 
         public override bool IsDirty()
