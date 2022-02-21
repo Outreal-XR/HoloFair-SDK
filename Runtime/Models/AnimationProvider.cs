@@ -1,34 +1,38 @@
 using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace outrealxr.holomod
 {
     public class AnimationProvider : Provider
     {
-        public override string ModKey => throw new System.NotImplementedException();
 
-        public override string providerType => throw new System.NotImplementedException();
+        public string emoteName;
+
+        public override string ModKey => "animation";
+
+        public override string providerType => GetType().Name;
 
         public override void FromJObject(JObject data)
         {
-            throw new System.NotImplementedException();
+            emoteName = data.GetValue("emoteName").Value<string>();
         }
 
         public override bool IsDirty()
         {
-            throw new System.NotImplementedException();
+            return isDirty;
         }
 
         public override void SetIsDirty(bool val)
         {
-            throw new System.NotImplementedException();
+            isDirty = val;
         }
 
         public override JObject ToJObject()
         {
-            throw new System.NotImplementedException();
+            JObject data = new JObject
+            {
+                new JProperty("emoteName", emoteName)
+            };
+            return data;
         }
     }
 }

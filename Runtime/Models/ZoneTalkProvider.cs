@@ -6,12 +6,26 @@ namespace outrealxr.holomod
     public class ZoneTalkProvider : Provider
     {
 
+        public enum State
+        {
+            Idle,
+            Connecting,
+            Success,
+            Error
+        }
+
         public string zoneName;
 
         [Header("Visuals")]
-        public GameObject success;
+        public GameObject idle;
         public GameObject connecting;
+        public GameObject success;
         public GameObject error;
+
+        private void Start()
+        {
+            SetVisualState(State.Idle);
+        }
 
         public override string ModKey => "zonetalk";
 
@@ -30,6 +44,14 @@ namespace outrealxr.holomod
         public override void SetIsDirty(bool val)
         {
             isDirty = val;
+        }
+
+        public void SetVisualState(State state)
+        {
+            if (idle) idle.SetActive(state == State.Idle);
+            if (connecting) idle.SetActive(state == State.Connecting);
+            if (success) idle.SetActive(state == State.Success);
+            if (error) idle.SetActive(state == State.Error);
         }
 
         public override JObject ToJObject()
