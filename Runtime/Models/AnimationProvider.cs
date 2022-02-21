@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
@@ -6,6 +7,7 @@ namespace outrealxr.holomod
     {
 
         public string emoteName;
+        public Transform avatarPivotPoint;
 
         public override string ModKey => "animation";
 
