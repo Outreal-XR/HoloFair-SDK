@@ -21,6 +21,16 @@ namespace outrealxr.holomod
         DateTime startDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         static DateTime epoch = new DateTime(1970, 1, 1);
 
+        public void SetStateName(string val)
+        {
+            stateName = val;
+        }
+
+        public void SetLayerIndex(int val)
+        {
+            layerIndex = val;
+        }
+
         public override string ModKey => "animator";
 
         public override string providerType => GetType().Name;

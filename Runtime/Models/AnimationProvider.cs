@@ -13,6 +13,11 @@ namespace outrealxr.holomod
 
         public override string providerType => GetType().Name;
 
+        public void SetEmoteName(string val)
+        {
+            emoteName = val;
+        }
+
         public override void FromJObject(JObject data)
         {
             emoteName = data.GetValue("emoteName").Value<string>();
