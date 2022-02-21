@@ -42,9 +42,9 @@ namespace outrealxr.holomod
         void Sync()
         {
             startDateTime = epoch.AddMilliseconds(double.Parse(startTime.ToString()));
-            elapsedTime = (float)(DateTime.UtcNow.Subtract(startDateTime).TotalMilliseconds % (animationLength * 1000f) / 1000f);
             animator.Play(stateName);
             animationLength = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+            elapsedTime = (float)(DateTime.UtcNow.Subtract(startDateTime).TotalMilliseconds % (animationLength * 1000f) / 1000f);
         }
 
         void Update()
