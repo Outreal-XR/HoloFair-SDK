@@ -49,9 +49,9 @@ namespace outrealxr.holomod
         public void SetVisualState(State state)
         {
             if (idle) idle.SetActive(state == State.Idle);
-            if (connecting) idle.SetActive(state == State.Connecting);
-            if (success) idle.SetActive(state == State.Success);
-            if (error) idle.SetActive(state == State.Error);
+            if (connecting) connecting.SetActive(state == State.Connecting);
+            if (success) success.SetActive(state == State.Success);
+            if (error) error.SetActive(state == State.Error);
         }
 
         public override JObject ToJObject()
