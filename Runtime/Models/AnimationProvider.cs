@@ -7,7 +7,7 @@ namespace outrealxr.holomod
     {
 
         public string emoteName;
-        public Transform avatarPivotPoint;
+        public Transform avatarPivot, respawnPoint;
 
         public override string ModKey => "animation";
 
