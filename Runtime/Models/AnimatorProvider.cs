@@ -79,6 +79,7 @@ namespace outrealxr.holomod
                 new JProperty("stateName", stateName),
                 new JProperty("layerIndex", layerIndex)
             };
+            if (startTime == 0) data.Add(new JProperty("startTime", startTime));
             return data;
         }
     }
