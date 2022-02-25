@@ -50,15 +50,16 @@ namespace outrealxr.holomod
 
         void Sync()
         {
-            animator.Play(stateName);
-            animationLength = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+            animator.Play(stateName); 
         }
 
         void Update()
         {
             now = DateTime.Now.ToUniversalTime().Subtract(startDateTime).TotalMilliseconds;
             elapsedTime = ((float)(now - startTime)) / 1000f;
-            if(animationLength > 0)
+            if (animator)
+                animationLength = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+            if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }
 
