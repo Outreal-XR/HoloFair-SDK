@@ -10,7 +10,7 @@ namespace outrealxr.holomod
 
         protected void Awake()
         {
-            model = GetComponentInChildren<Model>();
+            model = GetComponentInParent<Model>();
         }
 
         public abstract void Handle();
