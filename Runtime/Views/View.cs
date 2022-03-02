@@ -17,6 +17,11 @@ namespace outrealxr.holomod
             this.controller = controller;
         }
 
+        public void Sync()
+        {
+            controller.Sync();
+        }
+
         public void SendMessageToController(string msg)
         {
             controller.SendMessage(msg, sendMessageOptions);
