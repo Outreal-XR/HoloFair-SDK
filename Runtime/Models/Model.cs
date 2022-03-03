@@ -28,15 +28,9 @@ namespace outrealxr.holomod
 
         public virtual void FromJObject(JObject data)
         {
-            if (data.ContainsKey("localPosition")) transform.localPosition = data.GetValue("localPosition").ToObject<JObject>().FromJObject();
-            else if(reportMissingKeys) Debug.Log("[Model] Missing locationPosition key");
-            if (data.ContainsKey("localEulerAngles")) transform.localEulerAngles = data.GetValue("localEulerAngles").ToObject<JObject>().FromJObject();
-            else if (reportMissingKeys) Debug.Log("[Model] Missing localEulerAngles key");
-            if (data.ContainsKey("localScale")) transform.localScale = data.GetValue("localScale").ToObject<JObject>().FromJObject();
-            else if (reportMissingKeys) Debug.Log("[Model] Missing localScale key");
-            if (data.ContainsKey("Addressable")) {
-                Addressable = data.GetValue("Addressable").Value<string>();
-            } else if(reportMissingKeys) Debug.Log("[Model] Missing reportMissingKeys key");
+            data.ToTransform(this);
+            if (data.ContainsKey("Addressable")) Addressable = data.GetValue("Addressable").Value<string>();
+            else if(reportMissingKeys) Debug.Log("[Model] Missing Addressable key");
             provider.FromJObject(data.Value<JObject>());
         } 
     }
