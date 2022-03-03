@@ -1,6 +1,6 @@
 {
   "name": "com.outrealxr.holomod",
-  "version": "1.1.44",
+  "version": "1.1.45",
   "displayName": "HoloMod",
   "description": "HoloMod allows users to create a universally compatible unity scenes for any unity project that wants to enable mods and user content",
   "unity": "2020.3",
@@ -14,5 +14,8 @@
     "name": "Mohamed Eltawil",
     "email": "mohammedzero43@gmail.com"
   },
-  "type": "tool"
+  "type": "tool",
+  "dependencies": {
+    "com.unity.addressables": "1.19.18"
+  }
 }
