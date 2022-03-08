@@ -17,5 +17,12 @@
   "type": "tool",
   "dependencies": {
     "com.unity.addressables": "1.19.18"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "HoloFair Standard RP",
+      "description": "Contains primitive prefabs to demonstrate usage of providers using singleplayer type of controllers",
+      "path": "Samples~/HoloFairStandard"
+    }
+  ]
 }

@@ -16,5 +16,9 @@ namespace outrealxr.holomod
         public abstract void Handle();
 
         public abstract void Sync();
+
+        public abstract void Read();
+
+        public abstract void ReadForAll();
     }
 }

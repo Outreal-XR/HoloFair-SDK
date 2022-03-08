@@ -23,6 +23,16 @@ namespace outrealxr.holomod
             controller.Sync();
         }
 
+        public void Read()
+        {
+            controller.Read();
+        }
+
+        public void ReadForAll()
+        {
+            controller.ReadForAll();
+        }
+
         public void SendMessageToController(string msg)
         {
             controller.SendMessage(msg, sendMessageOptions);
@@ -30,7 +40,7 @@ namespace outrealxr.holomod
 
         public void LoadAddressable(string path)
         {
-
+            if (loadedAddressable) Destroy(loadedAddressable);
         }
     }
 }

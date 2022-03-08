@@ -1,14 +1,16 @@
 using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine.Playables;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
     public class PlayableDirectorProvider : Provider
     {
         public PlayableDirector director;
-        public double startDelay;
+        [Tooltip("Don't touch it. It is used only for debugging")]
         public double startTimestamp;
+        [Tooltip("Don't touch it. It is used only for debugging")]
         public double difference;
 
         public override string ModKey => "playableDirector";
