@@ -1,7 +1,7 @@
 {
   "name": "com.outrealxr.holomod",
-  "version": "1.1.50",
-  "displayName": "HoloMod",
+  "version": "1.1.51",
+  "displayName": "HoloFair SDK",
   "description": "HoloMod allows users to create a universally compatible unity scenes for any unity project that wants to enable mods and user content",
   "unity": "2020.3",
   "unityRelease": "0b5",
@@ -22,7 +22,7 @@
     {
       "displayName": "HoloFair Standard RP",
       "description": "Contains primitive prefabs to demonstrate usage of providers using singleplayer type of controllers",
-      "path": "Samples~/HoloFairStandard"
+      "path": "Samples/HoloFairStandard"
     }
   ]
 }
