@@ -29,7 +29,7 @@ namespace outrealxr.holomod
             if (data.ContainsKey("url"))
             {
                 url = data.GetValue("url").Value<string>();
-                if (string.IsNullOrWhiteSpace(url))
+                if (!string.IsNullOrWhiteSpace(url))
                 {
                     OnUrlSet.Invoke();
                 }
