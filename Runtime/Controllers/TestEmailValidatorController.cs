@@ -20,8 +20,8 @@ namespace outrealxr.holomod
                 provider.OnEmailValid.Invoke();
                 return;
             }
-            if (provider == null) provider = (EmailValidatorProvider) model.provider;
-            switch(provider.state)
+            if (provider == null) provider = (EmailValidatorProvider)model.provider;
+            switch (provider.state)
             {
                 case EmailValidatorProvider.State.Idle:
                     provider.SetState(EmailValidatorProvider.State.Choose);
@@ -74,7 +74,7 @@ namespace outrealxr.holomod
         {
             provider.SetState(EmailValidatorProvider.State.Waiting);
             yield return new WaitForSeconds(Random.Range(minTimeToRespond, maxTimeToRespawn));
-            if(string.IsNullOrWhiteSpace(createError))
+            if (string.IsNullOrWhiteSpace(createError))
             {
                 provider.SetState(EmailValidatorProvider.State.Verify);
                 provider.OnVerifcationSent.Invoke();
