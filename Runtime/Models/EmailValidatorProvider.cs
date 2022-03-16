@@ -11,9 +11,11 @@ namespace outrealxr.holomod
         public enum State
         {
             Idle = 0,
-            NewValidAccountDetailsRequired = 1,
-            VerificationCodeSent = 2,
-            Waiting = 3
+            Choose = 1,
+            Login = 2,
+            Create = 3,
+            Verify = 4,
+            Waiting = 5
         }
 
         public State state;
@@ -33,11 +35,12 @@ namespace outrealxr.holomod
 
         [Header("UI")]
         public GameObject Form;
+        public GameObject Step1, Step2;
         public GameObject Loading;
         public CanvasGroup canvasGroup;
         public TMPro.TextMeshProUGUI timeLeftText, errorText;
         public TMPro.TMP_InputField EmailInputField, PasswordInputField, VerificationCodeInputField;
-        public UnityEngine.UI.Button CreateAccountButton, VerifyAccountButton;
+        public UnityEngine.UI.Button LoginButton, CreateButton, VerifyButton;
 
         public UnityEvent OnEmailInvalid, OnVerifcationSent, OnErrorOccured, OnEmailValid;
 
@@ -76,11 +79,16 @@ namespace outrealxr.holomod
             if (state == State.Waiting && val == State.Idle) lastTimeToWait = delay;
             state = val;
             Loading.SetActive(state == State.Waiting);
-            if (state != State.Waiting) Form.SetActive(state != State.Idle);
+            if (state != State.Waiting)
+            {
+                Form.SetActive(state != State.Idle);
+                Step1.SetActive(state == State.Choose);
+                Step2.SetActive(state != State.Choose);
+                VerificationCodeInputField.gameObject.SetActive(state == State.Verify);
+            }
             canvasGroup.interactable = state != State.Waiting;
-            EmailInputField.interactable = state == State.NewValidAccountDetailsRequired;
+            EmailInputField.interactable = state == State.Create || state == State.Login;
             PasswordInputField.interactable = EmailInputField.interactable;
-            if(state != State.Waiting) VerificationCodeInputField.gameObject.SetActive(state == State.VerificationCodeSent);
             UpdateAccountButtonState();
         }
 
@@ -114,18 +122,20 @@ namespace outrealxr.holomod
  
         void UpdateAccountButtonState()
         {
-            if (state == State.NewValidAccountDetailsRequired)
+            if (state == State.Create || state == State.Login)
             {
-                CreateAccountButton.interactable = timeLeft <= 0 && !string.IsNullOrWhiteSpace(InputEmail) && InputEmail.Contains("@") && !string.IsNullOrWhiteSpace(InputPassword);
+                CreateButton.interactable = timeLeft <= 0 && !string.IsNullOrWhiteSpace(InputEmail) && InputEmail.Contains("@") && !string.IsNullOrWhiteSpace(InputPassword);
+                LoginButton.interactable = CreateButton.interactable;
             }
-            else if (state == State.VerificationCodeSent)
+            else if (state == State.Verify)
             {
-                VerifyAccountButton.interactable = timeLeft <= 0 && !string.IsNullOrWhiteSpace(VerificationCode);
+                VerifyButton.interactable = timeLeft <= 0 && !string.IsNullOrWhiteSpace(VerificationCode);
             }
             else
             {
-                CreateAccountButton.interactable = false;
-                VerifyAccountButton.interactable = false;
+                CreateButton.interactable = false;
+                VerifyButton.interactable = false;
+                LoginButton.interactable = false;
             }
         }
 
