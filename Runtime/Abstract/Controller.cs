@@ -20,5 +20,15 @@ namespace outrealxr.holomod
         public abstract void Read();
 
         public abstract void ReadForAll();
+
+        public virtual void LockPlayerControls()
+        {
+            Debug.LogWarning($"[SDKModelController] {gameObject.name} does't have any implemention of {nameof(LockPlayerControls)}");
+        }
+
+        public virtual void UnlockPlayerControls()
+        {
+            Debug.LogWarning($"[SDKModelController] {gameObject.name} does't have any implemention of {nameof(UnlockPlayerControls)}");
+        }
     }
 }
