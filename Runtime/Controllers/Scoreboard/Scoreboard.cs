@@ -31,7 +31,7 @@ namespace outrealxr.holomod
                 FullName = jObject.GetValue("FullName").Value<string>();
                 Email = jObject.GetValue("Email").Value<string>();
                 Score = jObject.GetValue("Score").Value<int>();
-                IsLocal = jObject.GetValue("IsLocal").Value<bool>();
+                IsLocal = jObject.ContainsKey("IsLocal") ? jObject.GetValue("IsLocal").Value<bool>() : false;
             }
 
             public override int GetHashCode()
