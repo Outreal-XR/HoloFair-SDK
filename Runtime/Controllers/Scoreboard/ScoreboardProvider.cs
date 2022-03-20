@@ -29,7 +29,7 @@ namespace outrealxr.holomod
 
         public override JObject ToJObject()
         {
-            throw new System.NotImplementedException();
+            return new JObject();
         }
     }
 }
