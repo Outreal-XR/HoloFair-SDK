@@ -1,9 +1,11 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
     public class ScoreboardProvider : Provider
     {
+        public bool isDebugging;
         public Scoreboard scoreboard;
 
         public override string ModKey => "scoreBoard";
@@ -22,6 +24,7 @@ namespace outrealxr.holomod
 
         public override void FromJObject(JObject data)
         {
+            if (isDebugging) Debug.Log("[ScoreboardProvider] Updating scoreboard: " + data.ToString());
             scoreboard.UpdateModels(new JObject() {
                 new JProperty ("models", data.GetValue("scoreboard"))
             });
