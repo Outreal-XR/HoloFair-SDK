@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace outrealxr.holomod
 {
+    [RequireComponent(typeof(View))]
     public class Model: MonoBehaviour
     {
 
@@ -12,9 +13,8 @@ namespace outrealxr.holomod
         public View view;
         public bool reportMissingKeys;
 
-        private void Awake()
-        {
-            if (view == null) view = GetComponent<View>();
+        private void Reset () {
+            view = GetComponent<View>();
         }
 
         public virtual JObject ToJObject()
