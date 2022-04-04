@@ -190,6 +190,9 @@ namespace outrealxr.holomod.Editor
             collider.isTrigger = true; 
             var handler = colliderChild.AddComponent<OnTriggerHandler>();
             handler.TargetTag = "LocalPlayer";
+            
+            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
+            Selection.activeObject = colliderChild;
         }
         
         [MenuItem("CONTEXT/Provider/Add Sphere Trigger Handler")]
@@ -202,6 +205,9 @@ namespace outrealxr.holomod.Editor
             collider.isTrigger = true; 
             var handler = colliderChild.AddComponent<OnTriggerHandler>();
             handler.TargetTag = "LocalPlayer";
+            
+            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
+            Selection.activeObject = colliderChild;
         }
         
         [MenuItem("CONTEXT/Provider/Add Click Handler")]
@@ -214,6 +220,8 @@ namespace outrealxr.holomod.Editor
             collider.isTrigger = true; 
             colliderChild.AddComponent<OnClickHandler>();
 
+            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
+            Selection.activeObject = colliderChild;
         }
         
         [MenuItem("CONTEXT/Provider/Add Start Handler")]
