@@ -5,7 +5,9 @@ namespace outrealxr.holomod.Editor
 {
     public class ModMenuItemsEditor : MonoBehaviour
     {
-        [MenuItem("GameObject/HoloMod/Video Mod Object")]
+        private const string BasePath = "GameObject/HoloMod/";
+        
+        [MenuItem(BasePath + "Video", false, 12)]
         private static void CreateVideoModObject(MenuCommand menuCommand) {
             var videoMod = new GameObject("Video Mod");
 
@@ -17,7 +19,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = videoMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Image Mod Object")]
+        [MenuItem(BasePath + "Image", false, 12)]
         private static void CreateImageModObject(MenuCommand menuCommand) {
             var imageMod = new GameObject("Image Mod");
 
@@ -29,7 +31,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = imageMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Privilege Mod Object")]
+        [MenuItem(BasePath + "Privilege", false, 12)]
         private static void CreatePrivilegeModObject(MenuCommand menuCommand) {
             var privilegeMod = new GameObject("Privilege Mod");
 
@@ -41,7 +43,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = privilegeMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Respawn Mod Object")]
+        [MenuItem(BasePath + "Respawn", false, 12)]
         private static void CreateRespawnModObject(MenuCommand menuCommand) {
             var respawnMod = new GameObject("default");
 
@@ -56,7 +58,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = respawnMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Link Mod Object")]
+        [MenuItem(BasePath + "Link", false, 12)]
         private static void CreateLinkModObject(MenuCommand menuCommand) {
             var linkMod = new GameObject("Link Mod");
 
@@ -68,7 +70,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = linkMod;
         }
 
-        [MenuItem("GameObject/HoloMod/Room Settings")]
+        [MenuItem(BasePath + "Room Settings", false, 12)]
         private static void CreateRoomSettings(MenuCommand menuCommand) {
             var roomSettingsObject = new GameObject("Room Settings");
 
@@ -87,7 +89,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = roomSettingsObject;
         }
 
-        [MenuItem("GameObject/HoloMod/PlayableDirector Mod Object")]
+        [MenuItem(BasePath + "PlayableDirector", false, 12)]
         private static void CreatePlayableDirectorModObject(MenuCommand menuCommand) {
             var playableDirectorMod = new GameObject("PlayableDirector Mod");
 
@@ -99,7 +101,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = playableDirectorMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Portal Mod Object")]
+        [MenuItem(BasePath + "Portal", false, 12)]
         private static void CreatePortalModObject(MenuCommand menuCommand) {
             var portal = new GameObject("Portal");
 
@@ -111,7 +113,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = portal;
         }
         
-        [MenuItem("GameObject/HoloMod/Zone Talk Mod Object")]
+        [MenuItem(BasePath + "Zone Talk", false, 12)]
         private static void CreateZoneTalkModObject(MenuCommand menuCommand) {
             var zoneTalk = new GameObject("Zone Talk");
 
@@ -123,7 +125,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = zoneTalk;
         }
         
-        [MenuItem("GameObject/HoloMod/Game Queuer Mod Object")]
+        [MenuItem(BasePath + "Game Queue", false, 12)]
         private static void CreateGameQueuerModObject(MenuCommand menuCommand) {
             var gameQueuer = new GameObject("Game Queue");
 
@@ -135,7 +137,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = gameQueuer;
         }
 
-        [MenuItem("GameObject/HoloMod/Animation Mod Object")]
+        [MenuItem(BasePath + "Animation", false, 12)]
         private static void CreateAnimationModObject(MenuCommand menuCommand) {
             var animationMod = new GameObject("Animation Mod Object");
 
@@ -155,7 +157,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = animationMod;
         }
         
-        [MenuItem("GameObject/HoloMod/Animator Mod Object")]
+        [MenuItem(BasePath + "Animator", false, 12)]
         private static void CreateAnimatorModObject(MenuCommand menuCommand) {
             var animatorMod = new GameObject("Animator Mod Object");
 
@@ -167,7 +169,7 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = animatorMod;
         }
         
-        [MenuItem("GameObject/HoloMod/BehaviorTree Game Object")]
+        [MenuItem(BasePath + "BehaviorTree", false, 12)]
         private static void CreateBehaviorTreeModObject(MenuCommand menuCommand) {
             var behaviorTreeMod = new GameObject("BehaviorTree Mod Object");
 
