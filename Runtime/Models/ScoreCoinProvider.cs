@@ -5,15 +5,33 @@ namespace outrealxr.holomod
 {
     public class ScoreCoinProvider : Provider
     {
-        public int amount;
+        public float baseAmount, minAmount;
+        public float expectedCollectionTimeAfterSceneLoad = -1;
+        public float amountPerSecondAfterExpectedCollectionTime = 0.1f;
         public GameObject visual;
 
         public override JObject ToJObject() {
-            return new JObject {{"amount", amount}};
+            return new JObject {
+                { "amount", GetAmount () },
+                { "baseAmount", baseAmount },
+                { "minAmount", minAmount },
+                { "expectedCollectionTimeAfterSceneLoad", expectedCollectionTimeAfterSceneLoad },
+                { "amountPerSecondAfterExpectedCollectionTime", amountPerSecondAfterExpectedCollectionTime }
+            };
         }
 
         public override void FromJObject(JObject data) {
-            amount = (data.GetValue("amount") ?? amount).Value<int>();
+            baseAmount = (data.GetValue("baseAmount") ?? baseAmount).Value<float>();
+            minAmount = (data.GetValue("minAmount") ?? baseAmount).Value<float>();
+            expectedCollectionTimeAfterSceneLoad = (data.GetValue("expectedCollectionTimeAfterSceneLoad") ?? baseAmount).Value<float>();
+            amountPerSecondAfterExpectedCollectionTime = (data.GetValue("amountPerSecondAfterExpectedCollectionTime") ?? baseAmount).Value<float>();
+        }
+
+        public float GetAmount()
+        {
+            if (expectedCollectionTimeAfterSceneLoad < 0) return baseAmount;
+            float timePassedAfterCollection = Mathf.Clamp(Time.timeSinceLevelLoad - expectedCollectionTimeAfterSceneLoad, 0, float.MaxValue);
+            return Mathf.Clamp(baseAmount - timePassedAfterCollection * amountPerSecondAfterExpectedCollectionTime, minAmount, float.MaxValue);
         }
 
         public override string providerType => GetType().Name;
