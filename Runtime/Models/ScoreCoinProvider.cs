@@ -10,6 +10,13 @@ namespace outrealxr.holomod
         public float amountPerSecondAfterExpectedCollectionTime = 0.1f;
         public GameObject visual;
 
+        public static float startTime = 0;
+
+        public void UpdateStartTime()
+        {
+            startTime = Time.time;
+        }
+
         public override JObject ToJObject() {
             return new JObject {
                 { "amount", GetAmount () },
@@ -30,7 +37,7 @@ namespace outrealxr.holomod
         public float GetAmount()
         {
             if (expectedCollectionTimeAfterSceneLoad < 0) return baseAmount;
-            float timePassedAfterCollection = Mathf.Clamp(Time.timeSinceLevelLoad - expectedCollectionTimeAfterSceneLoad, 0, float.MaxValue);
+            float timePassedAfterCollection = Mathf.Clamp(Time.time - startTime - expectedCollectionTimeAfterSceneLoad, 0, float.MaxValue);
             return Mathf.Clamp(baseAmount - timePassedAfterCollection * amountPerSecondAfterExpectedCollectionTime, minAmount, float.MaxValue);
         }
 
