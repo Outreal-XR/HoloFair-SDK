@@ -113,6 +113,24 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = portal;
         }
         
+        [MenuItem(BasePath + "Focus Point", false, 12)]
+        private static void CreateFocusPointModObject(MenuCommand menuCommand) {
+            var focusPointMod = new GameObject("FocusPointMod");
+
+            var mod = focusPointMod.AddComponent<FocusPointProvider>();
+
+            GameObjectUtility.SetParentAndAlign(focusPointMod, menuCommand.context as GameObject);
+            
+            var point = new GameObject("Focus Point").transform;
+            point.SetParent(focusPointMod.transform);
+            point.transform.localPosition = Vector3.zero;
+
+            mod.focusPoint = point;
+            
+            Undo.RegisterCreatedObjectUndo(focusPointMod, "Create " + focusPointMod.name);
+            Selection.activeObject = focusPointMod;
+        }
+        
         [MenuItem(BasePath + "Zone Talk", false, 12)]
         private static void CreateZoneTalkModObject(MenuCommand menuCommand) {
             var zoneTalk = new GameObject("Zone Talk");
