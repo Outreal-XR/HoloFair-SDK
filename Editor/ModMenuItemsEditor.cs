@@ -169,6 +169,18 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = animatorMod;
         }
         
+        [MenuItem(BasePath + "Force", false, 12)]
+        private static void CreateForceModObject(MenuCommand menuCommand) {
+            var forceMod = new GameObject("Force Mod Object");
+
+            forceMod.AddComponent<RigidbodyForceProvider>();
+
+            GameObjectUtility.SetParentAndAlign(forceMod, menuCommand.context as GameObject);
+
+            Undo.RegisterCreatedObjectUndo(forceMod, "Create " + forceMod.name);
+            Selection.activeObject = forceMod;
+        }
+        
         [MenuItem(BasePath + "BehaviorTree", false, 12)]
         private static void CreateBehaviorTreeModObject(MenuCommand menuCommand) {
             var behaviorTreeMod = new GameObject("BehaviorTree Mod Object");
@@ -197,6 +209,21 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = colliderChild;
         }
         
+        [MenuItem("CONTEXT/Provider/Add Box Trigger Stay Handler")]
+        private static void AddBoxTriggerStayToModObject(MenuCommand menuCommand) {
+            //Trigger Collider
+            var colliderChild = new GameObject("Trigger");
+            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
+
+            var collider = colliderChild.AddComponent<BoxCollider>();
+            collider.isTrigger = true; 
+            var handler = colliderChild.AddComponent<OnTriggerStayHandler>();
+            handler.TargetTag = "LocalPlayer";
+            
+            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
+            Selection.activeObject = colliderChild;
+        }
+        
         [MenuItem("CONTEXT/Provider/Add Sphere Trigger Handler")]
         private static void AddSphereTriggerToModObject(MenuCommand menuCommand) {
             //Trigger Collider
@@ -206,6 +233,21 @@ namespace outrealxr.holomod.Editor
             var collider = colliderChild.AddComponent<SphereCollider>();
             collider.isTrigger = true; 
             var handler = colliderChild.AddComponent<OnTriggerHandler>();
+            handler.TargetTag = "LocalPlayer";
+            
+            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
+            Selection.activeObject = colliderChild;
+        }
+        
+        [MenuItem("CONTEXT/Provider/Add Sphere Trigger Stay Handler")]
+        private static void AddSphereTriggerStayToModObject(MenuCommand menuCommand) {
+            //Trigger Collider
+            var colliderChild = new GameObject("Trigger");
+            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
+
+            var collider = colliderChild.AddComponent<SphereCollider>();
+            collider.isTrigger = true; 
+            var handler = colliderChild.AddComponent<OnTriggerStayHandler>();
             handler.TargetTag = "LocalPlayer";
             
             Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
