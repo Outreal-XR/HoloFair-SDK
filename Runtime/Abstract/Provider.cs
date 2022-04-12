@@ -13,9 +13,9 @@ namespace outrealxr.holomod
 
         public abstract string ModKey { get; }
 
-        public abstract void SetIsDirty(bool val);
+        public virtual void SetIsDirty(bool val) => isDirty = val;
 
-        public abstract bool IsDirty();
+        public virtual bool IsDirty() => isDirty;
 
         public abstract JObject ToJObject();
 
