@@ -203,7 +203,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateBehaviorTreeModObject(MenuCommand menuCommand) {
             var behaviorTreeMod = new GameObject("BehaviorTree Mod Object");
 
-            behaviorTreeMod.AddComponent<BehaviorTreeProvider>();
+            //behaviorTreeMod.AddComponent<BehaviorTreeProvider>();
 
             GameObjectUtility.SetParentAndAlign(behaviorTreeMod, menuCommand.context as GameObject);
 
