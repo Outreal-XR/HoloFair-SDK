@@ -24,6 +24,11 @@ namespace outrealxr.holomod
             isDirty = val;
         }
 
+        public void SetURL(string val)
+        {
+            url = val;
+        }
+
         public override void FromJObject(JObject data)
         {
             if (data.ContainsKey("url"))
