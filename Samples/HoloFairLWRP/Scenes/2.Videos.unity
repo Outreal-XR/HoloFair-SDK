@@ -2420,7 +2420,7 @@ MonoBehaviour:
   lowerBound: {fileID: 474531287}
   higherBound: {fileID: 2010234329}
   AOI: {x: 25, y: 25, z: 25}
-  venueName: 1.GetStarted
+  venueName: 2.Videos
   maxSpectators: 25
   maxUsers: 25
   maxVariables: 10

@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome to 2.Links scene. Here you can find a cube which represents a
+  m_text: 'Welcome to 3.Links scene. Here you can find a cube which represents a
     click button to open a web link. A web link can be anything: website, pdf, mp4,
     jpg etc. On Click it will open a new tab on WebGL version while on mobile it
     will open in WebView.'
@@ -2091,7 +2091,7 @@ MonoBehaviour:
   lowerBound: {fileID: 474531287}
   higherBound: {fileID: 2010234329}
   AOI: {x: 25, y: 25, z: 25}
-  venueName: 1.GetStarted
+  venueName: 3.Links
   maxSpectators: 25
   maxUsers: 25
   maxVariables: 10
