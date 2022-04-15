@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDirty: 0
-  emoteName: Sitting
+  emoteName: sitting
   avatarPivot: {fileID: 2368634197492518473}
   respawnPoint: {fileID: 2368634197702317383}
 --- !u!1 &2368634197353797473

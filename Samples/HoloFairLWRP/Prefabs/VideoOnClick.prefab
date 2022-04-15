@@ -452,7 +452,7 @@ MonoBehaviour:
   textureProperty: _BaseMap
   IsLive: 0
   IsSynced: 0
-  control: 1
+  control: 0
   materialIndex: 0
   instructionsToCrossTheBarierToWatchInFullScreen: Cross the barier to click and
     watch the video in full screen mode
