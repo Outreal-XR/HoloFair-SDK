@@ -6,7 +6,6 @@ namespace outrealxr.holomod
     public class SimpleInteractionsController : MonoBehaviour
     {
         [SerializeField] private Camera sourceCamera;
-        [SerializeField] private LayerMask mask;
         [SerializeField] private float maxRayDistance = 100f;
 
         private OnClickHandler _focusedClickHandler;
@@ -16,7 +15,7 @@ namespace outrealxr.holomod
         private void Update() {
             var ray = sourceCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out var hit, maxRayDistance, mask)) {
+            if (Physics.Raycast(ray, out var hit, maxRayDistance)) {
                 var newHandler = hit.collider.GetComponent<OnClickHandler>();
                 
                 if (newHandler != null) {
@@ -25,7 +24,7 @@ namespace outrealxr.holomod
                     else
                         _focusedClickHandler.OnExit.Invoke();
                 } else if (_focusedClickHandler != null) {
-                    newHandler.OnExit.Invoke();
+                    _focusedClickHandler.OnExit.Invoke();
                     hasClicked = false;
                 } else {
                     hasClicked = false;
