@@ -14,13 +14,13 @@ namespace outrealxr.holomod
         private void Update() {
             if (isHeld)
                 currentTime += Time.deltaTime;
+            
+            if (currentTime > holdDuration) StopTimer();
         }
         
         private bool isHeld = false;
         public void StartTimer() {
             isHeld = true;
-
-            if (currentTime > holdDuration) StopTimer();
         }
         
         public void StopTimer() {
