@@ -31,6 +31,8 @@ namespace outrealxr.holomod
 
                 controller.transform.localPosition = Vector3.zero;
                 controller.transform.localRotation = Quaternion.identity;
+
+                controller.gameObject.SetActive(true);
                 try {
                     model.view.SetController(controller);
                 }

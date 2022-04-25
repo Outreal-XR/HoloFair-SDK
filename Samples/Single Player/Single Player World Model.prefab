@@ -52,7 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb329ffd97e3ce84983a9afb678c4724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controllers: []
+  _controllers:
+  - {fileID: 1017682787561376979}
+  - {fileID: 1017682787659077159}
+  - {fileID: 1017682786192341781}
+  - {fileID: 1017682786538023061}
+  - {fileID: 1017682786013287833}
+  - {fileID: 1017682786928103839}
+  - {fileID: 1017682787360301367}
+  - {fileID: 1017682786560489412}
+  - {fileID: 1017682786323390729}
   TagUsedForGrouping: Area
 --- !u!1 &1017682786013287783
 GameObject:
