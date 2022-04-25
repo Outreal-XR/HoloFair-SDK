@@ -34,10 +34,10 @@ namespace outrealxr.holomod
                 _focusedClickHandler = newHandler;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && _focusedClickHandler != null) {
                 _focusedClickHandler.OnDown?.Invoke();
                 hasClicked = true;
-            } else if (Input.GetKeyUp(KeyCode.Mouse0)) {
+            } else if (Input.GetKeyUp(KeyCode.Mouse0) && _focusedClickHandler != null) {
                 _focusedClickHandler.OnUp?.Invoke();
                 if (hasClicked)
                     _focusedClickHandler.OnClick?.Invoke();
