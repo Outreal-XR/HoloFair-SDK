@@ -1,5 +1,6 @@
 using System;
 using UnityEditor;
+using UnityEngine;
 
 namespace outrealxr.holomod.Editor
 {
@@ -14,9 +15,14 @@ namespace outrealxr.holomod.Editor
             EditorApplication.projectChanged -= UpdateSceneString;
         }
 
+        private void OnValidate() {
+            UpdateSceneString();
+        }
+
         private void UpdateSceneString() {
             var mod = (PortalProvider) target;
-
+            
+            Debug.Log(mod.scene.Asset.name);
             mod.sceneName = mod.scene.Asset.name;
         }
     }
