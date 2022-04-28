@@ -7,6 +7,7 @@ namespace outrealxr.holomod
     public class RespawnProvider : Provider
     {
         public AssetReference scene;
+        private void Awake() => gameObject.name = scene != null ? scene.Asset.name : "default";
 
         public float radius;
 

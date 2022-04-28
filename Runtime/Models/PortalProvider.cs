@@ -7,7 +7,8 @@ namespace outrealxr.holomod
     public class PortalProvider : Provider
     {
         [HideInInspector] public string sceneName;
-        public AssetReference scene;
+        [SerializeField] private AssetReference scene;
+        private void Awake() => sceneName = scene.Asset.name;
 
 
         public override string ModKey => "portal";
