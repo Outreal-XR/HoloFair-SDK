@@ -6,7 +6,7 @@ namespace outrealxr.holomod
 {
     public class PortalProvider : Provider
     {
-        public string sceneName;
+        [HideInInspector] public string sceneName;
         public AssetReference scene;
 
 
