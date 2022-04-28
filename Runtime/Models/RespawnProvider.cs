@@ -1,14 +1,9 @@
-using System;
 using Newtonsoft.Json.Linq;
-using UnityEngine.AddressableAssets;
 
 namespace outrealxr.holomod
 {
     public class RespawnProvider : Provider
     {
-        public AssetReference scene;
-        private void Awake() => gameObject.name = scene.Asset.name;
-
         public float radius;
 
         public override string ModKey => "respawn";

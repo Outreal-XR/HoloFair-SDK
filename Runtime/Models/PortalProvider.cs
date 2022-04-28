@@ -1,15 +1,11 @@
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace outrealxr.holomod
 {
     public class PortalProvider : Provider
     {
-        [HideInInspector] public string sceneName;
-        [SerializeField] private AssetReference scene;
-        private void Awake() => sceneName = scene.Asset.name;
-
+        public string sceneName;
 
         public override string ModKey => "portal";
 
@@ -28,7 +24,7 @@ namespace outrealxr.holomod
         {
             sceneName = data.GetValue("sceneName").Value<string>();
         }
-        
+
         public override void SetIsDirty(bool val)
         {
             isDirty = val;
