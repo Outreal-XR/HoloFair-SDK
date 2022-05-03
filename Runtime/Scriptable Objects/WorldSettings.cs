@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace outrealxr.holomod
 {
@@ -8,6 +9,8 @@ namespace outrealxr.holomod
     [CreateAssetMenu(fileName = "WorldSettings", menuName = "HoloFairSDK/Create WorldSettings", order = 1)]
     public class WorldSettings : ScriptableObject
     {
+        [Tooltip("Must be scene")]
+        public AssetReference entryScene;
         public string worldName;
         public int maxVariables = 15, maxUsers = 2000, maxSpectators = 0;
         public Vector3 AreaofInterest;
