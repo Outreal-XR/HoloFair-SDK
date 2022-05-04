@@ -20,7 +20,7 @@ namespace outrealxr.holomod
         private void Update()
         {
             ProgressAmountImage.fillAmount = current == null || !current.loadSceneAssetHandler.IsValid() ? 0 : current.loadSceneAssetHandler.PercentComplete;
-            ProgressText.text = string.Format(ProgressFormat, SceneController.currentlyLoading, ProgressAmountImage.fillAmount);
+            ProgressText.text = string.Format(ProgressFormat, SceneController.currentlyLoading.sceneName, ProgressAmountImage.fillAmount);
         }
     }
 }
