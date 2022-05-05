@@ -1,59 +1,46 @@
+using Newtonsoft.Json.Linq;
+using SaG.GuidReferences;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class SinglePlayerWorldModel : MonoBehaviour
+    public class SinglePlayerWorldModel : WorldModel
     {
-        public List<Controller> _controllers;
-        public string TagUsedForGrouping = "Area";
-        
-        private void Start()
+        int id = 0;
+
+        Dictionary<int, string> map = new Dictionary<int, string>();
+
+        public override void CreateData(string guid)
         {
-            Debug.Log($"[WorldModel] Preparing world");
-            var models = FindObjectsOfType<Model>();
-            
-            foreach (var model in models)
+            if (!map.ContainsValue(guid))
             {
-                Controller controllerPrefab;
-                try {
-                    controllerPrefab = GetControllerByName(model.provider.ModKey);
-                }
-                catch (System.Exception) {
-                    Debug.Log($"[WorldModel] Failed to get controller for view of model {model}");
-                    break;
-                }
-
-                if (!controllerPrefab) continue;
-
-                var controller = Instantiate(controllerPrefab, model.transform, true);
-
-                controller.transform.localPosition = Vector3.zero;
-                controller.transform.localRotation = Quaternion.identity;
-
-                controller.gameObject.SetActive(true);
-                try {
-                    model.view.SetController(controller);
-                }
-                catch (System.Exception) {
-                    Debug.Log($"[WorldModel] Failed to set controller {controller} to view of model {model}");
-                }
-                
+                map.Add(id, guid);
+                id++;
             }
-        }
-        
-        private string GetModelName(GameObject gameObject)
-        {
-            return (gameObject.transform.parent != null && gameObject.transform.parent.CompareTag(TagUsedForGrouping) ? gameObject.transform.parent.name + "/" : "") + gameObject.name;
+            OnDataCreated(guid, id);
         }
 
-        private Controller GetControllerByName(string name)
+        public override void WriteData(int id, JObject data)
         {
-            foreach (var controller in _controllers.Where(controller => controller.name == name))
-                return controller;
-            Debug.Log($"[WorldModel] missing controller {name}. Check list: " + string.Join(",", _controllers));
-            return null;
+            ApplyData(map[id], data);
+        }
+
+        public override JObject ReadData(int id)
+        {
+            return GuidManagerSingleton.ResolveGuid(new Guid(map[id])).GetComponent<Model>().ToJObject();
+        }
+
+        public override void ApplyData(string guid, JObject data)
+        {
+            GameObject go  = GuidManagerSingleton.ResolveGuid(new Guid(guid));
+            if (go)
+            {
+                Model model = go.GetComponent<Model>();
+                model.FromJObject(data);
+                model.Apply();
+            }
         }
     }
 }

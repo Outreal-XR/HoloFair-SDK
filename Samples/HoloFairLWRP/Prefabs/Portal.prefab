@@ -180,8 +180,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3895995260949940565}
   - component: {fileID: 3895995260949940560}
-  - component: {fileID: 3895995260949940563}
   - component: {fileID: 3895995260949940562}
+  - component: {fileID: 1938426643018008536}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -220,22 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   sendMessageOptions: 1
---- !u!114 &3895995260949940563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3895995260949940564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Addressable: 
-  provider: {fileID: 3895995260949940562}
-  view: {fileID: 3895995260949940560}
-  reportMissingKeys: 0
 --- !u!114 &3895995260949940562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,8 +232,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5f9cc4659a161479a15c2f4a7e742a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
+  MMOItemID: -1
+  Addressable: 
+  view: {fileID: 0}
+  reportMissingKeys: 0
   sceneName: 
+--- !u!114 &1938426643018008536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895995260949940564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!1 &3895995261227225965
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,9 +425,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5763420911546607181}
   - component: {fileID: 1892754266142484089}
-  - component: {fileID: 6863045011122766614}
   - component: {fileID: 7228271879907355876}
   - component: {fileID: 5859762312849317676}
+  - component: {fileID: 3289604695340474000}
   m_Layer: 0
   m_Name: SceneName
   m_TagString: Untagged
@@ -463,22 +463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   sendMessageOptions: 1
---- !u!114 &6863045011122766614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6485181074849757167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Addressable: 
-  provider: {fileID: 7228271879907355876}
-  view: {fileID: 1892754266142484089}
-  reportMissingKeys: 0
 --- !u!114 &7228271879907355876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +475,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a8895674db14e4d991223df7c4ea33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
+  MMOItemID: -1
+  Addressable: 
+  view: {fileID: 0}
+  reportMissingKeys: 0
   radius: 0.25
 --- !u!114 &5859762312849317676
 MonoBehaviour:
@@ -509,6 +496,19 @@ MonoBehaviour:
   OnStart:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3289604695340474000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485181074849757167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!1001 &8607789258295802135
 PrefabInstance:
   m_ObjectHideFlags: 0

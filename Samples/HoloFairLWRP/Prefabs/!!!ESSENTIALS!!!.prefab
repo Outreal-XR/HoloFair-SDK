@@ -423,9 +423,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6656477010217712240}
   - component: {fileID: 6656477010217712245}
-  - component: {fileID: 6656477010217712246}
   - component: {fileID: 6656477010217712247}
   - component: {fileID: 6656477010217712244}
+  - component: {fileID: 4420557606387231434}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -461,22 +461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   sendMessageOptions: 1
---- !u!114 &6656477010217712246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656477010217712241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Addressable: 
-  provider: {fileID: 6656477010217712247}
-  view: {fileID: 6656477010217712245}
-  reportMissingKeys: 0
 --- !u!114 &6656477010217712247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a8895674db14e4d991223df7c4ea33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
+  MMOItemID: -1
+  Addressable: 
+  view: {fileID: 0}
+  reportMissingKeys: 0
   radius: 1.1
 --- !u!114 &6656477010217712244
 MonoBehaviour:
@@ -507,6 +494,19 @@ MonoBehaviour:
   OnStart:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4420557606387231434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6656477010217712241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!1 &6656477010715158330
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +712,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6656477010810260578}
   - component: {fileID: 6656477010810260583}
-  - component: {fileID: 6656477010810260576}
-  - component: {fileID: 6656477010810260577}
+  - component: {fileID: 1164260311939151977}
+  - component: {fileID: 6155505039825074225}
   m_Layer: 0
   m_Name: room_settings
   m_TagString: Untagged
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   sendMessageOptions: 1
---- !u!114 &6656477010810260576
+--- !u!114 &1164260311939151977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,34 +758,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 6656477010810260579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 255a75274b10d454eb81f1576fc1f956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MMOItemID: -1
   Addressable: 
-  provider: {fileID: 6656477010810260577}
   view: {fileID: 6656477010810260583}
   reportMissingKeys: 0
---- !u!114 &6656477010810260577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656477010810260579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d667bb954c79148bd75b00f070dede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDirty: 0
-  lowerBound: {fileID: 6656477009385156436}
-  higherBound: {fileID: 6656477010802349914}
+  lowerBound: {fileID: 0}
+  higherBound: {fileID: 0}
   AOI: {x: 25, y: 25, z: 25}
   venueName: 
   maxSpectators: 25
   maxUsers: 25
   maxVariables: 10
   gameID: 0
+--- !u!114 &6155505039825074225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6656477010810260579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!1 &6656477010823369394
 GameObject:
   m_ObjectHideFlags: 0
