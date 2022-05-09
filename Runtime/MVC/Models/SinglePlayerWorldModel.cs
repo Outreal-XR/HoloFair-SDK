@@ -10,13 +10,11 @@ namespace outrealxr.holomod
     {
         int id = 0;
 
-        Dictionary<int, string> map = new Dictionary<int, string>();
-
         public override void CreateData(string guid)
         {
-            if (!map.ContainsValue(guid))
+            if (!pendingData.ContainsKey(guid))
             {
-                map.Add(id, guid);
+                pendingData.Add(guid, GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>());
                 id++;
             }
             OnDataCreated(guid, id);
@@ -24,20 +22,19 @@ namespace outrealxr.holomod
 
         public override void WriteData(int id, JObject data)
         {
-            ApplyData(map[id], data);
+            ApplyData(id, data);
         }
 
         public override JObject ReadData(int id)
         {
-            return GuidManagerSingleton.ResolveGuid(new Guid(map[id])).GetComponent<Model>().ToJObject();
+            return detectedData[id].ToJObject();
         }
 
-        public override void ApplyData(string guid, JObject data)
+        public override void ApplyData(int id, JObject data)
         {
-            GameObject go  = GuidManagerSingleton.ResolveGuid(new Guid(guid));
-            if (go)
+            if (detectedData.ContainsKey(id))
             {
-                Model model = go.GetComponent<Model>();
+                Model model = detectedData[id];
                 model.FromJObject(data);
                 model.Apply();
             }
