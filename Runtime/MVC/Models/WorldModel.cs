@@ -23,7 +23,7 @@ namespace outrealxr.holomod
 
         public void OnDataCreated(string guid, int id) {
             if (!pendingData.ContainsKey(guid)) pendingData.Add(guid, GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>());
-            detectedData.Add(id, pendingData[guid]);
+            if (!detectedData.ContainsKey(id)) detectedData.Add(id, pendingData[guid]);
             pendingData.Remove(guid);
             detectedData[id].SetMMOItemID(id);
         }

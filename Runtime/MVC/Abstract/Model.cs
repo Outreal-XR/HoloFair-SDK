@@ -37,7 +37,7 @@ namespace outrealxr.holomod
         {
             var data = transform.ToJObject();
             data.Add(new JProperty("type", type));
-            data.Add(new JProperty("guid", type));
+            data.Add(new JProperty("guid", guid));
             if (!string.IsNullOrWhiteSpace(Addressable)) data.Add(new JProperty("Addressable", Addressable));
             return data;
         }
