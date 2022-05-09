@@ -18,7 +18,7 @@ namespace outrealxr.holomod
         public override JObject ToJObject()
         {
             JObject data = base.ToJObject();
-            data.Add(new JObject { "value", value });
+            data.Add(new JProperty("value", value));
             return data;
         }
     }
