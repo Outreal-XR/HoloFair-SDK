@@ -32,11 +32,6 @@ namespace outrealxr.holomod
             throw new System.NotImplementedException();
         }
 
-        public override void ReadForAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void Write()
         {
             throw new System.NotImplementedException();

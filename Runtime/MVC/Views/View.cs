@@ -33,12 +33,6 @@ namespace outrealxr.holomod
             controller.Read();
         }
 
-        public void ReadForAll()
-        {
-            controller.SetModel(model);
-            controller.ReadForAll();
-        }
-
         public void LoadAddressable(string path)
         {
             if (loadedAddressable) Destroy(loadedAddressable);

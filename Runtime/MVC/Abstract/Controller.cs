@@ -13,11 +13,15 @@ namespace outrealxr.holomod
 
         public abstract void Handle();
 
-        public abstract void Write();
+        public virtual void Read()
+        {
+            model.FromJObject(WorldModel.instance.ReadData(model.MMOItemID));
+        }
 
-        public abstract void Read();
-
-        public abstract void ReadForAll();
+        public virtual void Write()
+        {
+            WorldModel.instance.WriteData(model.MMOItemID, model.ToJObject());
+        }
 
         public virtual void LockPlayerControls()
         {

@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace outrealxr.holomod
 {
@@ -21,6 +22,12 @@ namespace outrealxr.holomod
         {
             base.FromJObject(data);
             radius = data.GetValue("radius").Value<float>();
+        }
+
+        public Vector3 GetRespawnPosition()
+        {
+            var randPos = Random.insideUnitCircle * radius;
+            return new Vector3(randPos.x, 0, randPos.y) + transform.position;
         }
     }
 }

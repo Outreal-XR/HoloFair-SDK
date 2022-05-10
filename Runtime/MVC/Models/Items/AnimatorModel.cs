@@ -23,6 +23,7 @@ namespace outrealxr.holomod
         public void SetStateName(string val)
         {
             stateName = val;
+            startTime = 0;
         }
 
         public void SetLayerIndex(int val)
@@ -35,7 +36,7 @@ namespace outrealxr.holomod
         private void Start()
         {
             startTime = DateTime.UtcNow.Subtract(startDateTime).TotalMilliseconds;
-            Sync();
+            Apply();
         }
 
         public override void FromJObject(JObject data)
@@ -44,12 +45,7 @@ namespace outrealxr.holomod
             stateName = data.GetValue("stateName").Value<string>();
             layerIndex = data.GetValue("layerIndex").Value<int>();
             startTime = data.GetValue("startTime").Value<double>();
-            Sync();
-        }
-
-        void Sync()
-        {
-            animator.Play(stateName); 
+            Apply();
         }
 
         void Update()

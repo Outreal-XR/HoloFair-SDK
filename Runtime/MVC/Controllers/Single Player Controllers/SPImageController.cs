@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using outrealxr.holomod;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -20,23 +17,14 @@ namespace outrealxr.holomod
             SetModel(GetComponentInParent<ImageModel>());
         }
 
-        public void SetModel(ImageModel model)
+        public override void SetModel(Model model)
         {
-            _model = model;
+            _model =(ImageModel) model;
             Handle();
         }
         
         public override void Handle() {
             _model.meshRenderer.material.SetTexture(_model.textureProperty, texture);
-        }
-
-        public override void Write() {
-        }
-
-        public override void Read() {
-        }
-
-        public override void ReadForAll() {
         }
     }
 }

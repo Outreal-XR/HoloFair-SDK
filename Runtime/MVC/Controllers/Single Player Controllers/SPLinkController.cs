@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -17,29 +15,15 @@ namespace outrealxr.holomod
             SetModel(GetComponentInParent<LinkModel>());
         }
 
-        public void SetModel(LinkModel model) {
-            _model = model;
-        }
-
-        public override void Write()
+        public override void SetModel(Model model)
         {
-            
+            _model = (LinkModel)model;
         }
 
         public override void Handle()
         {
-            var url = _model.url.Contains("https") ? _model.url : (originUrl + _model.url);
+            var url = _model.value.Contains("https") ? _model.value : (originUrl + _model.value);
             Application.OpenURL(url);
-        }
-
-        public override void Read()
-        {
-            
-        }
-
-        public override void ReadForAll()
-        {
-            
         }
     }
 }
