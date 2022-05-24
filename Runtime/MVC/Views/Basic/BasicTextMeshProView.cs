@@ -8,5 +8,10 @@
         {
             textMeshPro.text = ((TextMeshProModel)model).value;
         }
+
+        public override void Edit()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

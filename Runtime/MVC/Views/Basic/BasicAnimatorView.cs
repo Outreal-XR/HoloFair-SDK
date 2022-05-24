@@ -8,6 +8,11 @@ namespace outrealxr.holomod
             model.animator.Play(model.stateName);
         }
 
+        public override void Edit()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SetStateName(string val)
         {
             ((AnimatorModel)model).SetStateName(val);
