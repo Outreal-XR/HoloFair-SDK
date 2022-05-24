@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace outrealxr.holomod
 {
     public class BasicLinkView : View
@@ -12,7 +14,7 @@ namespace outrealxr.holomod
 
         public override void Apply()
         {
-            basicLinksController.Write();
+            Debug.LogWarning("[BasicLinkView] Value updated in model, but no Apply logic is provided.");
         }
 
         public void RequestToUpdateLink() {
