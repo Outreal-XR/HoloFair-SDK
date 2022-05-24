@@ -2,12 +2,17 @@ namespace outrealxr.holomod
 {
     public class BasicLinkView : View
     {
+        public BasicLinksController basicLinksController;
 
-        string url;
+        private void Start()
+        {
+            basicLinksController = (BasicLinksController)controller;
+            basicLinksController.SetModel(model);
+        }
 
         public override void Apply()
         {
-            url = ((LinkModel)model).value;
+            basicLinksController.Write();
         }
 
         public void RequestToUpdateLink() {
@@ -17,8 +22,12 @@ namespace outrealxr.holomod
         }
 
         public void ReceiveLinkUpdate(string newUrl) {
-            ((LinkModel) model).value = newUrl;
-            Apply();
+            basicLinksController.SetValue(newUrl);
+        }
+
+        public override void Edit()
+        {
+            EditLinkView.instance.StartEdit(this);
         }
     }
 }

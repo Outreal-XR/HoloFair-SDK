@@ -8,7 +8,7 @@ namespace outrealxr.holomod
         public Controller controller;
         GameObject loadedAddressable;
 
-        void Start()
+        void Awake()
         {
             controller = WorldController.instance.GetController(model);
         }
@@ -20,6 +20,8 @@ namespace outrealxr.holomod
             controller.SetModel(model);
             controller.Handle();
         }
+
+        public abstract void Edit();
 
         public void Write()
         {
