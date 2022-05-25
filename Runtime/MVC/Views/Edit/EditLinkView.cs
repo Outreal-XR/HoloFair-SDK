@@ -32,7 +32,7 @@ namespace outrealxr.holomod
             if(basicLinkView)
             {
                 basicLinkView.ReceiveLinkUpdate(urlInput.text);
-                basicLinkView.Apply();
+                basicLinkView.Write();
             }
         }
 
