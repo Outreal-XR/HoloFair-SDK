@@ -34,6 +34,10 @@ namespace outrealxr.holomod
                 basicLinkView.ReceiveLinkUpdate(urlInput.text);
                 basicLinkView.Write();
             }
+            else
+            {
+                Debug.LogWarning("[EditLinkView] Attempted to apply a value, but basicLinkView wasn't set.");
+            }
         }
 
         public void StartEdit(BasicLinkView basicLinkView)

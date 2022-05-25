@@ -19,7 +19,9 @@ namespace outrealxr.holomod
 
         public void RequestToUpdateLink() {
 #if UNITY_WEBGL
-            LinkUpdaterJSCommunicator.Instance.OpenInputFieldOnBrowser(this);
+            LinkUpdaterJSCommunicator.instance.OpenInputFieldOnBrowser();
+#else
+            Debug.LogWarning("[BasicLinkView] Attempted to open external UI on invalid platform. It is only available on WebGL");
 #endif
         }
 

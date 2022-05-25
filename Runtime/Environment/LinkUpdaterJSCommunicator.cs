@@ -9,8 +9,12 @@ namespace outrealxr.holomod
         private static extern void OpenInputField();
         
         public void OpenInputFieldOnBrowser () {
-#if UNITY_WEBGL
+#if UNITY_EDITOR
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open external input field inside editor.");
+#elif UNITY_WEBGL
             OpenInputField();
+#else
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open external input field inside non WebGL platform.");
 #endif
         }
 

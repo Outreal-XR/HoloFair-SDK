@@ -19,7 +19,6 @@ namespace outrealxr.holomod
         }
 
         public State state;
-        public View view;
 
         [Header("Behavior Data")]
         public float lastTimeToWait;
