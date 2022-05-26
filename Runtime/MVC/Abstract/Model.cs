@@ -8,7 +8,7 @@ namespace outrealxr.holomod
     public abstract class Model: MonoBehaviour
     {
         public int MMOItemID = -1;
-        string guid;
+        protected string guid;
         [Tooltip("Addressable Path to a GameObject (Optional)")]
         public string Addressable;
         public View view;
