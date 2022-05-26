@@ -13,9 +13,15 @@ namespace outrealxr.holomod
             Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open JS UI inside editor.");
 #elif UNITY_WEBGL
             openDrawer();
+            WebGLInput.captureAllKeyboardInput = false;
 #else
             Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open JS UI inside non WebGL platform.");
 #endif
+        }
+
+        public void ResumeWebGLFocus()
+        {
+            WebGLInput.captureAllKeyboardInput = true;
         }
 
         public void UpdateLink(string newLink) {
