@@ -23,7 +23,7 @@ namespace outrealxr.holomod
         public void SetStateName(string val)
         {
             stateName = val;
-            startTime = 0;
+            startTime = now;
         }
 
         public void SetLayerIndex(int val)

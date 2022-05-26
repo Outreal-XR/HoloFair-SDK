@@ -123,7 +123,9 @@ namespace outrealxr.holomod.Editor
             point.SetParent(focusPointMod.transform);
             point.transform.localPosition = Vector3.zero;
 
-            mod.focusPoint = point;
+            var focusPoint = point.gameObject.AddComponent<FocusPoint>();
+
+            mod.focusPoint = focusPoint;
             
             Undo.RegisterCreatedObjectUndo(focusPointMod, "Create " + focusPointMod.name);
             Selection.activeObject = focusPointMod;

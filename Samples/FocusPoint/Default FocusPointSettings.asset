@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d22535e4832974f817c3eb7e2fcba4, type: 3}
+  m_Name: Default FocusPointSettings
+  m_EditorClassIdentifier: 
+  minSnapDistance: 2
+  resetDistnace: 4
+  maxDistance: 20
+  inputAccelaration: 10
+  ZoomAcceleration: 8
+  defaultXAngle: 15
+  lookHeight: 0
+  focusRadius: 5
+  focusCentering: 0.995
+  rotationSpeed: 90
+  minVerticalAngle: -80
+  maxVerticalAngle: 80
+  alignDelay: 5
+  alignSmoothRange: 45
+  mobileSensitivity: 1
+  isLocalCoordinates: 1
+  applyXValue: 1
