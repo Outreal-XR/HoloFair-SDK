@@ -4,7 +4,7 @@ namespace outrealxr.holomod
 {
     public class FocusPointModel : Model
     {
-        public Transform focusPoint;
+        public FocusPoint focusPoint;
         
         public override string type => "focusPoint";
     }
