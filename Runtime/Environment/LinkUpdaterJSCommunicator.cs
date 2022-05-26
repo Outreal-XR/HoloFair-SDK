@@ -6,15 +6,15 @@ namespace outrealxr.holomod
     public class LinkUpdaterJSCommunicator : MonoBehaviour
     {
         [DllImport("__Internal")]
-        private static extern void OpenInputField();
+        private static extern void openDrawer();
         
         public void OpenInputFieldOnBrowser () {
 #if UNITY_EDITOR
-            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open external input field inside editor.");
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open JS UI inside editor.");
 #elif UNITY_WEBGL
-            OpenInputField();
+            openDrawer();
 #else
-            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open external input field inside non WebGL platform.");
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to open JS UI inside non WebGL platform.");
 #endif
         }
 
