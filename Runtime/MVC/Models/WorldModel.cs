@@ -13,10 +13,26 @@ namespace outrealxr.holomod
         public Dictionary<int, Model> detectedData = new Dictionary<int, Model>();
 
         public static WorldModel instance;
+        public float timeAfterWorldReady = 2f;
+        internal float timeNow;
 
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Update()
+        {
+            if(timeNow > 0)
+            {
+                timeNow -= Time.deltaTime;
+                if (timeNow <= 0) StartWorld();
+            }
+        }
+        public void StartWorld()
+        {
+            foreach (var onStartHandler in FindObjectsOfType<OnStartHandler>())
+                onStartHandler.WorldStart();
         }
 
         public abstract void CreateData(string guid);

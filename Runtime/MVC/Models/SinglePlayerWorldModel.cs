@@ -18,6 +18,7 @@ namespace outrealxr.holomod
                 id++;
             }
             OnDataCreated(guid, id);
+            timeNow = timeAfterWorldReady;
         }
 
         public override void WriteData(int id, JObject data)

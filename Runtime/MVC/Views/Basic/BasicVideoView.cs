@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicVideoView : MonoBehaviour
+namespace outrealxr.holomod
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BasicVideoView : BasicImageView
     {
-        
-    }
+        public BasicVideosController basicVideosController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            basicVideosController = (BasicVideosController)controller;
+            if (basicVideosController == null) Debug.LogWarning($"[BasicVideoView] There is no video controller for {gameObject.name}");
+            else basicVideosController.SetModel(model);
+        }
+
+        public void Play()
+        {
+            basicVideosController.Play();
+        }
+
+        public void Stop()
+        {
+            basicVideosController.Stop();
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace outrealxr.holomod
 
         void Awake()
         {
-            controller = WorldController.instance.GetController(model);
+            if(WorldController.instance) controller = WorldController.instance.GetController(model);
+            else Debug.LogWarning($"[View] WorldController instance doesn't exist. {gameObject.name} has no handle, write and read logic available.");
         }
 
         public abstract void Apply();

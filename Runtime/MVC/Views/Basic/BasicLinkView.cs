@@ -9,20 +9,17 @@ namespace outrealxr.holomod
         private void Start()
         {
             basicLinksController = (BasicLinksController)controller;
-            basicLinksController.SetModel(model);
+            if(basicLinksController == null) Debug.LogWarning($"[BasicLinkView] There is no controller for {gameObject.name}");
+            else basicLinksController.SetModel(model);
         }
 
         public override void Apply()
         {
-            Debug.LogWarning("[BasicLinkView] Value updated in model, but no Apply logic is provided.");
+            Debug.LogWarning($"[BasicLinkView] Value updated in {gameObject.name}, but no Apply logic is provided.");
         }
 
         public void RequestToUpdateLink() {
-#if UNITY_WEBGL
             LinkUpdaterJSCommunicator.instance.OpenInputFieldOnBrowser();
-#else
-            Debug.LogWarning("[BasicLinkView] Attempted to open external UI on invalid platform. It is only available on WebGL");
-#endif
         }
 
         public void ReceiveLinkUpdate(string newUrl) {

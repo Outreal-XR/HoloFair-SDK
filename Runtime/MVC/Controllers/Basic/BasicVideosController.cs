@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicVideosController : MonoBehaviour
+namespace outrealxr.holomod
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BasicVideosController : BasicLinksController
     {
-        
-    }
+        VideoModel videoModel;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void SetModel(Model model)
+        {
+            base.SetModel(model);
+            videoModel = (VideoModel)model;
+        }
+
+        public void Play()
+        {
+            videoModel.SetState(VideoModel.State.Playing);
+        }
+
+        public void Stop()
+        {
+            videoModel.SetState(VideoModel.State.Stopped);
+        }
+
     }
 }

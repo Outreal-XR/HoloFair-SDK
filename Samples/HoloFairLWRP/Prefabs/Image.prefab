@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 4170787802411963574}
   - component: {fileID: 4170787802411963575}
   - component: {fileID: 4170787802411963572}
-  - component: {fileID: 4170787802411963570}
-  - component: {fileID: 4170787802411963571}
-  - component: {fileID: 4170787802411963568}
-  - component: {fileID: 1516399371422933015}
+  - component: {fileID: 2120815843109225904}
+  - component: {fileID: 660541734697356394}
+  - component: {fileID: 3312262165938411556}
+  - component: {fileID: 1315312087537903383}
+  - component: {fileID: 6604648841763556223}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.742385, y: 3.02606, z: 64.89397}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +58,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -99,7 +102,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4170787802411963570
+--- !u!114 &2120815843109225904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,12 +111,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4170787802411963573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4b4ebc159a55a4abade9812ccd35d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  sendMessageOptions: 1
---- !u!114 &4170787802411963571
+  serializedGuid: 
+--- !u!114 &660541734697356394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,14 +124,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4170787802411963573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 90cc28c3d0696ba41afdfe161f8c50f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MMOItemID: -1
   Addressable: 
-  provider: {fileID: 4170787802411963568}
-  view: {fileID: 4170787802411963570}
+  view: {fileID: 3312262165938411556}
   reportMissingKeys: 0
---- !u!114 &4170787802411963568
+  value: 
+--- !u!114 &3312262165938411556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,20 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4170787802411963573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad2a3b0934962545b4bf487d9c1713f, type: 3}
+  m_Script: {fileID: 11500000, guid: 21850d042330ab3479c662cd693d1456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
-  url: https://images.unsplash.com/photo-1648974783309-834e33a9abef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=512&w=512&q=80
-  OnMissingUrl:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUrlSet:
-    m_PersistentCalls:
-      m_Calls: []
-  meshRenderer: {fileID: 4170787802411963575}
-  textureProperty: _BaseMap
---- !u!114 &1516399371422933015
+  model: {fileID: 660541734697356394}
+  controller: {fileID: 0}
+  networkImage: {fileID: 1315312087537903383}
+--- !u!114 &1315312087537903383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,54 +156,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 4170787802411963573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146c8c988898e8c41b04e25acb935c93, type: 3}
+  m_Script: {fileID: 11500000, guid: b8686bbab3861b54394d226fc19d4515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: c65067c44da524f419aa887b3052c6ab, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  OnEnter:
+  target: {fileID: 4170787802411963575}
+  materialPropertyName: _BaseMap
+  materialIndex: 0
+--- !u!114 &6604648841763556223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170787802411963573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6361f9b293c09c8418a115c56faee337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1516399371422933015}
-        m_TargetAssemblyTypeName: outrealxr.holomod.OnClickHandler, outrealxr.holomod
-        m_MethodName: ReplaceCursor
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnDown:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUp:
-    m_PersistentCalls:
-      m_Calls: []
-  OnExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1516399371422933015}
-        m_TargetAssemblyTypeName: outrealxr.holomod.OnClickHandler, outrealxr.holomod
-        m_MethodName: ReplaceCursor
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4170787802411963570}
-        m_TargetAssemblyTypeName: outrealxr.holomod.View, outrealxr.holomod
-        m_MethodName: Handle
+      - m_Target: {fileID: 660541734697356394}
+        m_TargetAssemblyTypeName: outrealxr.holomod.Model, outrealxr.holomod
+        m_MethodName: Apply
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

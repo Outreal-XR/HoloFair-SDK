@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4005884095369273032}
   m_RootOrder: 0
@@ -53,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -150,7 +152,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4005884095369273045}
+      - m_Target: {fileID: 4382364233514314455}
         m_TargetAssemblyTypeName: outrealxr.holomod.View, outrealxr.holomod
         m_MethodName: Handle
         m_Mode: 1
@@ -171,9 +173,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4005884095369273032}
-  - component: {fileID: 4005884095369273045}
-  - component: {fileID: 4005884095369273034}
-  - component: {fileID: 4005884095369273035}
+  - component: {fileID: 1502062555003544225}
+  - component: {fileID: 538732806797561244}
+  - component: {fileID: 4382364233514314455}
   m_Layer: 0
   m_Name: Link
   m_TagString: Untagged
@@ -191,12 +193,13 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19.702599, y: 2.17, z: 69.024994}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4005884095005994180}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4005884095369273045
+--- !u!114 &1502062555003544225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,12 +208,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4005884095369273033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4b4ebc159a55a4abade9812ccd35d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  sendMessageOptions: 1
---- !u!114 &4005884095369273034
+  serializedGuid: 
+--- !u!114 &538732806797561244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,14 +221,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4005884095369273033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81775e2cd59674440b241c8d6ce40094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MMOItemID: -1
   Addressable: 
-  provider: {fileID: 4005884095369273035}
-  view: {fileID: 4005884095369273045}
+  view: {fileID: 4382364233514314455}
   reportMissingKeys: 0
---- !u!114 &4005884095369273035
+  value: https://www.outrealxr.com/
+--- !u!114 &4382364233514314455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,14 +238,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4005884095369273033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c437d768933899a468392c1e1e319f4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5889cbf213fcf2543b74c640fc5c346c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
-  url: https://www.outrealxr.com/
-  OnMissingUrl:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUrlSet:
-    m_PersistentCalls:
-      m_Calls: []
+  model: {fileID: 538732806797561244}
+  controller: {fileID: 0}
+  basicLinksController: {fileID: 0}

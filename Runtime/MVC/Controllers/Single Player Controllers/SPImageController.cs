@@ -24,7 +24,7 @@ namespace outrealxr.holomod
         }
         
         public override void Handle() {
-            _model.meshRenderer.material.SetTexture(_model.textureProperty, texture);
+            _model.Apply();
         }
     }
 }

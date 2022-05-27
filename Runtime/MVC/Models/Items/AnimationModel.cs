@@ -5,8 +5,10 @@ namespace outrealxr.holomod
 {
     public class AnimationModel : Model
     {
-
+        [Header("Network Settings")]
         public string emoteName;
+
+        [Header("Local Settings")]
         [Tooltip("This is where pivot of user avatar must be snapped to when animation is activated. Shouldn't be null")]
         public Transform avatarPivot;
         [Tooltip("This is where avatar is respawned when animation stops")]

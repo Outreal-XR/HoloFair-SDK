@@ -5,6 +5,7 @@ namespace outrealxr.holomod
 {
     public class StringModel : Model
     {
+        [Header("Network Base Settings")]
         [TextArea(2, 10)]
         public string value;
         public override string type => "string";

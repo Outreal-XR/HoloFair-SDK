@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "com.unity.addressables": "1.19.18",
-    "com.unity.textmeshpro": "3.0.4"
+    "com.unity.textmeshpro": "3.0.4",
+    "com.outrealxr.networkimages": "1.0.0"
   },
   "samples": [
     {

@@ -7,10 +7,15 @@ namespace outrealxr.holomod
     {
 
         public UnityEvent OnStart;
+        bool eventRaised;
 
         public void WorldStart()
         {
-            OnStart.Invoke();
+            if (!eventRaised)
+            {
+                OnStart.Invoke();
+                eventRaised = true;
+            }
         }
     }
 }
