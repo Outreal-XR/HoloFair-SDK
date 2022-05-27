@@ -14,20 +14,20 @@ namespace outrealxr.holomod
 
         [Header("Local variables")]
         public string normalizedTimeParameterName = "progress";
-        bool applyProgress;
+        [Tooltip("ms")]
+        public double lagCompensationAmount = 100;
         [Tooltip("UTC Timestamp in milliseconds")]
         public double now, startTime;
         public float elapsedTime;
         public float animationLength;
         public Animator animator;
-
-        DateTime startDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        readonly DateTime beginningOfTheWorld = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public override string type => "animator";
 
         void Start()
         {
-            startTime = DateTime.UtcNow.Subtract(startDateTime).TotalMilliseconds;
+            startTime = DateTime.UtcNow.Subtract(beginningOfTheWorld).TotalMilliseconds;
             Apply();
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
@@ -50,28 +50,28 @@ namespace outrealxr.holomod
             base.FromJObject(data);
             stateName = data.GetValue("stateName").Value<string>();
             layerIndex = data.GetValue("layerIndex").Value<int>();
-            startTime = data.GetValue("startTime").Value<double>();
-            applyProgress = false;
-            StartCoroutine(ApplyProgress());
+            startTime = data.GetValue("startTime").Value<double>() - lagCompensationAmount;
+            AnimatorStateInfo current = animator.GetCurrentAnimatorStateInfo(layerIndex);
+            Debug.Log($"[AnimatorModel] old ({current.fullPathHash}): {current.length}");
+            Apply();
+            StartCoroutine(UpdateAnimationLength());
         }
 
-        void Update()
+        IEnumerator UpdateAnimationLength()
         {
-            if (!applyProgress) return;
-            now = DateTime.Now.ToUniversalTime().Subtract(startDateTime).TotalMilliseconds;
-            elapsedTime = ((float)(now - startTime)) / 1000f;
-            if (animator)
-                animationLength = animator.GetCurrentAnimatorStateInfo(layerIndex).length;
+            yield return new WaitForFixedUpdate();
+            AnimatorStateInfo current = animator.GetCurrentAnimatorStateInfo(layerIndex);
+            Debug.Log($"[AnimatorModel] new ({current.fullPathHash}): {current.length}");
+            animationLength = current.length;
+            LateUpdate();
+        }
+
+        void LateUpdate()
+        {
+            now = DateTime.Now.ToUniversalTime().Subtract(beginningOfTheWorld).TotalMilliseconds;
+            elapsedTime = Mathf.Clamp(((float)(now - startTime)) / 1000f, 0f, animationLength);
             if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
-        }
-
-        IEnumerator ApplyProgress()
-        {
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            applyProgress = true;
-            Update();
         }
 
         public override JObject ToJObject()
