@@ -21,7 +21,13 @@ namespace outrealxr.holomod
 
         public void ResumeWebGLFocus()
         {
+#if UNITY_EDITOR
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to resume WebGL to capture all keyboard inputs inside editor.");
+#elif UNITY_WEBGL
             WebGLInput.captureAllKeyboardInput = true;
+#else
+            Debug.LogWarning("[LinkUpdaterJSCommunicator] Attempted to resume WebGL to capture all keyboard inputs inside non WebGL platform.");
+#endif
         }
 
         public void UpdateLink(string newLink) {
