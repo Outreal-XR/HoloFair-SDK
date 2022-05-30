@@ -1,7 +1,6 @@
 using com.outrealxr.networkimages.Runtime;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 namespace outrealxr.holomod
 {
@@ -39,7 +38,6 @@ namespace outrealxr.holomod
         public Control control;
         [Tooltip("Changes automatically whenever value ends with m3u8")]
         public bool IsLive;
-        [MinMax(0, 15)]
         public Vector2 thumbnailRange = new Vector2(0, 15);
 
         [Header("Extras")]
