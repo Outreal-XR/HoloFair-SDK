@@ -14,7 +14,7 @@ namespace outrealxr.holomod
 
         public static WorldModel instance;
         public float timeAfterWorldReady = 2f;
-        internal float timeNow;
+        protected float timeNow;
 
         private void Awake()
         {
