@@ -2,24 +2,23 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class EditLinkView : MonoBehaviour
+    public class EditStringView : MonoBehaviour
     {
-        public static EditLinkView instance;
+        public static EditStringView instance;
 
         public GameObject form;
         public TMPro.TMP_InputField urlInput;
-        BasicLinkView basicLinkView;
+        BasicStringView basicStringView;
 
         private void Awake()
         {
             instance = this;
         }
 
-        public void SetLinkView(BasicLinkView basicLinkView)
+        public void SetLinkView(BasicStringView basicStringView)
         {
-            this.basicLinkView = basicLinkView;
-            form.SetActive(basicLinkView);
-
+            this.basicStringView = basicStringView;
+            form.SetActive(basicStringView);
         }
 
         public void OnLinkUrlChange(string val)
@@ -29,10 +28,10 @@ namespace outrealxr.holomod
 
         public void Apply()
         {
-            if(basicLinkView)
+            if(basicStringView)
             {
-                basicLinkView.ReceiveLinkUpdate(urlInput.text);
-                basicLinkView.Write();
+                basicStringView.ReceiveLinkUpdate(urlInput.text);
+                basicStringView.Write();
             }
             else
             {
@@ -40,16 +39,16 @@ namespace outrealxr.holomod
             }
         }
 
-        public void StartEdit(BasicLinkView basicLinkView)
+        public void StartEdit(BasicStringView basicStringView)
         {
-            SetLinkView(basicLinkView);
+            SetLinkView(basicStringView);
         }
 
         public void StartEdit()
         {
-            if (basicLinkView)
+            if (basicStringView)
             {
-                StartEdit(basicLinkView);
+                StartEdit(basicStringView);
                 LinkUpdaterJSCommunicator.instance.OpenInputFieldOnBrowser();
             }
         }

@@ -5,6 +5,7 @@ namespace outrealxr.holomod
     public abstract class View : MonoBehaviour
     {
         public Model model;
+        [Tooltip("Generic controller which later used by inherited classes on start")]
         public Controller controller;
         GameObject loadedAddressable;
 

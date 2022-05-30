@@ -4,7 +4,8 @@ namespace outrealxr.holomod
 {
     public class BasicVideoView : BasicImageView
     {
-        public BasicVideosController basicVideosController;
+        [Tooltip("Assigned automatically on start after world init")]
+        BasicVideosController basicVideosController;
 
         private void Start()
         {

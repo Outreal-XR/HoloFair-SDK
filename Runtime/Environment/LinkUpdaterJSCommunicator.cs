@@ -31,8 +31,8 @@ namespace outrealxr.holomod
         }
 
         public void UpdateLink(string newLink) {
-            EditLinkView.instance.OnLinkUrlChange(newLink);
-            EditLinkView.instance.Apply();
+            EditStringView.instance.OnLinkUrlChange(newLink);
+            EditStringView.instance.Apply();
         }
 
         private void Awake() {

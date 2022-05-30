@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace outrealxr.holomod
 {
-    public class ZoneTalkModel : Model
+    public class ZoneTalkModel : StringModel
     {
 
         public enum State
@@ -15,41 +15,18 @@ namespace outrealxr.holomod
         }
 
         public string zoneName;
-
-        [Header("Visuals")]
-        public GameObject idle;
-        public GameObject connecting;
-        public GameObject success;
-        public GameObject error;
+        
 
         private void Start()
         {
             SetVisualState(State.Idle);
         }
 
-        public override string type => "zonetalk";
-
-        public override void FromJObject(JObject data)
-        {
-            base.FromJObject(data);
-            zoneName = data.GetValue("zoneName").Value<string>();
-        }
-
         public void SetVisualState(State state)
         {
-            if (idle) idle.SetActive(state == State.Idle);
-            if (connecting) connecting.SetActive(state == State.Connecting);
-            if (success) success.SetActive(state == State.Success);
-            if (error) error.SetActive(state == State.Error);
+            ((BasicTalkZoneView)view).SetVisualState(state);
         }
 
-        public override JObject ToJObject()
-        {
-            JObject data = base.ToJObject();
-            data.Merge(new JObject {
-                new JProperty("zoneName", zoneName)
-            });
-            return data;
-        }
+        public override string type => "zonetalk";
     }
 }
