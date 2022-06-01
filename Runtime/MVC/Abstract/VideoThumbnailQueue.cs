@@ -34,7 +34,7 @@ namespace outrealxr.holomod
             }
         }
 
-        Queue<ThumbnailQueueEntry> queue = new Queue<ThumbnailQueueEntry>();
+        protected Queue<ThumbnailQueueEntry> queue = new Queue<ThumbnailQueueEntry>();
         public static VideoThumbnailQueue instance;
 
         public void Awake()
