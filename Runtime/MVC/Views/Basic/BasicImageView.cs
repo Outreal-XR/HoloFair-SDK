@@ -1,5 +1,5 @@
 using UnityEngine;
-using com.outrealxr.networkimages.Runtime;
+using com.outrealxr.networkimages;
 
 namespace outrealxr.holomod
 {

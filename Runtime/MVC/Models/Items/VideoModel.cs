@@ -1,4 +1,4 @@
-using com.outrealxr.networkimages.Runtime;
+using com.outrealxr.networkimages;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -47,6 +47,11 @@ namespace outrealxr.holomod
 
         public override string type => "video";
 
+        private void Start()
+        {
+            RefreshThumbnail();
+        }
+
         public void SetState(State state)
         {
             this.state = state;
@@ -62,12 +67,18 @@ namespace outrealxr.holomod
             else Debug.Log("[VideoProvider] Missing IsSynced key");
             if (data.ContainsKey("startTimestamp")) startTimestamp = data.GetValue("startTimestamp").Value<double>();
             else Debug.Log("[VideoProvider] Missing startTimestamp key");
+            RefreshThumbnail();
+        }
+
+        public void RefreshThumbnail()
+        {
             if (thumbnailBehavior == ThumbnailBehavior.Download)
             {
                 if (value.Contains(".mp4")) ((BasicVideoView)view).networkImage.SetAndEnqueue(value.Replace(".mp4", ".jpg"));
                 else if (value.Contains(".m3u8")) ((BasicVideoView)view).networkImage.SetAndEnqueue(value.Replace(".m3u8", ".jpg"));
-            } else if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
-                VideoThumbnailQueue.instance.Queue(((BasicVideoView)view).networkImage, Random.Range(thumbnailRange.x, thumbnailRange.y));
+            }
+            else if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
+                VideoThumbnailQueue.instance.Queue(value, ((BasicVideoView)view).networkImage, Random.Range(thumbnailRange.x, thumbnailRange.y));
         }
 
         public MeshRenderer GetMeshRenderer()

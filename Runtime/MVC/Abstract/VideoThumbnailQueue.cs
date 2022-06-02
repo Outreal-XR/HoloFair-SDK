@@ -1,4 +1,4 @@
-using com.outrealxr.networkimages.Runtime;
+using com.outrealxr.networkimages;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +9,13 @@ namespace outrealxr.holomod
     {
         public struct ThumbnailQueueEntry
         {
+            public string url;
             public NetworkImage networkImage;
             public float timestamp;
 
-            public ThumbnailQueueEntry(NetworkImage networkImage, float timestamp)
+            public ThumbnailQueueEntry(string url, NetworkImage networkImage, float timestamp)
             {
+                this.url = url;
                 this.networkImage = networkImage;
                 this.timestamp = timestamp;
             }
@@ -30,7 +32,7 @@ namespace outrealxr.holomod
 
             public override string ToString()
             {
-                return networkImage.ToString();
+                return $"{networkImage} at {timestamp} seconds";
             }
         }
 
@@ -42,15 +44,15 @@ namespace outrealxr.holomod
             instance = this;
         }
 
-        internal void Queue(NetworkImage networkImage, float timestamp)
+        internal void Queue(string url, NetworkImage networkImage, float timestamp)
         {
-            ThumbnailQueueEntry thumbnailQueueEntry = new ThumbnailQueueEntry(networkImage, timestamp);
+            ThumbnailQueueEntry thumbnailQueueEntry = new ThumbnailQueueEntry(url, networkImage, timestamp);
             if (queue.Contains(thumbnailQueueEntry))
             {
-                Debug.LogWarning($"[NetworkImageQueue] Already queued ${networkImage}. Skipped");
+                Debug.LogWarning($"[VideoThumbnailQueue] Already queued ${thumbnailQueueEntry}. Skipped");
                 return;
             }
-            Debug.Log($"[NetworkImageQueue] Queued ${networkImage}");
+            Debug.Log($"[VideoThumbnailQueue] Queued ${thumbnailQueueEntry}");
             queue.Enqueue(thumbnailQueueEntry);
             TryNext();
         }
