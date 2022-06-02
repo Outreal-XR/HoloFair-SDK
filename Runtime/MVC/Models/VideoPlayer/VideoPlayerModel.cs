@@ -19,6 +19,7 @@ namespace outrealxr.holomod
         }
 
         public State state;
+        internal bool fullScreen;
         internal bool isLive;
         internal float progress, length;
         internal string error;
@@ -29,6 +30,17 @@ namespace outrealxr.holomod
         {
             instance = this;
             SetIsActive(false);
+            UpdateUI();
+        }
+
+        public void ToggleFullScreen()
+        {
+            SetFullScreen(!fullScreen);
+        }
+
+        public void SetFullScreen(bool val)
+        {
+            fullScreen = val;
             UpdateUI();
         }
 

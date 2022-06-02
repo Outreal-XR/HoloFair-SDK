@@ -19,6 +19,11 @@ namespace outrealxr.holomod
             videoModel.SetState(VideoModel.State.Playing);
         }
 
+        public void SetFullScreen(bool val)
+        {
+            videoModel.SetFullScreen(val);
+        }
+
         public void Stop()
         {
             videoModel.SetState(VideoModel.State.Stopped);

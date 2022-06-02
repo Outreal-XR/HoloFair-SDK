@@ -27,6 +27,12 @@ namespace outrealxr.holomod
             }
         }
 
+        public virtual void SetFullScreen(bool val)
+        {
+            if (sourceModel)
+                VideoPlayerModel.instance.SetFullScreen(val);
+        }
+
         public virtual void StartSeek()
         {
             if(sourceModel)
@@ -60,6 +66,11 @@ namespace outrealxr.holomod
         {
             if (sourceModel)
             {
+                if (sourceModel.control == VideoModel.Control.OnTrigger && VideoPlayerModel.instance.fullScreen)
+                {
+                    SetFullScreen(false);
+                    return;
+                }
                 VideoPlayerModel.instance.SetIsPlaying(false);
                 VideoPlayerModel.instance.SetIsActive(false);
             }

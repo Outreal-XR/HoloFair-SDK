@@ -506,10 +506,10 @@ MonoBehaviour:
   Addressable: 
   view: {fileID: 5941531034021301984}
   reportMissingKeys: 0
-  value: 
+  value: https://holofairbahrain.s3.me-south-1.amazonaws.com/videos/Green+screen+spokesperson.mp4
   IsSynced: 0
   startTimestamp: 0
-  thumbnailBehavior: 0
+  thumbnailBehavior: 1
   state: 0
   control: 1
   IsLive: 0
@@ -573,24 +573,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9125317741741313694}
+      objectReference: {fileID: 5941531034021301984}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9125317741741313694}
+      objectReference: {fileID: 5941531034021301984}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5941531034021301984}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -600,20 +608,36 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Stop
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetFullScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: outrealxr.holomod.View, outrealxr.holomod
+      value: outrealxr.holomod.BasicVideoView, outrealxr.holomod
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: outrealxr.holomod.View, outrealxr.holomod
+      value: outrealxr.holomod.BasicVideoView, outrealxr.holomod
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: outrealxr.holomod.BasicVideoView, outrealxr.holomod
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -631,13 +655,17 @@ PrefabInstance:
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+      propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485170, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485170, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 51
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485170, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_MeshFormatVersion
@@ -713,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983949, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 51
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983949, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_MeshFormatVersion

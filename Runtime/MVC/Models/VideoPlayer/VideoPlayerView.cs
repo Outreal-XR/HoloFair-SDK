@@ -17,7 +17,7 @@ namespace outrealxr.holomod
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
         public UnityEngine.UI.RawImage PrimaryPlayButton, SecondaryPlayButton, PrimaryPauseButton, SecondayPauseButton;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
-        public GameObject videoPlayer, primaryLoading, liveItem, errorItem;
+        public GameObject videoPlayer, videoPlayerChild, primaryLoading, liveItem, errorItem;
         bool autoHide = true;
         public static VideoPlayerView instance;
 
@@ -119,6 +119,7 @@ namespace outrealxr.holomod
                 errorText.text = $"Please, try to click on a video again. Error: {model.error}";
                 lengthText.text = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
             }
+            videoPlayerChild.SetActive(model.fullScreen);
         }
 
         internal void UpdateProgress(VideoPlayerModel model)

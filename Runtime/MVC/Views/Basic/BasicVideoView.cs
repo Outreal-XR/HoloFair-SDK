@@ -19,6 +19,15 @@ namespace outrealxr.holomod
             basicVideosController.Play();
         }
 
+        /// <summary>
+        /// Call this after play to switch full screen mode
+        /// </summary>
+        /// <param name="val"></param>
+        public void SetFullScreen(bool val)
+        {
+            basicVideosController.SetFullScreen(val);
+        }
+
         public void Stop()
         {
             basicVideosController.Stop();

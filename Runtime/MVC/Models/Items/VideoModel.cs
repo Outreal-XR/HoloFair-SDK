@@ -59,6 +59,11 @@ namespace outrealxr.holomod
             else if(state == State.Stopped) VideoPlayerController.instance.SetSourceModel(null);
         }
 
+        public void SetFullScreen(bool val)
+        {
+            VideoPlayerController.instance.SetFullScreen(val);
+        }
+
         public override void FromJObject(JObject data)
         {
             base.FromJObject(data);
@@ -78,7 +83,7 @@ namespace outrealxr.holomod
                 else if (value.Contains(".m3u8")) ((BasicVideoView)view).networkImage.SetAndEnqueue(value.Replace(".m3u8", ".jpg"));
             }
             else if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
-                VideoThumbnailQueue.instance.Queue(value, ((BasicVideoView)view).networkImage, Random.Range(thumbnailRange.x, thumbnailRange.y));
+                throw new System.NotImplementedException("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
         }
 
         public MeshRenderer GetMeshRenderer()
