@@ -19,7 +19,6 @@ namespace outrealxr.holomod
 
         public virtual void SetSourceModel(VideoModel sourceModel)
         {
-            this.sourceModel = sourceModel;
             VideoPlayerModel.instance.SetIsActive(sourceModel != null);
             if(sourceModel == null) Stop();
             else
@@ -27,6 +26,7 @@ namespace outrealxr.holomod
                 Play();
                 VideoPlayerView.instance.ApplyVolume();
             }
+            this.sourceModel = sourceModel;
         }
 
         public virtual void SetFullScreen(bool val)
