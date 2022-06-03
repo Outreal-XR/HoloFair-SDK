@@ -15,6 +15,8 @@ namespace outrealxr.holomod
             instance = this;
         }
 
+        public abstract void Prepare(VideoPlayerView view);
+
         public virtual void SetSourceModel(VideoModel sourceModel)
         {
             this.sourceModel = sourceModel;

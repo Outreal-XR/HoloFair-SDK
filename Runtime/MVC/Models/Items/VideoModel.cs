@@ -39,6 +39,7 @@ namespace outrealxr.holomod
         [Tooltip("Changes automatically whenever value ends with m3u8")]
         public bool IsLive;
         public Vector2 thumbnailRange = new Vector2(0, 15);
+        public string textureProperty = "_BaseMap";
 
         [Header("Extras")]
         public GameObject loadingVisual;

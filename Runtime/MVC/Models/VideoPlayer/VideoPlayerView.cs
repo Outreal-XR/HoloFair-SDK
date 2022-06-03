@@ -25,6 +25,7 @@ namespace outrealxr.holomod
         {
             instance = this;
             volumeAmount.value = PlayerPrefs.GetFloat("VideoPlayerVolume", 1);
+            VideoPlayerController.instance.Prepare(this);
         }
 
         public void SetAutoHide(bool val)

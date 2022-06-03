@@ -19,7 +19,7 @@ namespace outrealxr.holomod
         }
 
         public State state;
-        internal bool fullScreen;
+        public bool fullScreen;
         internal bool isLive;
         internal float progress, length;
         internal string error;
@@ -44,7 +44,7 @@ namespace outrealxr.holomod
             UpdateUI();
         }
 
-        internal void SetIsActive(bool val)
+        public void SetIsActive(bool val)
         {
             if (!val) state = State.Idle;
         }
@@ -67,7 +67,7 @@ namespace outrealxr.holomod
             UpdateUI();
         }
 
-        internal void SetIsPlaying(bool val)
+        public void SetIsPlaying(bool val)
         {
             if (val) state = State.isPlaying;
             UpdateUI();
