@@ -10,13 +10,16 @@ namespace outrealxr.holomod
         private void Start()
         {
             basicVideosController = (BasicVideosController)controller;
-            if (basicVideosController == null) Debug.LogWarning($"[BasicVideoView] There is no video controller for {gameObject.name}");
-            else basicVideosController.SetModel(model);
         }
 
         public void Play()
         {
-            basicVideosController.Play();
+            if (basicVideosController == null) Debug.LogWarning($"[BasicVideoView] There is no video controller for {gameObject.name}");
+            else
+            {
+                basicVideosController.SetModel(model);
+                basicVideosController.Play();
+            }
         }
 
         /// <summary>

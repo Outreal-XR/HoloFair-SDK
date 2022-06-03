@@ -6,12 +6,6 @@ namespace outrealxr.holomod
 {
     public class VideoModel : ImageModel
     {
-        public enum Control
-        {
-            OnClick,
-            OnTrigger
-        }
-
         public enum State
         {
             Stopped,
@@ -35,9 +29,8 @@ namespace outrealxr.holomod
         [Header("Local Settings")]
         public ThumbnailBehavior thumbnailBehavior;
         public State state;
-        public Control control;
         [Tooltip("Changes automatically whenever value ends with m3u8")]
-        public bool IsLive;
+        public bool IsFullScreenOnPlay, IsLive;
         public Vector2 thumbnailRange = new Vector2(0, 15);
         public string textureProperty = "_BaseMap";
 

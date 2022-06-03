@@ -13,11 +13,9 @@ namespace outrealxr.holomod
         public float controlsCanvasGroupAnimationSpeed = 2;
         public float timeUntilCanvasFades = 5;
         float timeUntilCanvasFadesNow = 0;
-        public UnityEngine.UI.RawImage videoDisplay;
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
-        public UnityEngine.UI.RawImage PrimaryPlayButton, SecondaryPlayButton, PrimaryPauseButton, SecondayPauseButton;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
-        public GameObject videoPlayer, videoPlayerChild, primaryLoading, liveItem, errorItem;
+        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplay, videoPlayer, loading, liveItem, errorItem;
         bool autoHide = true;
         public static VideoPlayerView instance;
 
@@ -45,6 +43,18 @@ namespace outrealxr.holomod
             controlsCanvasGroupAlphaTarget = controlsCanvasGroup.interactable ? 1 : 0;
         }
 
+        public void ToggleFullScreen()
+        {
+            SetFullScreen(!VideoPlayerModel.instance.fullScreen);
+        }
+
+        public void SetFullScreen(bool val)
+        {
+            VideoPlayerModel.instance.SetFullScreen(val);
+            RefreshTimeUntilCanvasFadesNow();
+            SetControlsCanvasGroup(true);
+        }
+
         public void RefreshTimeUntilCanvasFadesNow()
         {
             timeUntilCanvasFadesNow = timeUntilCanvasFades;
@@ -53,17 +63,12 @@ namespace outrealxr.holomod
         private void Update()
         {
             controlsCanvasGroup.alpha = Mathf.Lerp(controlsCanvasGroup.alpha, controlsCanvasGroupAlphaTarget, Time.deltaTime * controlsCanvasGroupAnimationSpeed);
-            if(timeUntilCanvasFadesNow > 0 && autoHide)
+            if(timeUntilCanvasFadesNow > 0 && autoHide && VideoPlayerModel.instance.fullScreen)
             {
                 timeUntilCanvasFadesNow -= Time.deltaTime;
                 if(timeUntilCanvasFadesNow <= 0)
                     SetControlsCanvasGroup(false);
             }
-        }
-
-        public void StartSeek()
-        {
-            VideoPlayerController.instance.StartSeek();
         }
 
         public void ApplyVolume()
@@ -76,7 +81,12 @@ namespace outrealxr.holomod
         {
             progressAmount.SetValueWithoutNotify(val);
             TimeSpan t = TimeSpan.FromSeconds(val * length);
-            elapsedText.text = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+            elapsedText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+        }
+
+        public void StartSeek()
+        {
+            VideoPlayerController.instance.StartSeek();
         }
 
         public void EndSeek()
@@ -87,11 +97,15 @@ namespace outrealxr.holomod
         public void Play()
         {
             VideoPlayerController.instance.Play();
+            RefreshTimeUntilCanvasFadesNow();
+            SetControlsCanvasGroup(true);
         }
 
         public void Pause()
         {
             VideoPlayerController.instance.Pause();
+            RefreshTimeUntilCanvasFadesNow();
+            SetControlsCanvasGroup(true);
         }
 
         public void Stop()
@@ -102,28 +116,26 @@ namespace outrealxr.holomod
         internal void UpdateUI(VideoPlayerModel model)
         {
             if (model.state != VideoPlayerModel.State.Error)
-                primaryLoading.SetActive(model.state == VideoPlayerModel.State.isLoading || model.state == VideoPlayerModel.State.isSeekingEnded);
+                loading.SetActive(model.state == VideoPlayerModel.State.isLoading || model.state == VideoPlayerModel.State.isSeekingEnded);
             videoPlayer.SetActive(model.state != VideoPlayerModel.State.Idle);
-            if (videoPlayer.activeInHierarchy)
+            TimeSpan t = TimeSpan.FromSeconds(model.length);
+            if (model.state == VideoPlayerModel.State.isPaused || model.state == VideoPlayerModel.State.isPlaying)
             {
-                TimeSpan t = TimeSpan.FromSeconds(model.length);
-                if (model.state == VideoPlayerModel.State.isPaused || model.state == VideoPlayerModel.State.isPlaying)
-                {
-                    PrimaryPlayButton.gameObject.SetActive(model.state == VideoPlayerModel.State.isPaused);
-                    SecondaryPlayButton.gameObject.SetActive(PrimaryPlayButton.gameObject.activeInHierarchy);
-                    PrimaryPauseButton.gameObject.SetActive(model.state == VideoPlayerModel.State.isPlaying);
-                    SecondayPauseButton.gameObject.SetActive(PrimaryPauseButton.gameObject.activeInHierarchy);
-                }
-                
-                liveItem.SetActive(model.isLive);
-                errorText.gameObject.SetActive(model.state == VideoPlayerModel.State.Error);
-                errorText.text = $"Please, try to click on a video again. Error: {model.error}";
-                lengthText.text = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+                playButton.SetActive(model.state == VideoPlayerModel.State.isPaused);
+                pauseButton.SetActive(model.state == VideoPlayerModel.State.isPlaying);
             }
-            videoPlayerChild.SetActive(model.fullScreen);
+
+            maximizeButton.SetActive(!model.fullScreen);
+            minimizeButton.SetActive(model.fullScreen);
+
+            liveItem.SetActive(model.isLive);
+            errorItem.SetActive(model.state == VideoPlayerModel.State.Error);
+            errorText.text = $"Please, try to click on a video again. Error: {model.error}";
+            lengthText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            videoDisplay.SetActive(model.fullScreen);
         }
 
-        internal void UpdateProgress(VideoPlayerModel model)
+        public void UpdateProgress(VideoPlayerModel model)
         {
             SetProgress(model.progress, model.length);
         }

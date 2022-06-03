@@ -267,7 +267,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 60a4fc41081487845b47167f39da34d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -441,6 +441,7 @@ MonoBehaviour:
   control: 0
   IsLive: 0
   thumbnailRange: {x: 0, y: 15}
+  textureProperty: _BaseMap
   loadingVisual: {fileID: 1715092706106719942}
   instructionsToCrossTheBarierToWatchInFullScreen: Cross the barier to click and
     watch the video in full screen mode
@@ -485,5 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1715092706403666671}
+  tiling: {x: 1, y: 1}
+  offset: {x: 0, y: 0}
   materialPropertyName: _BaseMap
   materialIndex: 0

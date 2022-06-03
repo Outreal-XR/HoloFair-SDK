@@ -21,7 +21,7 @@ namespace outrealxr.holomod
         public State state;
         public bool fullScreen;
         internal bool isLive;
-        internal float progress, length;
+        public float progress, length;
         internal string error;
 
         public static VideoPlayerModel instance;
@@ -29,8 +29,7 @@ namespace outrealxr.holomod
         private void Awake()
         {
             instance = this;
-            SetIsActive(false);
-            UpdateUI();
+            SetState(State.Idle);
         }
 
         public void ToggleFullScreen()
@@ -44,38 +43,31 @@ namespace outrealxr.holomod
             UpdateUI();
         }
 
-        public void SetIsActive(bool val)
+        public void SetLength(float val)
         {
-            if (!val) state = State.Idle;
+            length = val;
+            UpdateUI();
         }
 
-        internal void SetIsLive(bool val)
+        public void SetIsLive(bool val)
         {
             isLive = val;
             UpdateUI();
         }
 
-        internal void SetIsSeek(bool val)
+        public void ShowControls()
         {
-            state = val ? State.isSeekingStarted : State.isSeekingEnded;
-            UpdateUI();
-        }
-
-        internal void SetIsPaused(bool val)
-        {
-            if (val) state = State.isPaused;
-            UpdateUI();
-        }
-
-        public void SetIsPlaying(bool val)
-        {
-            if (val) state = State.isPlaying;
-            UpdateUI();
             VideoPlayerView.instance.RefreshTimeUntilCanvasFadesNow();
             VideoPlayerView.instance.SetControlsCanvasGroup(true);
         }
 
-        internal void SetError(string val)
+        public void SetState(State state)
+        {
+            this.state = state;
+            UpdateUI();
+        }
+
+        public void SetError(string val)
         {
             state = State.Error;
             error = val;
