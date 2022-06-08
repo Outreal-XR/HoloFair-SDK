@@ -6,6 +6,11 @@ namespace outrealxr.holomod
     {
         public Model model;
 
+        private void Start()
+        {
+            WorldController.instance.controllers.Add(this);
+        }
+
         public virtual void SetModel(Model model)
         {
             this.model = model;

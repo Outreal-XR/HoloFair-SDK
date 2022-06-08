@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 
 namespace outrealxr.holomod
 {
-    public class PortalProvider : Model
+    public class PortalModel : Model
     {
         public string sceneName;
 

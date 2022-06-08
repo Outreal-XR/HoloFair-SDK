@@ -4,7 +4,12 @@ namespace outrealxr.holomod
 {
     public class BasicRespawnController : Controller
     {
-        public Transform player;
+        public Rigidbody player;
+
+        private void Awake()
+        {
+            if (player == null) player = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Rigidbody>();
+        }
 
         public override void Handle()
         {

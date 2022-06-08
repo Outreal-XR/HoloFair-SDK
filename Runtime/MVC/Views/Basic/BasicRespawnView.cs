@@ -11,7 +11,7 @@ namespace outrealxr.holomod
 
         public override void Edit()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("[BasicRespawnView] No edit logic is available for this view. Just call View.Handle() to respawn a player");
         }
     }
 }

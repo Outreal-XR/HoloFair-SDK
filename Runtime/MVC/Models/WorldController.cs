@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -5,12 +6,13 @@ namespace outrealxr.holomod
     public class WorldController : MonoBehaviour
     {
 
-        public Controller[] controllers;
+        public List<Controller> controllers;
         public static WorldController instance;
 
         private void Awake()
         {
             instance = this;
+            controllers.Clear();
         }
 
         public Controller GetController(Model model)

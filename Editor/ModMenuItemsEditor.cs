@@ -103,7 +103,7 @@ namespace outrealxr.holomod.Editor
         private static void CreatePortalModObject(MenuCommand menuCommand) {
             var portal = new GameObject("Portal");
 
-            portal.AddComponent<PortalProvider>();
+            portal.AddComponent<PortalModel>();
 
             GameObjectUtility.SetParentAndAlign(portal, menuCommand.context as GameObject);
 
