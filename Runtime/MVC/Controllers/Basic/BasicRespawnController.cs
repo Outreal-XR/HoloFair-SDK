@@ -14,6 +14,7 @@ namespace outrealxr.holomod
         public override void Handle()
         {
             player.position = ((RespawnModel)model).GetRespawnPosition();
+            player.rotation = model.transform.rotation;
         }
     }
 }

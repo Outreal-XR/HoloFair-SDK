@@ -18,6 +18,7 @@ namespace outrealxr.holomod
         public void Respawn()
         {
             player.position = GetRespawnPosition();
+            player.rotation = transform.rotation;
         }
 
         Vector3 GetRespawnPosition()
