@@ -14,9 +14,6 @@ namespace outrealxr.holomod
             Error
         }
 
-        public string zoneName;
-        
-
         private void Start()
         {
             SetVisualState(State.Idle);

@@ -37,6 +37,7 @@ namespace outrealxr.holomod
 
         public void Join()
         {
+            basicTalkZoneController.SetRoomName((model as StringModel).value);
             basicTalkZoneController.Join();
         }
 

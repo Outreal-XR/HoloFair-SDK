@@ -793,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485170, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 105
+      value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485170, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_MeshFormatVersion
@@ -833,15 +833,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983948, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.026234
+      value: 17.894941
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983948, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983948, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.81881
+      value: 33.95811
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983948, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983949, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 108
+      value: 114
       objectReference: {fileID: 0}
     - target: {fileID: 4711989744448983949, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: m_MeshFormatVersion
@@ -919,8 +919,7 @@ PrefabInstance:
       propertyPath: m_Faces.Array.data[2].m_Uv.m_Offset.x
       value: 0.00000011920929
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3895995260438485168, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
 --- !u!1 &1292079863268660472 stripped
 GameObject:
@@ -944,7 +943,6 @@ MonoBehaviour:
   view: {fileID: 9179907666457296864}
   reportMissingKeys: 0
   value: ZoneTalkTest
-  zoneName: 
 --- !u!114 &3859117446713249577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,21 +979,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4711989744448983948, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
   m_PrefabInstance: {fileID: 5803515387504625521}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7393610359970504647 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3895995260438485174, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
-  m_PrefabInstance: {fileID: 5803515387504625521}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1026082155878836168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7393610359970504647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb4b507ff52e40f58f68c2065e32636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manageVisibility: 1
