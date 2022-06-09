@@ -34,5 +34,15 @@ namespace outrealxr.holomod
             if (success) success.SetActive(state == State.Success);
             if (error) error.SetActive(state == State.Error);
         }
+
+        public void Join()
+        {
+            basicTalkZoneController.Join();
+        }
+
+        public void Leave()
+        {
+            basicTalkZoneController.Leave();
+        }
     }
 }

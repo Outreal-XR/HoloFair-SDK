@@ -718,11 +718,11 @@ PrefabInstance:
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1292079863268660472}
+      objectReference: {fileID: 9179907666457296864}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1292079863268660472}
+      objectReference: {fileID: 9179907666457296864}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -741,11 +741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Leave
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Join
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -753,11 +753,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: outrealxr.holomod.BasicVideoView, outrealxr.holomod
+      value: outrealxr.holomod.BasicTalkZoneView, outrealxr.holomod
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: outrealxr.holomod.BasicVideoView, outrealxr.holomod
+      value: outrealxr.holomod.BasicTalkZoneView, outrealxr.holomod
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
