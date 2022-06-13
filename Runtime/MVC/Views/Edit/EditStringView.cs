@@ -28,20 +28,24 @@ namespace outrealxr.holomod
 
         public void Apply()
         {
-            if(basicStringView)
+            if(!basicStringView)
             {
-                basicStringView.ReceiveLinkUpdate(urlInput.text);
-                basicStringView.Write();
+                Debug.LogWarning("[EditLinkView] Attempted to apply a value, but there is nothing to edit");
+                return;
             }
-            else
+            if(!urlInput)
             {
-                Debug.LogWarning("[EditLinkView] Attempted to apply a value, but basicLinkView wasn't set.");
+                Debug.LogWarning("[EditLinkView] Attempted to apply a value, but input field is missing.");
+                return;
             }
+            basicStringView.ReceiveLinkUpdate(urlInput.text);
+            basicStringView.Write();
         }
 
         public void StartEdit(BasicStringView basicStringView)
         {
             SetLinkView(basicStringView);
+            OnLinkUrlChange((basicStringView.model as StringModel).value);
         }
 
         public void StartEdit()

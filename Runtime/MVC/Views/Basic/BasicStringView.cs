@@ -23,11 +23,13 @@ namespace outrealxr.holomod
 
         public void ReceiveLinkUpdate(string newUrl)
         {
-            basicStringController.SetValue(newUrl);
+            if (!basicStringController) Debug.Log("[BasicStringView] Missing basicStringController");
+            else basicStringController.SetValue(newUrl);
         }
 
         public override void Edit()
         {
+            Debug.Log($"[BasicStringView] editing {gameObject.name} {this}");
             EditStringView.instance.StartEdit(this);
         }
     }
