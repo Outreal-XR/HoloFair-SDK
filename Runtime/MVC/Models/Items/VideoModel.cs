@@ -41,7 +41,7 @@ namespace outrealxr.holomod
 
         public override string type => "video";
 
-        private void Start()
+        public override void Init()
         {
             RefreshThumbnail();
         }
@@ -71,12 +71,7 @@ namespace outrealxr.holomod
 
         public void RefreshThumbnail()
         {
-            if (thumbnailBehavior == ThumbnailBehavior.Download)
-            {
-                if (value.Contains(".mp4")) ((BasicVideoView)view).networkImage.SetAndEnqueue(value.Replace(".mp4", ".jpg"));
-                else if (value.Contains(".m3u8")) ((BasicVideoView)view).networkImage.SetAndEnqueue(value.Replace(".m3u8", ".jpg"));
-            }
-            else if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
+            if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
                 throw new System.NotImplementedException("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
         }
 

@@ -10,6 +10,7 @@ namespace outrealxr.holomod
             var data = new JObject
             {
                 new JProperty("name", transform.name),
+                new JProperty("position", transform.position.ToJObject()),
                 new JProperty("localPosition", transform.localPosition.ToJObject()),
                 new JProperty("localEulerAngles", transform.localEulerAngles.ToJObject()),
                 new JProperty("localScale", transform.localScale.ToJObject())

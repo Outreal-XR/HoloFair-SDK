@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146c8c988898e8c41b04e25acb935c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 2051c5dacd5cde649bd09f3066c24c86, type: 3}
+  cursorTexture: {fileID: 2800000, guid: cfbd4034a5874a9498d4c093ae7c4c63, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   OnEnter:
@@ -400,8 +400,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5941531034021301984}
-        m_TargetAssemblyTypeName: outrealxr.holomod.BasicVideoView, outrealxr.holomod
-        m_MethodName: Play
+        m_TargetAssemblyTypeName: outrealxr.holomod.BasicStringView, outrealxr.holomod
+        m_MethodName: Edit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 9125317741427126545}
   - component: {fileID: 1387690468432414239}
   - component: {fileID: 4810744957464474981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeshRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

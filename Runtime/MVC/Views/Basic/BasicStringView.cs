@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -9,13 +7,6 @@ namespace outrealxr.holomod
         [Tooltip("Assigned automatically on start after world init. Not used in BasicVideoView")]
         BasicStringController basicStringController;
 
-        private void Start()
-        {
-            basicStringController = (BasicLinksController)controller;
-            if (basicStringController == null) Debug.LogWarning($"[BasicLinkView] There is no controller for {gameObject.name}");
-            else basicStringController.SetModel(model);
-        }
-
         public void RequestToUpdateLink()
         {
             LinkUpdaterJSCommunicator.instance.OpenInputFieldOnBrowser();
@@ -23,6 +14,9 @@ namespace outrealxr.holomod
 
         public void ReceiveLinkUpdate(string newUrl)
         {
+            if (!basicStringController) basicStringController = (BasicStringController)controller;
+            if (!basicStringController) Debug.LogWarning($"[BasicLinkView] There is no controller for {gameObject.name}");
+            else basicStringController.SetModel(model);
             if (!basicStringController) Debug.Log("[BasicStringView] Missing basicStringController");
             else basicStringController.SetValue(newUrl);
         }

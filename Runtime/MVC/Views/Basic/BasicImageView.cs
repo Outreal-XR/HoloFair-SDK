@@ -10,7 +10,7 @@ namespace outrealxr.holomod
 
         public override void Apply()
         {
-            networkImage.SetAndEnqueue(((ImageModel)model).value);    
+            networkImage.SetAndEnqueue(((ImageModel)model).value);
         }
     }
 }

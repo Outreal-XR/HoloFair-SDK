@@ -22,7 +22,10 @@ namespace outrealxr.holomod
             guid = GetComponent<GuidComponent>().GetStringGuid();
             if (WorldModel.instance) WorldModel.instance.CreateData(guid);
             else Debug.LogWarning($"[Model] WorldModel instance doesn't exist. {gameObject.name} works now in local mode only.");
+            Init();
         }
+
+        public virtual void Init() { }
 
         public void SetMMOItemID(int val)
         {
