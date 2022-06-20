@@ -73,6 +73,8 @@ namespace outrealxr.holomod
         {
             if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
                 throw new System.NotImplementedException("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
+            else if (thumbnailBehavior == ThumbnailBehavior.Download)
+                view.Apply();
         }
 
         public MeshRenderer GetMeshRenderer()

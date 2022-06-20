@@ -7,13 +7,9 @@ namespace outrealxr.holomod
         [Tooltip("Assigned automatically on start after world init")]
         BasicVideosController basicVideosController;
 
-        private void Start()
-        {
-            basicVideosController = (BasicVideosController)controller;
-        }
-
         public void Play()
         {
+            basicVideosController = (BasicVideosController)controller;
             if (basicVideosController == null) Debug.LogWarning($"[BasicVideoView] There is no video controller for {gameObject.name}");
             else
             {
