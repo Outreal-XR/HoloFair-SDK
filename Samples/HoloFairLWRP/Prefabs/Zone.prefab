@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MeshFormatVersion: 1
+  m_MeshFormatVersion: 2
   m_Faces:
   - m_Indexes: 000000000100000002000000010000000300000002000000
     m_SmoothingGroup: 0
@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 4711989744448983949}
   - component: {fileID: 4711989744448983946}
   - component: {fileID: 4711989744448983947}
-  - component: {fileID: 4711989744448983944}
   m_Layer: 0
   m_Name: Zone
   m_TagString: Untagged
@@ -384,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MeshFormatVersion: 1
+  m_MeshFormatVersion: 2
   m_Faces:
   - m_Indexes: 000000000100000002000000010000000300000002000000
     m_SmoothingGroup: 0
@@ -429,7 +428,7 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 0.00000011920929, y: 0}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
@@ -750,10 +749,10 @@ MonoBehaviour:
   - {x: -3.7501676, y: 0}
   - {x: 0.0000001778074, y: 0.1}
   - {x: -3.7501676, y: 0.100000024}
-  - {x: 2.1088111, y: 0}
-  - {x: -0.10606707, y: 0}
-  - {x: 2.1088111, y: 0.100000024}
-  - {x: -0.10606707, y: 0.100000024}
+  - {x: 2.108811, y: 0}
+  - {x: -0.10606719, y: 0}
+  - {x: 2.108811, y: 0.100000024}
+  - {x: -0.10606719, y: 0.100000024}
   - {x: 0.000004583562, y: 0}
   - {x: -2.002742, y: 0}
   - {x: 0.000004583562, y: 0.100000024}
@@ -817,10 +816,10 @@ MonoBehaviour:
   - {x: 0.70710665, y: 0, z: -0.70710695, w: -1}
   - {x: 0.70710665, y: 0, z: -0.70710695, w: -1}
   - {x: 0.70710665, y: 0, z: -0.7071069, w: -1}
-  - {x: -0.70710665, y: 0, z: -0.7071069, w: -1}
-  - {x: -0.70710665, y: 0, z: -0.7071069, w: -1}
-  - {x: -0.70710665, y: 0, z: -0.7071069, w: -1}
-  - {x: -0.70710665, y: 0, z: -0.7071069, w: -1}
+  - {x: -0.70710665, y: 0, z: -0.70710695, w: -1}
+  - {x: -0.70710665, y: 0, z: -0.70710695, w: -1}
+  - {x: -0.70710665, y: 0, z: -0.70710695, w: -1}
+  - {x: -0.70710665, y: 0, z: -0.70710695, w: -1}
   - {x: 0.70710635, y: 0, z: 0.7071072, w: -1}
   - {x: 0.70710635, y: 0, z: 0.7071072, w: -1}
   - {x: 0.70710635, y: 0, z: 0.7071072, w: -1}
@@ -936,18 +935,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4711989744448983945}
-  m_Mesh: {fileID: 0}
---- !u!64 &4711989744448983944
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4711989744448983945}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}

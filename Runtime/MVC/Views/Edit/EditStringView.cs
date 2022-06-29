@@ -40,6 +40,7 @@ namespace outrealxr.holomod
             }
             basicStringView.ReceiveLinkUpdate(urlInput.text);
             basicStringView.Write();
+            EndEdit();
         }
 
         public void StartEdit(BasicStringView basicStringView)
@@ -60,6 +61,7 @@ namespace outrealxr.holomod
         public void EndEdit()
         {
             SetLinkView(null);
+            LinkUpdaterJSCommunicator.instance.ResumeWebGLFocus();
         }
     }
 }
