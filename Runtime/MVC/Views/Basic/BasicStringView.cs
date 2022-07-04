@@ -14,6 +14,8 @@ namespace outrealxr.holomod
 
         public void ReceiveLinkUpdate(string newUrl)
         {
+            if (!CheckForController()) return;
+
             if (!basicStringController) basicStringController = (BasicStringController)controller;
             if (!basicStringController) Debug.LogWarning($"[BasicLinkView] There is no controller for {gameObject.name}");
             else basicStringController.SetModel(model);

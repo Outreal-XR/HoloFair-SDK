@@ -17,6 +17,8 @@ namespace outrealxr.holomod
 
         private void Start()
         {
+            if (!CheckForController()) return;
+
             basicTalkZoneController = (BasicTalkZoneController)controller;
             if (basicTalkZoneController == null) Debug.LogWarning($"[BasicTalkZoneView] There is no controller for {gameObject.name}");
             else basicTalkZoneController.SetModel(model);
@@ -37,12 +39,16 @@ namespace outrealxr.holomod
 
         public void Join()
         {
+            if (!CheckForController()) return;
+
             basicTalkZoneController.SetRoomName((model as StringModel).value);
             basicTalkZoneController.Join();
         }
 
         public void Leave()
         {
+            if (!CheckForController()) return;
+
             basicTalkZoneController.Leave();
         }
     }

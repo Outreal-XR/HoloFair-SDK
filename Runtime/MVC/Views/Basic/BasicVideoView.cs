@@ -9,6 +9,8 @@ namespace outrealxr.holomod
 
         public void Play()
         {
+            if (!CheckForController()) return;
+            
             basicVideosController = (BasicVideosController)controller;
             if (basicVideosController == null) Debug.LogWarning($"[BasicVideoView] There is no video controller for {gameObject.name}");
             else
@@ -24,11 +26,15 @@ namespace outrealxr.holomod
         /// <param name="val"></param>
         public void SetFullScreen(bool val)
         {
+            if (!CheckForController()) return;
+
             basicVideosController.SetFullScreen(val);
         }
 
         public void Stop()
         {
+            if (!CheckForController()) return;
+
             basicVideosController.Stop();
         }
     }
