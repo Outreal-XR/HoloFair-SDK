@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
 
 namespace outrealxr.holomod
 {
@@ -19,8 +20,8 @@ namespace outrealxr.holomod
         AsyncOperationHandle<SceneInstance> unloadSceneAssetHandler;
         SceneInstance sceneInstance;
 
-        static Queue<SceneController> scenesToLoad = new Queue<SceneController>();
-        static Queue<SceneController> scenesToUnload = new Queue<SceneController>();
+        static Queue<SceneController> scenesToLoad = new ();
+        static Queue<SceneController> scenesToUnload = new ();
 
         void Awake()
         {
@@ -34,7 +35,10 @@ namespace outrealxr.holomod
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
             if (currentlyLoading == null)
             {
-                SceneLoadingView.instance.LoadingView.SetActive(true);
+                if (SceneLoadingView.instance)
+                    SceneLoadingView.instance.LoadingView.SetActive(true);
+                else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                
                 LoadNext();
             }
             else
@@ -53,7 +57,11 @@ namespace outrealxr.holomod
         {
             loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
-            SceneLoadingView.instance.current = this;
+            
+            if (SceneLoadingView.instance)
+                SceneLoadingView.instance.current = this;
+            else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+
             Debug.Log($"[SceneController - {gameObject.name}] Loading {sceneName}");
         }
 
@@ -65,7 +73,18 @@ namespace outrealxr.holomod
                 Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {sceneInstance.Scene.name}");
                 currentlyLoading = null;
                 if (scenesToLoad.Count > 0) LoadNext();
-                else SceneLoadingView.instance.LoadingView.SetActive(false);
+                else {
+                    if (SceneLoadingView.instance)
+                        SceneLoadingView.instance.LoadingView.SetActive(false);
+                    else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                }
+
+                SceneManager.SetActiveScene(sceneInstance.Scene);
+            } else if (arg.Status == AsyncOperationStatus.Failed) {
+                //Failed to load addressable
+
+                
+                Debug.LogWarning("[SceneController] It seems uploaded catalog file is newer, then uploaded target addressables. Please, try to clear your addressable build folder, update it and upload everything again to the same destination");
             }
         }
 
