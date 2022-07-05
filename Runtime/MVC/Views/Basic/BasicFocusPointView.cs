@@ -17,10 +17,12 @@ namespace outrealxr.holomod
         }
 
         public void SetAsFocusPoint() {
+            if (!CheckForController()) return;
             basicFocusPointController.SetNewFocusPoint(((FocusPointModel)model).focusPoint);
         }
 
         public void ResetFocusPoint() {
+            if (!CheckForController()) return;
             basicFocusPointController.ResetFocusToPlayer();
         }
     }

@@ -19,6 +19,8 @@ namespace outrealxr.holomod
 
         public void Handle()
         {
+            if (!CheckForController()) return;
+            
             controller.SetModel(model);
             controller.Handle();
         }
@@ -27,14 +29,25 @@ namespace outrealxr.holomod
 
         public void Write()
         {
+            if (!CheckForController()) return;
+
             controller.SetModel(model);
             controller.Write();
         }
 
         public void Read()
         {
+            if (!CheckForController()) return;
+             
             controller.SetModel(model);
             controller.Read();
+        }
+
+        protected bool CheckForController() {
+            if (!controller)
+                Debug.LogWarning($"[{nameof(GetType)}] View of \"{gameObject.name}\" does not have a controller. Behavior will be limited.");
+
+            return controller != null;
         }
 
         public void LoadAddressable(string path)
