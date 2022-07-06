@@ -72,7 +72,7 @@ namespace outrealxr.holomod
         public void RefreshThumbnail()
         {
             if (!IsLive && thumbnailBehavior == ThumbnailBehavior.Generate)
-                throw new System.NotImplementedException("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
+                Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
             else if (thumbnailBehavior == ThumbnailBehavior.Download)
                 view.Apply();
         }
