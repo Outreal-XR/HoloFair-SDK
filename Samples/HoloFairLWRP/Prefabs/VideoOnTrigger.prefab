@@ -597,7 +597,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5941531034021301984}
         m_TargetAssemblyTypeName: outrealxr.holomod.BasicVideoView, outrealxr.holomod
-        m_MethodName: Play
+        m_MethodName: TogglePlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -775,8 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
+      value:TogglePlay      objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetFullScreen

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
@@ -65,6 +66,7 @@ namespace outrealxr.holomod
             Debug.Log($"[SceneController - {gameObject.name}] Loading {sceneName}");
         }
 
+        [SerializeField] private UnityEvent OnSceneLoaded;
         void OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> arg)
         {
             if (arg.Status == AsyncOperationStatus.Succeeded)

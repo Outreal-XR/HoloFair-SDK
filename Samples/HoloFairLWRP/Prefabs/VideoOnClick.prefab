@@ -358,7 +358,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7736829578167297570}
         m_TargetAssemblyTypeName: outrealxr.holomod.BasicVideoView, outrealxr.holomod
-        m_MethodName: Play
+        m_MethodName: TogglePlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
