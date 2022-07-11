@@ -79,9 +79,13 @@ namespace outrealxr.holomod
 
         public void SetProgress(float val, float length)
         {
-            progressAmount.SetValueWithoutNotify(val);
-            TimeSpan t = TimeSpan.FromSeconds(val * length);
-            elapsedText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            if (val == float.PositiveInfinity) elapsedText.text = "...";
+            else
+            {
+                progressAmount.SetValueWithoutNotify(val);
+                TimeSpan t = TimeSpan.FromSeconds(val * length);
+                elapsedText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            }
         }
 
         public void StartSeek()
@@ -115,10 +119,10 @@ namespace outrealxr.holomod
 
         internal void UpdateUI(VideoPlayerModel model)
         {
+            progressAmount.interactable = !model.isLive;
             if (model.state != VideoPlayerModel.State.Error)
                 loading.SetActive(model.state == VideoPlayerModel.State.isLoading || model.state == VideoPlayerModel.State.isSeekingEnded);
             videoPlayer.SetActive(model.state != VideoPlayerModel.State.Idle);
-            TimeSpan t = TimeSpan.FromSeconds(model.length);
             if (model.state == VideoPlayerModel.State.isPaused || model.state == VideoPlayerModel.State.isPlaying)
             {
                 playButton.SetActive(model.state == VideoPlayerModel.State.isPaused);
@@ -131,7 +135,12 @@ namespace outrealxr.holomod
             liveItem.SetActive(model.isLive);
             errorItem.SetActive(model.state == VideoPlayerModel.State.Error);
             errorText.text = $"Please, try to click on a video again. Error: {model.error}";
-            lengthText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            if (model.length == float.PositiveInfinity) lengthText.text = "Live";
+            else
+            {
+                TimeSpan t = TimeSpan.FromSeconds(model.length);
+                lengthText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            }
             videoDisplay.SetActive(model.fullScreen);
         }
 

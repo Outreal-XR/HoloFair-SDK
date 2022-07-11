@@ -41,8 +41,8 @@ namespace outrealxr.holomod
         }
 
         public void OnDataCreated(string guid, int id) {
-            GUIDsMap.Add(guid, id);
-            detectedData.Add(id, GetModel(guid));
+            if (!GUIDsMap.ContainsKey(guid)) GUIDsMap.Add(guid, id);
+            if (!detectedData.ContainsKey(id)) detectedData.Add(id, GetModel(guid));
             detectedData[id].SetMMOItemID(id);
         }
 
