@@ -48,13 +48,13 @@ namespace outrealxr.holomod
             }
         }
 
-        public void LoadNext()
+        void LoadNext()
         {
             currentlyLoading = scenesToLoad.Dequeue();
             currentlyLoading.Load();
         }
 
-        public void Load()
+        void Load()
         {
             loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
@@ -99,13 +99,13 @@ namespace outrealxr.holomod
             else Debug.Log($"[SceneController - {gameObject.name}] Waiting to unload {sceneName}");
         }
 
-        public void UnloadNext()
+        void UnloadNext()
         {
             currentlyUnloading = scenesToUnload.Dequeue();
             currentlyUnloading.Unload();
         }
 
-        public void Unload()
+        void Unload()
         {
             unloadSceneAssetHandler = Addressables.UnloadSceneAsync(sceneInstance);
             unloadSceneAssetHandler.Completed += OnSceneUnloadCompleted;
