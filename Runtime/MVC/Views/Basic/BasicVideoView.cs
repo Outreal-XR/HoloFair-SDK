@@ -7,7 +7,7 @@ namespace outrealxr.holomod
         [Tooltip("Assigned automatically on start after world init")]
         BasicVideosController basicVideosController;
 
-        public void Play()
+        public void TogglePlay()
         {
             if (!CheckForController()) return;
             
