@@ -8,7 +8,7 @@ namespace outrealxr.holomod
     public abstract class Model: MonoBehaviour
     {
         public int MMOItemID = -1;
-        protected string guid;
+        internal string guid;
         [Tooltip("Addressable Path to a GameObject (Optional)")]
         public string Addressable;
         public View view;
@@ -20,8 +20,6 @@ namespace outrealxr.holomod
         {
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
-            if (WorldModel.instance) WorldModel.instance.CreateData(guid);
-            else Debug.LogWarning($"[Model] WorldModel instance doesn't exist. {gameObject.name} works now in local mode only.");
             Init();
         }
 

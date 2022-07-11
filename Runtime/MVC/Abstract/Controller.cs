@@ -25,7 +25,7 @@ namespace outrealxr.holomod
 
         public virtual void Write()
         {
-            WorldModel.instance.WriteData(model.MMOItemID, model.ToJObject());
+            WorldModel.instance.WriteData(model.MMOItemID, model.guid, model.ToJObject());
         }
 
         public virtual void LockPlayerControls()

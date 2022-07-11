@@ -31,7 +31,7 @@ namespace outrealxr.holomod
             Apply();
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
-            WorldModel.instance.CreateData(guid);
+            // TODO AnimatorModel.cs may be not working correcly.
         }
 
         public void SetStateName(string val)

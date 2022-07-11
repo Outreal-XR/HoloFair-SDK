@@ -10,18 +10,7 @@ namespace outrealxr.holomod
     {
         int id = 0;
 
-        public override void CreateData(string guid)
-        {
-            if (!pendingData.ContainsKey(guid))
-            {
-                pendingData.Add(guid, GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>());
-                id++;
-            }
-            OnDataCreated(guid, id);
-            timeNow = timeAfterWorldReady;
-        }
-
-        public override void WriteData(int id, JObject data)
+        public override void WriteData(int id, string guid, JObject data)
         {
             ApplyData(id, data);
         }
