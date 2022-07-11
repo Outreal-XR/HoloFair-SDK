@@ -15,9 +15,9 @@ namespace outrealxr.holomod
             ApplyData(id, data);
         }
 
-        public override JObject ReadData(int id)
+        public override JObject ReadData(string guid)
         {
-            return detectedData[id].ToJObject();
+            return detectedData[GUIDsMap[guid]].ToJObject();
         }
 
         public override void ApplyData(int id, JObject data)

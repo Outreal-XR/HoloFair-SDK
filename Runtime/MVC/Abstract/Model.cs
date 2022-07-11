@@ -21,6 +21,7 @@ namespace outrealxr.holomod
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
             Init();
+            view.Read();
         }
 
         public virtual void Init() { }

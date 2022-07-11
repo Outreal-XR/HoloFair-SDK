@@ -8,6 +8,7 @@ namespace outrealxr.holomod
 {
     public abstract class WorldModel : MonoBehaviour
     {
+        public Dictionary<string, int> GUIDsMap = new Dictionary<string, int>();
         public Dictionary<int, Model> detectedData = new Dictionary<int, Model>();
 
         public static WorldModel instance;
@@ -40,13 +41,19 @@ namespace outrealxr.holomod
         }
 
         public void OnDataCreated(string guid, int id) {
-            detectedData.Add(id, GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>());
+            GUIDsMap.Add(guid, id);
+            detectedData.Add(id, GetModel(guid));
             detectedData[id].SetMMOItemID(id);
+        }
+
+        public Model GetModel(string guid)
+        {
+            return GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>();
         }
 
         public abstract void WriteData(int id, string guid, JObject data);
         public abstract void ApplyData(int id, JObject data);
-        public abstract JObject ReadData(int id);
+        public abstract JObject ReadData(string guid);
 
     }
 }

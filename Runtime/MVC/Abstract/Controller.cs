@@ -20,7 +20,7 @@ namespace outrealxr.holomod
 
         public virtual void Read()
         {
-            model.FromJObject(WorldModel.instance.ReadData(model.MMOItemID));
+            model.FromJObject(WorldModel.instance.ReadData(model.guid));
         }
 
         public virtual void Write()
