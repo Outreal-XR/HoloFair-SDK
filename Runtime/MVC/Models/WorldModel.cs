@@ -42,13 +42,18 @@ namespace outrealxr.holomod
 
         public void OnDataCreated(string guid, int id) {
             if (!GUIDsMap.ContainsKey(guid)) GUIDsMap.Add(guid, id);
-            if (!detectedData.ContainsKey(id)) detectedData.Add(id, GetModel(guid));
-            detectedData[id].SetMMOItemID(id);
+            Model model = GetModel(guid);
+            if (model) {
+                if (!detectedData.ContainsKey(id)) detectedData.Add(id, model);
+                detectedData[id].SetMMOItemID(id);
+            }
         }
 
         public Model GetModel(string guid)
         {
-            return GuidManagerSingleton.ResolveGuid(new Guid(guid)).GetComponent<Model>();
+            GameObject gameObject = GuidManagerSingleton.ResolveGuid(new Guid(guid));
+            if (gameObject == null) return null;
+            return gameObject.GetComponent<Model>();
         }
 
         public abstract void WriteData(int id, string guid, JObject data);

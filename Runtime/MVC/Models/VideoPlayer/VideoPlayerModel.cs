@@ -29,6 +29,10 @@ namespace outrealxr.holomod
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
             SetState(State.Idle);
         }
 

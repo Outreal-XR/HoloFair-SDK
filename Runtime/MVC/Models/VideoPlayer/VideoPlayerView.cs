@@ -22,6 +22,10 @@ namespace outrealxr.holomod
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
             volumeAmount.value = PlayerPrefs.GetFloat("VideoPlayerVolume", 1);
             VideoPlayerController.instance.Prepare(this);
         }
