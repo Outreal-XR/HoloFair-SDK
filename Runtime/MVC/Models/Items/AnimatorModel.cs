@@ -22,7 +22,8 @@ namespace outrealxr.holomod
         public float animationLength;
         public Animator animator;
         readonly DateTime beginningOfTheWorld = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
+        public double serverTimeDifference = 0;
+        
         public override string type => "animator";
 
         void Start()
@@ -69,7 +70,7 @@ namespace outrealxr.holomod
         void LateUpdate()
         {
             now = DateTime.Now.ToUniversalTime().Subtract(beginningOfTheWorld).TotalMilliseconds;
-            elapsedTime = Mathf.Clamp(((float)(now - startTime)) / 1000f, 0f, animationLength);
+            elapsedTime = Mathf.Clamp(((float)(now + serverTimeDifference - startTime)) / 1000f, 0f, animationLength);
             if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }
