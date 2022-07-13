@@ -8,7 +8,7 @@ namespace outrealxr.holomod
 
         public GameObject form;
         public TMPro.TMP_InputField urlInput;
-        BasicStringView basicStringView;
+        protected BasicStringView basicStringView;
 
         private void Awake()
         {
@@ -43,7 +43,7 @@ namespace outrealxr.holomod
             EndEdit();
         }
 
-        public void StartEdit(BasicStringView basicStringView)
+        public virtual void StartEdit(BasicStringView basicStringView)
         {
             SetLinkView(basicStringView);
             OnLinkUrlChange((basicStringView.model as StringModel).value);

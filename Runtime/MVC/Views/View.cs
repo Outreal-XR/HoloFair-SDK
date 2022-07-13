@@ -4,10 +4,19 @@ namespace outrealxr.holomod
 {
     public abstract class View : MonoBehaviour
     {
+
+        public enum EditAccess
+        {
+            None,
+            Private,
+            Public
+        }
+
         public Model model;
         [Tooltip("Generic controller which later used by inherited classes on start")]
         public Controller controller;
         GameObject loadedAddressable;
+        public EditAccess editAccess = EditAccess.Private;
 
         void Awake()
         {
