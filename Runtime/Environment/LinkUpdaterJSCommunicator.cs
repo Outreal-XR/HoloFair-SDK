@@ -5,8 +5,10 @@ namespace outrealxr.holomod
 {
     public class LinkUpdaterJSCommunicator : MonoBehaviour
     {
+#if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void openDrawer();
+#endif
         
         public void OpenInputFieldOnBrowser () {
 #if UNITY_EDITOR
