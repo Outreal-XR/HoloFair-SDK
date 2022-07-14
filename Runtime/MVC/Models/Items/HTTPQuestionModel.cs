@@ -49,7 +49,7 @@ namespace outrealxr.holomod
             Debug.Log(text);
         }
 
-        protected override void SelectOption(int i, float timeTaken) {
+        public override void SelectOption(int i, float timeTaken) {
             StartCoroutine(SendPostRequest(i, timeTaken));
         }
 
