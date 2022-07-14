@@ -13,7 +13,7 @@ namespace outrealxr.holomod
 
             float differenceInSeconds = (float) difference / 1000;
 
-            (model as BaseQuestionModel)?.SelectOption(i, differenceInSeconds);
+            (model as BasicQuestionModel)?.SelectOption(i, differenceInSeconds);
         }
 
         public override void Edit() {

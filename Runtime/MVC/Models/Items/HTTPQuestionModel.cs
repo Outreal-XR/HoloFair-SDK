@@ -5,12 +5,12 @@ using UnityEngine.Networking;
 
 namespace outrealxr.holomod
 {
-    public class HttpQuestionModel : BaseQuestionModel
+    public class HttpQuestionModel : BasicQuestionModel
     {
         [SerializeField] private string getURL;
         [SerializeField] private string postURL;
         
-        protected override void GetData() {
+        public override void GetData() {
             var uri = $"{getURL}/?groupNumber={groupId}&guid={guid}";    
             StartCoroutine(SendGetRequest(uri));
         }

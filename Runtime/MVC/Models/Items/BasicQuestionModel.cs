@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace outrealxr.holomod
 {
-    public abstract class BaseQuestionModel : Model
+    public abstract class BasicQuestionModel : Model
     {
         public override string type => "question";
         
@@ -17,10 +17,10 @@ namespace outrealxr.holomod
         [SerializeField, Space(5)] protected UnityEvent OnCorrectAnswer;
         [SerializeField] protected UnityEvent OnIncorrectAnswer;
 
-        [HideInInspector] public string groupId;
+        [HideInInspector] public int groupId;
         [HideInInspector] public string uuId;
         
-        protected abstract void GetData ();
+        public abstract void GetData ();
         protected abstract void AvailableText (string text);
         public abstract void SelectOption (int i, float timeTaken);
         
