@@ -10,7 +10,7 @@ namespace outrealxr.holomod
         public string value;
         public override string type => "string";
 
-        public void SetValue(string value)
+        public virtual void SetValue(string value)
         {
             this.value = value;
         }

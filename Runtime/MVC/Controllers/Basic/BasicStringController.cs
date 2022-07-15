@@ -16,7 +16,7 @@ namespace outrealxr.holomod
 
         public void SetValue(string val)
         {
-            stringModel.value = val;
+            stringModel.SetValue(val);
         }
     }
 }
