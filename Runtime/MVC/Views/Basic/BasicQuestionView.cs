@@ -1,11 +1,15 @@
+using UnityEngine;
+
 namespace outrealxr.holomod
 {
     public class BasicQuestionView : View
     {
-
         private double startTime = 0;
+        private GameObject questionUI;
+
         public override void Apply() {
             startTime = System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond;
+            questionUI.SetActive(true);
         }
 
         public void Answer(int i) {
