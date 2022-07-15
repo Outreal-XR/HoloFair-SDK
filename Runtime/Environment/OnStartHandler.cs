@@ -9,7 +9,7 @@ namespace outrealxr.holomod
         public UnityEvent OnStart;
         bool eventRaised;
 
-        public void WorldStart()
+        private void Start()
         {
             if (!eventRaised)
             {

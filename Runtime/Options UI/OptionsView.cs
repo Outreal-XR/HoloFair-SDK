@@ -12,12 +12,16 @@ namespace outrealxr.holomod
         
         public void UpdateOptions() {
             for (var i = 0; i < views.Length; i++) {
-                if (i < model.options.Length)
-                    views[i].UpdateOption(model.options[i].OptionText, 
-                        () => {
-                            view.Answer(model.options[i].ID); 
-                            ui.gameObject.SetActive(false); 
+                if (i < model.options.Length) {
+                    var id = model.options[i].ID;
+                    
+                    views[i].UpdateOption(model.options[i].OptionText, () => {
+                            view.Answer(id);
+                            ui.gameObject.SetActive(false);
                         });
+                } else {
+                    views[i].gameObject.SetActive(false);
+                }
             }
         }
     }   
