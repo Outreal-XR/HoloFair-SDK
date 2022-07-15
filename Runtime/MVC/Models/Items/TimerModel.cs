@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,15 +8,22 @@ namespace outrealxr.holomod
     {
         public override string type => "timer";
 
-        public double timeUTC;
-        
+
         [SerializeField] private UnityEvent OnBefore;
         [SerializeField] private UnityEvent OnAfter;
+
+        private void Start() {
+            SetValue(value);
+        }
+
+        [HideInInspector] public double timeUTC;
+        [HideInInspector] public double ServerUTCTimeDifference;
+        
         private void Update() {
-            double timeNow = System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond;
+            double timeNow = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + ServerUTCTimeDifference;
             if (timeUTC > 0 && timeUTC <= timeNow) {
                 OnAfter?.Invoke();
-            } else if (timeUTC > timeNow) {
+            } else {
                 OnBefore?.Invoke();
             }
         }
