@@ -5,7 +5,7 @@ namespace outrealxr.holomod
     public class BasicQuestionView : View
     {
         private double startTime = 0;
-        private GameObject questionUI;
+        [SerializeField] private GameObject questionUI;
 
         public override void Apply() {
             startTime = System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond;
