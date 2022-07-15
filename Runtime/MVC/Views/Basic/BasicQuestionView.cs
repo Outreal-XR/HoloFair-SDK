@@ -1,11 +1,16 @@
+using TMPro;
+using UnityEngine;
+
 namespace outrealxr.holomod
 {
     public class BasicQuestionView : View
     {
-
         private double startTime = 0;
+        [SerializeField] private GameObject questionUI;
+
         public override void Apply() {
             startTime = System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond;
+            questionUI.SetActive(true);
         }
 
         public void Answer(int i) {
@@ -14,6 +19,11 @@ namespace outrealxr.holomod
             float differenceInSeconds = (float) difference / 1000;
 
             (model as BasicQuestionModel)?.SelectOption(i, differenceInSeconds);
+        }
+
+        [SerializeField] private TextMeshProUGUI questionText;
+        public void UpdateQuestionText() {
+            questionText.text = (model as BasicQuestionModel)?.question;
         }
 
         public override void Edit() {

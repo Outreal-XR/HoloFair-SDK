@@ -9,8 +9,8 @@ namespace outrealxr.holomod
         public override string type => "question";
         
         [SerializeField] protected int id;
-        [SerializeField] protected string question;
-        [SerializeField] protected Option[] options;
+        public string question;
+        public Option[] options;
 
         [SerializeField, Space(10)] protected UnityEvent OnAvailable;
         [SerializeField] protected UnityEvent OnUnavailable;
@@ -25,7 +25,7 @@ namespace outrealxr.holomod
         public abstract void SelectOption (int i, float timeTaken);
         
         [Serializable]
-        protected struct Option {
+        public struct Option {
             public int ID;
             public string OptionText;
         }
