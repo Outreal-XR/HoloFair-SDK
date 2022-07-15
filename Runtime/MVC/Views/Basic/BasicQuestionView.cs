@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -18,6 +19,11 @@ namespace outrealxr.holomod
             float differenceInSeconds = (float) difference / 1000;
 
             (model as BasicQuestionModel)?.SelectOption(i, differenceInSeconds);
+        }
+
+        [SerializeField] private TextMeshProUGUI questionText;
+        public void UpdateQuestionText() {
+            questionText.text = (model as BasicQuestionModel)?.question;
         }
 
         public override void Edit() {

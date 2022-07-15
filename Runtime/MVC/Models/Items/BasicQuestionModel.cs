@@ -9,7 +9,7 @@ namespace outrealxr.holomod
         public override string type => "question";
         
         [SerializeField] protected int id;
-        [SerializeField] protected string question;
+        public string question;
         public Option[] options;
 
         [SerializeField, Space(10)] protected UnityEvent OnAvailable;

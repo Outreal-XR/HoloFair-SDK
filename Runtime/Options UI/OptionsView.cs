@@ -8,11 +8,16 @@ namespace outrealxr.holomod
         [SerializeField] private BasicQuestionView view;
 
         [SerializeField] private OptionView[] views;
+        [SerializeField] private GameObject ui;
         
         public void UpdateOptions() {
             for (var i = 0; i < views.Length; i++) {
                 if (i < model.options.Length)
-                    views[i].UpdateOption(model.options[i].OptionText, () => view.Answer(model.options[i].ID));
+                    views[i].UpdateOption(model.options[i].OptionText, 
+                        () => {
+                            view.Answer(model.options[i].ID); 
+                            ui.gameObject.SetActive(false); 
+                        });
             }
         }
     }   
