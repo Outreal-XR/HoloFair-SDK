@@ -17,6 +17,11 @@ namespace outrealxr.holomod
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;
 
+        public override void Init()
+        {
+            SetValue(value);
+        }
+
         public void CompareValues() {
             foreach (var grpId in validIDs)
                 if (grpId == userGrpID) {
