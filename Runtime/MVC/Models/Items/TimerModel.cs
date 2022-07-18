@@ -28,12 +28,18 @@ namespace outrealxr.holomod
         public double timeUTC;
         
         void Update() {
-            if (timeUTC > 0 && timeUTC <= UniversalTimeModel.Now && state != State.After) {
-                OnAfter?.Invoke();
-                state = State.After;
-            } else {
-                OnBefore?.Invoke();
-                state = State.Before;
+            if (timeUTC > 0)
+            {
+                if (UniversalTimeModel.Now > timeUTC && state != State.After)
+                {
+                    OnAfter?.Invoke();
+                    state = State.After;
+                }
+                else if (UniversalTimeModel.Now <= timeUTC && state != State.Before)
+                {
+                    OnBefore?.Invoke();
+                    state = State.Before;
+                }
             }
         }
 
