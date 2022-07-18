@@ -70,7 +70,7 @@ namespace outrealxr.holomod
         void LateUpdate()
         {
             now = DateTime.Now.ToUniversalTime().Subtract(beginningOfTheWorld).TotalMilliseconds;
-            elapsedTime = Mathf.Clamp(((float)(now + serverTimeDifference - startTime)) / 1000f, 0f, animationLength);
+            elapsedTime = Mathf.Clamp(((float)(now + UniversalTimeModel.ServerTimeDifference - startTime)) / 1000f, 0f, animationLength);
             if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }

@@ -12,21 +12,28 @@ namespace outrealxr.holomod
         [SerializeField] private UnityEvent OnBefore;
         [SerializeField] private UnityEvent OnAfter;
 
+        enum State
+        {
+            Idle,
+            Before,
+            After
+        }
+
+        State state = State.Idle;
+
         public override void Init() {
             SetValue(value);
         }
 
-        [Tooltip("Managed by its Controller")]
         public double timeUTC;
-        [Tooltip("Managed by its Controller")]
-        public double ServerUTCTimeDifference;
         
-        private void Update() {
-            double timeNow = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + ServerUTCTimeDifference;
-            if (timeUTC > 0 && timeUTC <= timeNow) {
+        void Update() {
+            if (timeUTC > 0 && timeUTC <= UniversalTimeModel.Now && state != State.After) {
                 OnAfter?.Invoke();
+                state = State.After;
             } else {
                 OnBefore?.Invoke();
+                state = State.Before;
             }
         }
 
@@ -36,6 +43,9 @@ namespace outrealxr.holomod
             if (!double.TryParse(val, out timeUTC)) {
                 timeUTC = -1;
                 Debug.LogWarning("[TimerModel] The value cannot be parsed. Try to input a new, proper decimal value.");
+            } else
+            {
+                state = State.Idle;
             }
         }
     }
