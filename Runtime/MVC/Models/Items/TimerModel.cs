@@ -12,7 +12,7 @@ namespace outrealxr.holomod
         [SerializeField] private UnityEvent OnBefore;
         [SerializeField] private UnityEvent OnAfter;
 
-        private void Start() {
+        public override void Init() {
             SetValue(value);
         }
 
