@@ -12,7 +12,7 @@ namespace outrealxr.holomod {
         defaultXAngle = 15,
         lookHeight = 0,
         focusRadius = 5f,
-        focusCentering = 0.5f,
+        focusCentering = 5f,
         rotationSpeed = 90f,
         minVerticalAngle = -45f,
         maxVerticalAngle = 45f,

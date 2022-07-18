@@ -20,7 +20,7 @@ MonoBehaviour:
   defaultXAngle: 15
   lookHeight: 0
   focusRadius: 5
-  focusCentering: 0.5
+  focusCentering: 5
   rotationSpeed: 90
   minVerticalAngle: -45
   maxVerticalAngle: 45
