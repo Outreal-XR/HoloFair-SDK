@@ -7,7 +7,7 @@ namespace outrealxr.holomod
     {
 
         public string TargetTag;
-        public UnityEvent _OnTriggerEnter, _OnTriggerExit;
+        public UnityEvent _OnTriggerEnter, _OnTriggerExit, _OnTriggerStay;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -19,6 +19,11 @@ namespace outrealxr.holomod
         {
             if (other.CompareTag(TargetTag))
                 _OnTriggerExit.Invoke();
+        }
+
+        private void OnTriggerStay(Collider other) {
+            if (other.CompareTag(TargetTag))
+                _OnTriggerStay.Invoke();
         }
     }
 }
