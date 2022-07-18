@@ -10,9 +10,9 @@ namespace outrealxr.holomod
     {
         public override string type => "userGroup";
 
-        public int[] validIDs;
+        int[] validIDs;
 
-        [HideInInspector] public int userGrpID;
+        public static int userGrpID;
         
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;

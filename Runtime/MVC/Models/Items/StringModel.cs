@@ -18,7 +18,7 @@ namespace outrealxr.holomod
         public override void FromJObject(JObject data)
         {
             base.FromJObject(data);
-            value = (string)data.GetValue("value");
+            SetValue(data.GetValue("value").ToString());
         }
 
         public override JObject ToJObject()

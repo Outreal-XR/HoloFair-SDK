@@ -16,8 +16,10 @@ namespace outrealxr.holomod
             SetValue(value);
         }
 
-        [HideInInspector] public double timeUTC;
-        [HideInInspector] public double ServerUTCTimeDifference;
+        [Tooltip("Managed by its Controller")]
+        public double timeUTC;
+        [Tooltip("Managed by its Controller")]
+        public double ServerUTCTimeDifference;
         
         private void Update() {
             double timeNow = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + ServerUTCTimeDifference;
