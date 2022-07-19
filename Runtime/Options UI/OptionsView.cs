@@ -14,7 +14,8 @@ namespace outrealxr.holomod
             for (var i = 0; i < views.Length; i++) {
                 if (i < model.options.Length) {
                     var id = model.options[i].ID;
-                    
+
+                    views[i].gameObject.SetActive(true);
                     views[i].UpdateOption(model.options[i].OptionText, () => {
                             view.Answer(id);
                             ui.gameObject.SetActive(false);
