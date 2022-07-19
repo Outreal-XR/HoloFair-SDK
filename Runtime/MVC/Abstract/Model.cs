@@ -16,7 +16,7 @@ namespace outrealxr.holomod
 
         public abstract string type { get; }
 
-        void Start()
+        private void Awake()
         {
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();

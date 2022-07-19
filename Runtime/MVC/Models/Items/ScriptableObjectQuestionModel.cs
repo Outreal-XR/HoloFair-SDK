@@ -20,11 +20,7 @@ namespace outrealxr.holomod
             else
                 OnUnavailable?.Invoke();
         }
-
-        protected override void AvailableText(string text) {
-            
-        }
-
+        
         public override void SelectOption(int i, float timeTaken) {
             if (i == data.correctIndex)
                 OnCorrectAnswer?.Invoke();

@@ -8,7 +8,7 @@ namespace outrealxr.holomod
     {
         public override string type => "question";
         
-        [SerializeField] protected int id;
+        [SerializeField] protected int questionId;
         public string question;
         public Option[] options;
 
@@ -21,7 +21,6 @@ namespace outrealxr.holomod
         [HideInInspector] public string uuId;
         
         public abstract void GetData ();
-        protected abstract void AvailableText (string text);
         public abstract void SelectOption (int i, float timeTaken);
         
         [Serializable]
