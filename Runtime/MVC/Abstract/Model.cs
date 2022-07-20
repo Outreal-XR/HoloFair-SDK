@@ -16,12 +16,11 @@ namespace outrealxr.holomod
 
         public abstract string type { get; }
 
-        private void Awake()
+        void Awake()
         {
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
             Init();
-            view.Read();
         }
 
         public virtual void Init() { }

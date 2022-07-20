@@ -17,12 +17,21 @@ namespace outrealxr.holomod
         public Controller controller;
         GameObject loadedAddressable;
         public EditAccess editAccess = EditAccess.Private;
+        public bool ReadOnStart = true;
 
         void Awake()
         {
-            if(WorldController.instance) controller = WorldController.instance.GetController(model);
+            if (WorldController.instance) controller = WorldController.instance.GetController(model);
             else Debug.LogWarning($"[View] WorldController instance doesn't exist. {gameObject.name} has no handle, write and read logic available.");
         }
+
+        private void Start()
+        {
+            if(ReadOnStart) Read();
+            Init();
+        }
+
+        public virtual void Init() { }
 
         public abstract void Apply();
 
@@ -54,7 +63,7 @@ namespace outrealxr.holomod
 
         protected bool CheckForController() {
             if (!controller)
-                Debug.LogWarning($"[{nameof(GetType)}] View of \"{gameObject.name}\" does not have a controller. Behavior will be limited.");
+                Debug.LogWarning($"[View] Controller wasn't assigned. {gameObject.name} has no handle, write and read logic available.");
 
             return controller != null;
         }
