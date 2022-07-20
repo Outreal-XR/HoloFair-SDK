@@ -12,7 +12,6 @@ namespace outrealxr.holomod
         
         public override void GetData() {
             var uri = $"{getURL}?uuid={uuId}&guid={guid}&group={groupId}";    
-            print($"[HTTPQuestionModel] URI is {uri}");
             StartCoroutine(SendGetRequest(uri));
         }
 
@@ -23,9 +22,7 @@ namespace outrealxr.holomod
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success) {
-                print($"[HTTPQuestionModel] the response data: {request.downloadHandler.text}");
                 var jObj = JObject.Parse(request.downloadHandler.text);
-                print($"[HTTPQuestionModel] the json: {jObj}");
 
                 if (!guid.Equals(jObj.GetValue("guid").Value<string>())) {
                     Debug.LogWarning($"[HTTPQuestionModel] Something is wrong. This user received response for guid:{jObj.GetValue("guid").Value<int>()} while waiting for guid:{guid}");
@@ -55,27 +52,21 @@ namespace outrealxr.holomod
         }
 
         private IEnumerator SendPostRequest(int optionId, float timeTaken) {
-            var postJObj = new JObject();
-            postJObj.Add("uuid", JToken.FromObject(uuId));
-            postJObj.Add("questionid", JToken.FromObject(questionId));
-            postJObj.Add("optionid", JToken.FromObject(optionId));
-            postJObj.Add("time", JToken.FromObject(timeTaken));
+            var form = new WWWForm();
+            form.AddField("uuid", uuId);
+            form.AddField("questionid", questionId);
+            form.AddField("optionid", optionId);
+            form.AddField("time", timeTaken.ToString());
             
-            var request = UnityWebRequest.Post(postURL, postJObj.ToString());
-
-            request.downloadHandler = new DownloadHandlerBuffer();
+            var request = UnityWebRequest.Post(postURL, form);
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success) {
                 var jObj = JObject.Parse(request.downloadHandler.text);
 
-                if (jObj.GetValue("id").Value<int>() != questionId) {
-                    Debug.LogWarning($"[HTTPQuestionModel] Something is wrong. This user received response for id:{jObj.GetValue("id").Value<int>()} while waiting for id:{questionId}");
-                    OnIncorrectAnswer?.Invoke();
-                    yield break;
-                }
+                var result = jObj.GetValue("result").Value<JObject>();
 
-                if (jObj.GetValue("correct").Value<int>() == 1)
+                if (result.GetValue("correct").Value<int>() == 1)
                     OnCorrectAnswer?.Invoke();
                 else
                     OnIncorrectAnswer?.Invoke();
@@ -83,7 +74,7 @@ namespace outrealxr.holomod
                 view.Write();
             } else {
                 OnIncorrectAnswer?.Invoke();
-                Debug.LogWarning($"[HTTPQuestionModel] Post request error: {request.error}");
+                Debug.LogWarning($"[HTTPQuestionModel] Result: {request.downloadHandler.text}. Post request error: {request.error}");
             }
         }
     }   
