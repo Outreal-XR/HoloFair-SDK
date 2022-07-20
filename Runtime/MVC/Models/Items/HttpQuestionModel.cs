@@ -70,8 +70,6 @@ namespace outrealxr.holomod
                     OnCorrectAnswer?.Invoke();
                 else
                     OnIncorrectAnswer?.Invoke();
-                
-                view.Write();
             } else {
                 OnIncorrectAnswer?.Invoke();
                 Debug.LogWarning($"[HTTPQuestionModel] Result: {request.downloadHandler.text}. Post request error: {request.error}");
