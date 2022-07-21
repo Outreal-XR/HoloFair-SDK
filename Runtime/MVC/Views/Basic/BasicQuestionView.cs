@@ -9,6 +9,12 @@ namespace outrealxr.holomod
         [SerializeField] private GameObject questionUI;
 
         public override void Apply() {
+            Debug.Log("[BasicQuestionView] This view has no implementation of Apply");
+        }
+
+        public void OpenUI() {
+            Debug.Log($"[BasicQuestionView] Opened question of {model.name}");
+            
             startTime = System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond;
             questionUI.SetActive(true);
         }
