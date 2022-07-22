@@ -77,7 +77,7 @@ namespace outrealxr.holomod
 
         protected virtual void Submitted()
         {
-            View.SetActive(true);
+            View.SetActive(false);
         }
     }
 }
