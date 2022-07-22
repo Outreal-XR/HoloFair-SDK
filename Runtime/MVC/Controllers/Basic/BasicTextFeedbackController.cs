@@ -20,10 +20,10 @@ namespace outrealxr.holomod
         public override void Handle()
         {
             string[] data = (model as TextFeedbackModel).value.Split(",");
-            if (data.Length == 1) Title.text = data[0];
-            if (data.Length == 2) endpoint = data[1];
-            View.SetActive(data.Length == 2);
-            canvasGroup.interactable = data.Length == 2;
+            if (data.Length >= 1) Title.text = data[0];
+            if (data.Length >= 2) endpoint = data[1];
+            View.SetActive(data.Length >= 2);
+            canvasGroup.interactable = data.Length >= 2;
             InputField.text = "";
             UpdateButton();
         }
@@ -77,7 +77,7 @@ namespace outrealxr.holomod
 
         protected virtual void Submitted()
         {
-            View.SetActive(true);
+            View.SetActive(false);
         }
     }
 }

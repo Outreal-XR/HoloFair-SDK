@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +9,7 @@ namespace outrealxr.holomod
 
         int[] validIDs;
 
-        public static int userGrpID;
+        public static int userGrpID = -1;
         
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;
@@ -24,12 +21,23 @@ namespace outrealxr.holomod
 
         public void CompareValues() {
             foreach (var grpId in validIDs)
-                if (grpId == userGrpID) {
+            {
+                if (grpId == userGrpID || userGrpID == 2147483647)
+                {
+                    if (userGrpID == 2147483647)
+                    {
+                        Debug.LogWarning($"[UserGroupModel] Admin or moderator detected at {gameObject.name}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[UserGroupModel] Group ID {userGrpID} matched one of the values in {string.Join(',', validIDs)} at {gameObject.name}");
+                    }
                     OnValid?.Invoke();
                     return;
                 }
-            
+            }
             OnInvalid?.Invoke();
+            Debug.LogWarning($"[UserGroupModel] Group ID {userGrpID} didn't match any value in {string.Join(',', validIDs)} at {gameObject.name}");
         }
 
         public override void SetValue(string val) {
