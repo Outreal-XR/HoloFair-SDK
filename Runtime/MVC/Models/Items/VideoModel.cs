@@ -18,7 +18,8 @@ namespace outrealxr.holomod
         {
             Generate,
             Download,
-            None
+            None,
+            Custom
         }
 
         [Header("Network Settings")]
@@ -36,6 +37,8 @@ namespace outrealxr.holomod
 
         [Header("Extras")]
         public GameObject loadingVisual;
+        [Tooltip("Used whenever thumbnail behavior is custom")]
+        public ImageModel imageModel;
         [TextArea(2, 5)]
         public string instructionsToCrossTheBarierToWatchInFullScreen = "Cross the barier to click and watch the video in full screen mode";
 
@@ -75,6 +78,8 @@ namespace outrealxr.holomod
                 Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
             else if (thumbnailBehavior == ThumbnailBehavior.Download)
                 view.Apply();
+            else if (thumbnailBehavior == ThumbnailBehavior.Custom)
+                imageModel.Apply();
         }
 
         public MeshRenderer GetMeshRenderer()
