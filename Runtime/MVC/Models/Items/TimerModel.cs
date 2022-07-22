@@ -43,15 +43,19 @@ namespace outrealxr.holomod
             }
         }
 
-        public override void SetValue(string val) {
-            base.SetValue(val);
-
-            if (!double.TryParse(val, out timeUTC)) {
+        public void UpdateTheTimeUTC()
+        {
+            if (!double.TryParse(value, out timeUTC))
+            {
                 timeUTC = -1;
-                Debug.LogWarning("[TimerModel] The value cannot be parsed. Try to input a new, proper decimal value.");
-            } else
+                Debug.LogWarning($"[TimerModel] The value cannot be parsed. Try to input a new, proper decimal value at {gameObject.name}.");
+            }
+            else
             {
                 state = State.Idle;
+                double difference = timeUTC - UniversalTimeModel.Now;
+                if (difference > 0) Debug.Log($"[TimerModel] TimerModel.cs will fire after {difference / 1000}s at {gameObject.name}.");
+                else if (difference < 0) Debug.Log($"[TimerModel] It have been {difference / -1000}s since the desired time. Firing  at {gameObject.name}....");
             }
         }
     }

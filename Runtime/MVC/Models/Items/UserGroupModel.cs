@@ -9,7 +9,7 @@ namespace outrealxr.holomod
 
         int[] validIDs;
 
-        public static int userGrpID;
+        public static int userGrpID = -1;
         
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;
