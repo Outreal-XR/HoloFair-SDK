@@ -12,6 +12,7 @@ namespace outrealxr.holomod
         
         public override void GetData() {
             var uri = $"{getURL}?uuid={uuId}&guid={guid}&group={groupId}";    
+            Debug.Log($"[HttpQuestionModel] URI for get: {uri}");
             StartCoroutine(SendGetRequest(uri));
         }
 
