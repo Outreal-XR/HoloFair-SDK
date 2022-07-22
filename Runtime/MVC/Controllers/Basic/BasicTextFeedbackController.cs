@@ -65,6 +65,7 @@ namespace outrealxr.holomod
         protected virtual WWWForm GetForm()
         {
             WWWForm form = new WWWForm();
+            form.AddField("subject", Title.text);
             form.AddField("value", InputField.text);
             return form;
         }
