@@ -1,3 +1,4 @@
+using com.outrealxr.networkimages;
 using TMPro;
 using UnityEngine;
 
@@ -27,9 +28,9 @@ namespace outrealxr.holomod
             (model as BasicQuestionModel)?.SelectOption(i, differenceInSeconds);
         }
 
-        [SerializeField] private TextMeshProUGUI questionText;
+        [SerializeField] private NetworkImageUIImage question;
         public void UpdateQuestionText() {
-            questionText.text = (model as BasicQuestionModel)?.question;
+            question.SetAndEnqueue((model as BasicQuestionModel)?.question);
         }
 
         public override void Edit() {
