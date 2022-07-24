@@ -20,7 +20,7 @@ namespace outrealxr.holomod
 
         public State state;
         public bool fullScreen;
-        internal bool isLive;
+        public bool isLive;
         public float progress, length;
         internal string error;
 
@@ -57,6 +57,7 @@ namespace outrealxr.holomod
         {
             isLive = val;
             UpdateUI();
+            VideoPlayerView.instance.SetProgressSliderInteraction(!val);
         }
 
         public void ShowControls()

@@ -120,9 +120,13 @@ namespace outrealxr.holomod
             VideoPlayerController.instance.Stop();
         }
 
+        public void SetProgressSliderInteraction(bool val)
+        {
+            progressAmount.interactable = val;
+        }
+
         internal void UpdateUI(VideoPlayerModel model)
         {
-            progressAmount.interactable = !model.isLive;
             if (model.state != VideoPlayerModel.State.Error)
                 loading.SetActive(model.state == VideoPlayerModel.State.isLoading || model.state == VideoPlayerModel.State.isSeekingEnded);
             videoPlayer.SetActive(model.state != VideoPlayerModel.State.Idle);
