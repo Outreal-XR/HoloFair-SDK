@@ -68,6 +68,7 @@ namespace outrealxr.holomod
         public void SetState(State state)
         {
             this.state = state;
+            Debug.Log($"[VideoPlayerModel] this.state = {this.state}");
             UpdateUI();
         }
 
