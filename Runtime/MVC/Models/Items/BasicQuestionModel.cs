@@ -16,6 +16,7 @@ namespace outrealxr.holomod
         [SerializeField] protected UnityEvent OnUnavailable;
         [SerializeField, Space(5)] protected UnityEvent OnCorrectAnswer;
         [SerializeField] protected UnityEvent OnIncorrectAnswer;
+        [SerializeField] protected UnityEvent OnFakeQuestion;
 
         [HideInInspector] public int groupId;
         [HideInInspector] public string uuId;

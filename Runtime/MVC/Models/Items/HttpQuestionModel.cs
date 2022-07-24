@@ -27,7 +27,6 @@ namespace outrealxr.holomod
 
                 if (!guid.Equals(jObj.GetValue("guid").Value<string>())) {
                     Debug.LogWarning($"[HTTPQuestionModel] Something is wrong. This user received response for guid:{jObj.GetValue("guid").Value<int>()} while waiting for guid:{guid}");
-                    OnUnavailable?.Invoke();
                     yield break;
                 }
                 
@@ -43,8 +42,16 @@ namespace outrealxr.holomod
                 
                 OnAvailable?.Invoke();
             } else {
-                Debug.LogWarning($"[HTTPQuestionModel] Get request error: {request.error}");
-                OnUnavailable?.Invoke();
+                switch (request.error) {
+                    case "204":
+                        Debug.LogWarning($"[HTTPQuestionModel] No content");
+                        OnFakeQuestion?.Invoke();
+                        break;
+                    case "404":
+                        Debug.LogWarning($"[HTTPQuestionModel] Not found");
+                        OnUnavailable?.Invoke();
+                        break;
+                }
             }
         }
 
