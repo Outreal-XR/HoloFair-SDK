@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace outrealxr.holomod
@@ -15,7 +13,7 @@ namespace outrealxr.holomod
         float timeUntilCanvasFadesNow = 0;
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
-        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplay, videoPlayer, loading, liveItem, errorItem;
+        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, videoPlayer, loading, liveItem, errorItem;
         bool autoHide = true;
         public static VideoPlayerView instance;
 
@@ -57,6 +55,7 @@ namespace outrealxr.holomod
             VideoPlayerModel.instance.SetFullScreen(val);
             RefreshTimeUntilCanvasFadesNow();
             SetControlsCanvasGroup(true);
+            videoDisplayBackground.SetActive(val);
         }
 
         public void RefreshTimeUntilCanvasFadesNow()
