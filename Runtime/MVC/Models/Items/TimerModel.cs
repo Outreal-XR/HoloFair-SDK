@@ -23,6 +23,7 @@ namespace outrealxr.holomod
 
         public override void Init() {
             SetValue(value);
+            UpdateTheTimeUTC();
         }
 
         public double timeUTC;
