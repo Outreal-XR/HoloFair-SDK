@@ -32,7 +32,10 @@ namespace outrealxr.holomod
         public void TryToLoadNext()
         {
             Debug.Log($"[SceneController - {gameObject.name}] Trying to load {sceneName}");
-            if (!scenesToLoad.Contains(this)) scenesToLoad.Enqueue(this);
+
+            if (!scenesToLoad.Contains(this) && !SceneManager.GetSceneByName(sceneName).isLoaded) 
+                scenesToLoad.Enqueue(this);
+            
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
             if (currentlyLoading == null)
             {
