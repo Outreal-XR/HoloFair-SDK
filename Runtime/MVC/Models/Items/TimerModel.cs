@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -42,6 +43,12 @@ namespace outrealxr.holomod
                     state = State.Before;
                 }
             }
+        }
+
+        public override void FromJObject(JObject data)
+        {
+            base.FromJObject(data);
+            UpdateTheTimeUTC();
         }
 
         public void UpdateTheTimeUTC()
