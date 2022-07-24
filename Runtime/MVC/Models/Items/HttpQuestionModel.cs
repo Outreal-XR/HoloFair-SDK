@@ -23,8 +23,14 @@ namespace outrealxr.holomod
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success) {
+                if (request.responseCode == 204) {
+                    Debug.LogWarning($"[HTTPQuestionModel] No content");
+                    OnFakeQuestion?.Invoke();
+                    yield break;
+                }
+                
                 var jObj = JObject.Parse(request.downloadHandler.text);
-
+                
                 if (!guid.Equals(jObj.GetValue("guid").Value<string>())) {
                     Debug.LogWarning($"[HTTPQuestionModel] Something is wrong. This user received response for guid:{jObj.GetValue("guid").Value<int>()} while waiting for guid:{guid}");
                     yield break;
@@ -42,15 +48,9 @@ namespace outrealxr.holomod
                 
                 OnAvailable?.Invoke();
             } else {
-                switch (request.error) {
-                    case "204":
-                        Debug.LogWarning($"[HTTPQuestionModel] No content");
-                        OnFakeQuestion?.Invoke();
-                        break;
-                    case "404":
-                        Debug.LogWarning($"[HTTPQuestionModel] Not found");
-                        OnUnavailable?.Invoke();
-                        break;
+                if (request.error == "404") {
+                    Debug.LogWarning($"[HTTPQuestionModel] Not found");
+                    OnUnavailable?.Invoke();
                 }
             }
         }
