@@ -5,6 +5,8 @@ namespace outrealxr.holomod
 {
     public class LockModel : StringModel
     {
+        public override string type => "lock";
+
         [SerializeField] private UnityEvent OnSuccess;
         [SerializeField] private UnityEvent OnFail;
         
