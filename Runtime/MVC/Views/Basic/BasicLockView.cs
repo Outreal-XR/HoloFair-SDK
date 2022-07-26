@@ -9,6 +9,7 @@ namespace outrealxr.holomod
 
         public override void Apply() {
             (model as LockModel).AttemptPassword(input.text);
+            input.text = "";
         }
     }
 }
