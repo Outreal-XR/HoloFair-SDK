@@ -11,7 +11,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateVideoModObject(MenuCommand menuCommand) {
             var videoMod = new GameObject("Video Mod");
 
-            videoMod.AddComponent<VideoProvider>();
+            videoMod.AddComponent<VideoModel>();
 
             GameObjectUtility.SetParentAndAlign(videoMod, menuCommand.context as GameObject);
 
@@ -23,7 +23,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateImageModObject(MenuCommand menuCommand) {
             var imageMod = new GameObject("Image Mod");
 
-            imageMod.AddComponent<ImageProvider>();
+            imageMod.AddComponent<ImageModel>();
 
             GameObjectUtility.SetParentAndAlign(imageMod, menuCommand.context as GameObject);
 
@@ -35,7 +35,7 @@ namespace outrealxr.holomod.Editor
         private static void CreatePrivilegeModObject(MenuCommand menuCommand) {
             var privilegeMod = new GameObject("Privilege Mod");
 
-            privilegeMod.AddComponent<PrivilageProvider>();
+            privilegeMod.AddComponent<PrivilageModel>();
 
             GameObjectUtility.SetParentAndAlign(privilegeMod, menuCommand.context as GameObject);
 
@@ -47,11 +47,9 @@ namespace outrealxr.holomod.Editor
         private static void CreateRespawnModObject(MenuCommand menuCommand) {
             var respawnMod = new GameObject("default");
 
-            var respawnProvider = respawnMod.AddComponent<RespawnProvider>();
+            var respawnProvider = respawnMod.AddComponent<RespawnModel>();
             respawnProvider.radius = 1f;
 
-            respawnMod.AddComponent<OnStartHandler>().view = respawnMod.GetComponent<View>();
-            
             GameObjectUtility.SetParentAndAlign(respawnMod, menuCommand.context as GameObject);
 
             Undo.RegisterCreatedObjectUndo(respawnMod, "Create " + respawnMod.name);
@@ -62,7 +60,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateLinkModObject(MenuCommand menuCommand) {
             var linkMod = new GameObject("Link Mod");
 
-            linkMod.AddComponent<LinkProvider>();
+            linkMod.AddComponent<LinkModel>();
 
             GameObjectUtility.SetParentAndAlign(linkMod, menuCommand.context as GameObject);
 
@@ -74,7 +72,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateRoomSettings(MenuCommand menuCommand) {
             var roomSettingsObject = new GameObject("Room Settings");
 
-            var provider = roomSettingsObject.AddComponent<RoomSettingsProvider>();
+            var provider = roomSettingsObject.AddComponent<RoomSettingsModel>();
 
             var lower = new GameObject("Lower Bounds").transform;
             var higher = new GameObject("Higher Bounds").transform;
@@ -93,7 +91,7 @@ namespace outrealxr.holomod.Editor
         private static void CreatePlayableDirectorModObject(MenuCommand menuCommand) {
             var playableDirectorMod = new GameObject("PlayableDirector Mod");
 
-            playableDirectorMod.AddComponent<PlayableDirectorProvider>();
+            playableDirectorMod.AddComponent<PlayableDirectorModel>();
 
             GameObjectUtility.SetParentAndAlign(playableDirectorMod, menuCommand.context as GameObject);
 
@@ -105,7 +103,7 @@ namespace outrealxr.holomod.Editor
         private static void CreatePortalModObject(MenuCommand menuCommand) {
             var portal = new GameObject("Portal");
 
-            portal.AddComponent<PortalProvider>();
+            portal.AddComponent<PortalModel>();
 
             GameObjectUtility.SetParentAndAlign(portal, menuCommand.context as GameObject);
 
@@ -117,7 +115,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateFocusPointModObject(MenuCommand menuCommand) {
             var focusPointMod = new GameObject("FocusPointMod");
 
-            var mod = focusPointMod.AddComponent<FocusPointProvider>();
+            var mod = focusPointMod.AddComponent<FocusPointModel>();
 
             GameObjectUtility.SetParentAndAlign(focusPointMod, menuCommand.context as GameObject);
             
@@ -125,7 +123,9 @@ namespace outrealxr.holomod.Editor
             point.SetParent(focusPointMod.transform);
             point.transform.localPosition = Vector3.zero;
 
-            mod.focusPoint = point;
+            var focusPoint = point.gameObject.AddComponent<FocusPoint>();
+
+            mod.focusPoint = focusPoint;
             
             Undo.RegisterCreatedObjectUndo(focusPointMod, "Create " + focusPointMod.name);
             Selection.activeObject = focusPointMod;
@@ -135,7 +135,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateZoneTalkModObject(MenuCommand menuCommand) {
             var zoneTalk = new GameObject("Zone Talk");
 
-            zoneTalk.AddComponent<ZoneTalkProvider>();
+            zoneTalk.AddComponent<ZoneTalkModel>();
 
             GameObjectUtility.SetParentAndAlign(zoneTalk, menuCommand.context as GameObject);
 
@@ -147,7 +147,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateGameQueuerModObject(MenuCommand menuCommand) {
             var gameQueuer = new GameObject("Game Queue");
 
-            gameQueuer.AddComponent<GameQueuerProvider>();
+            gameQueuer.AddComponent<GameQueuerModel>();
 
             GameObjectUtility.SetParentAndAlign(gameQueuer, menuCommand.context as GameObject);
 
@@ -159,7 +159,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateAnimationModObject(MenuCommand menuCommand) {
             var animationMod = new GameObject("Animation Mod Object");
 
-            var mod = animationMod.AddComponent<AnimationProvider>();
+            var mod = animationMod.AddComponent<AnimationModel>();
 
             var pivot = new GameObject("Avatar Pivot");
             var respawn = new GameObject("Respawn");
@@ -179,7 +179,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateAnimatorModObject(MenuCommand menuCommand) {
             var animatorMod = new GameObject("Animator Mod Object");
 
-            animatorMod.AddComponent<AnimatorProvider>();
+            animatorMod.AddComponent<AnimatorModel>();
 
             GameObjectUtility.SetParentAndAlign(animatorMod, menuCommand.context as GameObject);
 
@@ -191,7 +191,7 @@ namespace outrealxr.holomod.Editor
         private static void CreateForceModObject(MenuCommand menuCommand) {
             var forceMod = new GameObject("Force Mod Object");
 
-            forceMod.AddComponent<RigidbodyForceProvider>();
+            forceMod.AddComponent<RigidbodyForceModel>();
 
             GameObjectUtility.SetParentAndAlign(forceMod, menuCommand.context as GameObject);
 
@@ -216,7 +216,7 @@ namespace outrealxr.holomod.Editor
         private static void AddBoxTriggerToModObject(MenuCommand menuCommand) {
             //Trigger Collider
             var colliderChild = new GameObject("Trigger");
-            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
+            colliderChild.transform.SetParent((menuCommand.context as Model).transform);
 
             var collider = colliderChild.AddComponent<BoxCollider>();
             collider.isTrigger = true; 
@@ -226,27 +226,12 @@ namespace outrealxr.holomod.Editor
             Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
             Selection.activeObject = colliderChild;
         }
-        
-        [MenuItem("CONTEXT/Provider/Add Box Trigger Stay Handler")]
-        private static void AddBoxTriggerStayToModObject(MenuCommand menuCommand) {
-            //Trigger Collider
-            var colliderChild = new GameObject("Trigger");
-            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
 
-            var collider = colliderChild.AddComponent<BoxCollider>();
-            collider.isTrigger = true; 
-            var handler = colliderChild.AddComponent<OnTriggerStayHandler>();
-            handler.TargetTag = "LocalPlayer";
-            
-            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
-            Selection.activeObject = colliderChild;
-        }
-        
         [MenuItem("CONTEXT/Provider/Add Sphere Trigger Handler")]
         private static void AddSphereTriggerToModObject(MenuCommand menuCommand) {
             //Trigger Collider
             var colliderChild = new GameObject("Trigger");
-            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
+            colliderChild.transform.SetParent((menuCommand.context as Model).transform);
 
             var collider = colliderChild.AddComponent<SphereCollider>();
             collider.isTrigger = true; 
@@ -256,27 +241,12 @@ namespace outrealxr.holomod.Editor
             Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
             Selection.activeObject = colliderChild;
         }
-        
-        [MenuItem("CONTEXT/Provider/Add Sphere Trigger Stay Handler")]
-        private static void AddSphereTriggerStayToModObject(MenuCommand menuCommand) {
-            //Trigger Collider
-            var colliderChild = new GameObject("Trigger");
-            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
 
-            var collider = colliderChild.AddComponent<SphereCollider>();
-            collider.isTrigger = true; 
-            var handler = colliderChild.AddComponent<OnTriggerStayHandler>();
-            handler.TargetTag = "LocalPlayer";
-            
-            Undo.RegisterCreatedObjectUndo(colliderChild, "Create " + colliderChild.name);
-            Selection.activeObject = colliderChild;
-        }
-        
         [MenuItem("CONTEXT/Provider/Add Click Handler")]
         private static void AddClickToModObject(MenuCommand menuCommand) {
             //Trigger Collider
             var colliderChild = new GameObject("Click Trigger");
-            colliderChild.transform.SetParent((menuCommand.context as Provider).transform);
+            colliderChild.transform.SetParent((menuCommand.context as Model).transform);
 
             var collider = colliderChild.AddComponent<BoxCollider>();
             collider.isTrigger = true; 

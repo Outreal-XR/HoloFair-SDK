@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1689237663465533643}
-  - component: {fileID: 1689237663465533686}
-  - component: {fileID: 1689237663465533641}
   - component: {fileID: 1689237663465533640}
+  - component: {fileID: 282656556910116014}
   m_Layer: 0
   m_Name: GameQueuer
   m_TagString: Untagged
@@ -29,41 +28,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.036789, y: 1, z: 63.787247}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6202926738764881383}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1689237663465533686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689237663465533642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4b4ebc159a55a4abade9812ccd35d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  sendMessageOptions: 1
---- !u!114 &1689237663465533641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689237663465533642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Addressable: 
-  provider: {fileID: 1689237663465533640}
-  view: {fileID: 1689237663465533686}
-  reportMissingKeys: 0
 --- !u!114 &1689237663465533640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,11 +46,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cebdf08d6c33664f84cb7b08767e37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDirty: 0
+  MMOItemID: -1
+  Addressable: 
+  view: {fileID: 0}
+  reportMissingKeys: 0
   sceneName: 
   portalID: 1
   startDelay: 5
   gameLimit: 1
+--- !u!114 &282656556910116014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689237663465533642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bbc2c1e63e98543830eec78d976795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!1001 &1689237661600976491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,11 +93,11 @@ PrefabInstance:
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1689237663465533686}
+      objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1689237663465533686}
+      objectReference: {fileID: 0}
     - target: {fileID: 3895995260438485169, guid: 472d911ec3154fe4ebd4e34f0ab033c7, type: 3}
       propertyPath: _OnTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
