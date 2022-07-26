@@ -5,7 +5,7 @@ namespace outrealxr.holomod
 {
     public class BasicLockView : BasicStringView
     {
-        [SerializeField] private TextMeshProUGUI input;
+        [SerializeField] private TMP_InputField input;
 
         public override void Apply() {
             (model as LockModel).AttemptPassword(input.text);
