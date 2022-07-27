@@ -11,13 +11,12 @@ namespace outrealxr.holomod
         public Dictionary<string, int> GUIDsMap = new Dictionary<string, int>();
         public Dictionary<int, Model> detectedData = new Dictionary<int, Model>();
 
+        public static bool debug = false;
         public static WorldModel instance;
 
-#if UNITY_EDITOR
         public TMPro.TextMeshPro debugText;
         public Color error = Color.red, warning = Color.yellow;
         protected Dictionary<string, TMPro.TextMeshPro> debugtexts = new Dictionary<string, TMPro.TextMeshPro>();
-#endif
 
         private void Awake()
         {
@@ -36,9 +35,7 @@ namespace outrealxr.holomod
             if (model) {
                 if (!detectedData.ContainsKey(id)) detectedData.Add(id, model);
                 detectedData[id].SetMMOItemID(id);
-#if UNITY_EDITOR
                 ClearProblem(guid);
-#endif
                 return true;
             }
             return false;
@@ -54,23 +51,28 @@ namespace outrealxr.holomod
         public abstract void WriteData(int id, string guid, JObject data);
         public abstract void ApplyData(int id, JObject data);
         public abstract JObject ReadData(string guid);
-#if UNITY_EDITOR
+
         protected void ReportProblem(string guid, string msg, Vector3 pos, bool error)
         {
-            ClearProblem(guid);
-            debugtexts.Add(guid, Instantiate(debugText, pos, Quaternion.identity, transform));
-            debugtexts[guid].text = msg;
-            debugtexts[guid].color = error ? this.error : warning;
+            if (debug)
+            {
+                ClearProblem(guid);
+                debugtexts.Add(guid, Instantiate(debugText, pos, Quaternion.identity, transform));
+                debugtexts[guid].text = msg;
+                debugtexts[guid].color = error ? this.error : warning;
+            }
         }
 
         protected void ClearProblem(string guid)
         {
-            if (debugtexts.ContainsKey(guid))
+            if (debug)
             {
-                if(debugtexts[guid]) Destroy(debugtexts[guid].gameObject);
-                debugtexts.Remove(guid);
+                if (debugtexts.ContainsKey(guid))
+                {
+                    if (debugtexts[guid]) Destroy(debugtexts[guid].gameObject);
+                    debugtexts.Remove(guid);
+                }
             }
         }
-#endif
     }
 }
