@@ -36,6 +36,7 @@ namespace outrealxr.holomod
             if (model) {
                 if (!detectedData.ContainsKey(id)) detectedData.Add(id, model);
                 detectedData[id].SetMMOItemID(id);
+                ClearProblem(guid);
                 return true;
             }
             return false;

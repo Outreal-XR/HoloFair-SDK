@@ -21,9 +21,6 @@ namespace outrealxr.holomod
         public virtual void Read()
         {
             model.FromJObject(WorldModel.instance.ReadData(model.guid));
-#if UNITY_EDITOR
-            Debug.LogWarning($"[SDKModelController] {model.gameObject.name} got data. model.id = {model.MMOItemID} and model.guid = {model.guid}");
-#endif
         }
 
         public virtual void Write()
