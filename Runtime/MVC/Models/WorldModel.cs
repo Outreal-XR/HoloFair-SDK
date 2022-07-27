@@ -51,7 +51,7 @@ namespace outrealxr.holomod
         public abstract void WriteData(int id, string guid, JObject data);
         public abstract void ApplyData(int id, JObject data);
         public abstract JObject ReadData(string guid);
-
+#if UNITY_EDITOR
         protected void ReportProblem(string guid, string msg, Vector3 pos, bool error)
         {
             ClearProblem(guid);
@@ -68,6 +68,6 @@ namespace outrealxr.holomod
                 debugtexts.Remove(guid);
             }
         }
-
+#endif
     }
 }
