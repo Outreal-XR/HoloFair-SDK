@@ -44,11 +44,6 @@ namespace outrealxr.holomod
 
         public override string type => "video";
 
-        public override void Init()
-        {
-            RefreshThumbnail();
-        }
-
         public void SetState(State state)
         {
             this.state = state;
