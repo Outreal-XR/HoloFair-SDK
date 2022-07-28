@@ -9,5 +9,7 @@ namespace outrealxr.holomod
         public abstract void SetRoomName(string val);
         public abstract void Join();
         public abstract void Leave();
+        public abstract void SetVideoOutput(MeshRenderer meshRenderer, int materialIndex, string materialPropertyName);
+
     }
 }

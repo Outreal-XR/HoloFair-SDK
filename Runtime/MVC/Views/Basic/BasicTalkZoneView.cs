@@ -42,6 +42,7 @@ namespace outrealxr.holomod
             if (!CheckForController()) return;
 
             basicTalkZoneController.SetRoomName((model as StringModel).value);
+            basicTalkZoneController.SetVideoOutput((model as ZoneTalkModel).videoMeshRenderer, (model as ZoneTalkModel).materialIndex, (model as ZoneTalkModel).materialPropertyName);
             basicTalkZoneController.Join();
         }
 

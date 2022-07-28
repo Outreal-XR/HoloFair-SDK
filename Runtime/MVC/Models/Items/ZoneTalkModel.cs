@@ -5,22 +5,22 @@ namespace outrealxr.holomod
 {
     public class ZoneTalkModel : StringModel
     {
-
-        public enum State
-        {
+        public enum State {
             Idle,
             Connecting,
             Success,
             Error
         }
 
-        private void Start()
-        {
+        public MeshRenderer videoMeshRenderer;
+        public int materialIndex;
+        public string materialPropertyName = "_BaseMap";
+
+        private void Start() {
             SetVisualState(State.Idle);
         }
 
-        public void SetVisualState(State state)
-        {
+        public void SetVisualState(State state) {
             ((BasicTalkZoneView)view).SetVisualState(state);
         }
 
