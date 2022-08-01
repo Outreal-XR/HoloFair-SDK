@@ -14,5 +14,6 @@ namespace outrealxr.holomod
         public GameObject sceneZonesPrefab;
         public int maxVariables = 15, maxUsers = 2000, maxSpectators = 0;
         public Vector3 AreaofInterest;
+        public bool unverifiedUsersAllowed = true;
     }
 }
