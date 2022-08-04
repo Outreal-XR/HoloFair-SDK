@@ -1,3 +1,4 @@
+using System.Collections;
 using com.outrealxr.networkimages;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -43,6 +44,23 @@ namespace outrealxr.holomod
         public string instructionsToCrossTheBarierToWatchInFullScreen = "Cross the barier to click and watch the video in full screen mode";
 
         public override string type => "video";
+
+        public override void SetValue(string val) {
+            base.SetValue(val);
+
+            var videoView = (view as BasicVideoView);
+            
+            if (state == State.Playing) {
+                videoView.Stop();
+                StartCoroutine(Replay());
+            }
+        }
+
+        private IEnumerator Replay() {
+            yield return new WaitForEndOfFrame();
+            
+            (view as BasicVideoView).TogglePlay();
+        }
 
         public void SetState(State state)
         {
