@@ -1,3 +1,4 @@
+using outrealxr.holomod.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -145,14 +146,14 @@ namespace outrealxr.holomod.Editor
         
         [MenuItem(BasePath + "Game Queue", false, 12)]
         private static void CreateGameQueuerModObject(MenuCommand menuCommand) {
-            var gameQueuer = new GameObject("Game Queue");
+            var gameQueue = new GameObject("Game Queue");
 
-            gameQueuer.AddComponent<GameQueuerModel>();
+            gameQueue.AddComponent<GameQueueModel>();
 
-            GameObjectUtility.SetParentAndAlign(gameQueuer, menuCommand.context as GameObject);
+            GameObjectUtility.SetParentAndAlign(gameQueue, menuCommand.context as GameObject);
 
-            Undo.RegisterCreatedObjectUndo(gameQueuer, "Create " + gameQueuer.name);
-            Selection.activeObject = gameQueuer;
+            Undo.RegisterCreatedObjectUndo(gameQueue, "Create " + gameQueue.name);
+            Selection.activeObject = gameQueue;
         }
 
         [MenuItem(BasePath + "Animation", false, 12)]
