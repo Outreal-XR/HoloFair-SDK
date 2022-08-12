@@ -15,7 +15,7 @@ namespace outrealxr.holomod.Runtime
             (controller as BasicGameQueuerController).QueueUp(queueModel.maxQueueSize, queueModel.startDelayInSeconds, queueModel.guid, queueModel.areaOfInterest);
         }
 
-        private void DeQueue() {
+        public void DeQueue() {
             (controller as BasicGameQueuerController).DeQueue(model.guid);
         }
     }

@@ -5,7 +5,7 @@ namespace outrealxr.holomod
 {
     public class OnTriggerHandler : MonoBehaviour
     {
-        public string TargetTag;
+        public string TargetTag = "LocalPlayer";
         public UnityEvent _OnTriggerEnter, _OnTriggerExit, _OnTriggerStay;
 
         private void OnTriggerEnter(Collider other) {
