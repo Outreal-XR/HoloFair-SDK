@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -29,6 +30,8 @@ namespace outrealxr.holomod
             if (sceneAsset != null && string.IsNullOrWhiteSpace(sceneName)) sceneName = sceneAsset.RuntimeKey.ToString();
         }
 
+        public static event Action<bool> OnSceneFullyLoaded;
+            
         public void TryToLoadNext()
         {
             Debug.Log($"[SceneController - {gameObject.name}] Trying to load {sceneName}");
@@ -77,13 +80,16 @@ namespace outrealxr.holomod
                 sceneInstance = arg.Result;
                 Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {sceneInstance.Scene.name}");
                 currentlyLoading = null;
+                
+                OnSceneFullyLoaded?.Invoke(scenesToLoad.Count == 0);
+
                 if (scenesToLoad.Count > 0) LoadNext();
                 else {
                     if (SceneLoadingView.instance)
                         SceneLoadingView.instance.LoadingView.SetActive(false);
                     else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 }
-
+                
                 SceneManager.SetActiveScene(sceneInstance.Scene);
             } else if (arg.Status == AsyncOperationStatus.Failed) {
                 //Failed to load addressable
