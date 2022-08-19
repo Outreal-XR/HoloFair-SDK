@@ -13,7 +13,7 @@ namespace outrealxr.holomod
         float timeUntilCanvasFadesNow = 0;
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
-        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, videoPlayer, loading, liveItem, errorItem;
+        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, progressbar, timespan, videoPlayer, loading, liveItem, errorItem;
         bool autoHide = true;
         public static VideoPlayerView instance;
 
@@ -56,6 +56,7 @@ namespace outrealxr.holomod
             RefreshTimeUntilCanvasFadesNow();
             SetControlsCanvasGroup(true);
             videoDisplayBackground.SetActive(val);
+            videoPlayer.SetActive(val);
         }
 
         public void RefreshTimeUntilCanvasFadesNow()
@@ -129,7 +130,6 @@ namespace outrealxr.holomod
         {
             if (model.state != VideoPlayerModel.State.Error)
                 loading.SetActive(model.state == VideoPlayerModel.State.isLoading || model.state == VideoPlayerModel.State.isSeekingEnded);
-            videoPlayer.SetActive(model.state != VideoPlayerModel.State.Idle);
             if (model.state == VideoPlayerModel.State.isPaused || model.state == VideoPlayerModel.State.isPlaying)
             {
                 playButton.SetActive(model.state == VideoPlayerModel.State.isPaused);
@@ -140,6 +140,9 @@ namespace outrealxr.holomod
             minimizeButton.SetActive(model.fullScreen);
 
             liveItem.SetActive(model.isLive);
+            timespan.SetActive(!model.isLive);
+            progressbar.SetActive(!model.isLive);
+            
             errorItem.SetActive(model.state == VideoPlayerModel.State.Error);
             errorText.text = $"Please, try to click on a video again. Error: {model.error}";
             if (model.length == float.PositiveInfinity) lengthText.text = "Live";
