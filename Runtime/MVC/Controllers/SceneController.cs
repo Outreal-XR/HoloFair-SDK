@@ -30,7 +30,7 @@ namespace outrealxr.holomod
             if (sceneAsset != null && string.IsNullOrWhiteSpace(sceneName)) sceneName = sceneAsset.RuntimeKey.ToString();
         }
 
-        public static event Action<bool> OnSceneFullyLoaded;
+        public static event Action<bool> OnSceneStateChange;
             
         public void TryToLoadNext()
         {
@@ -81,7 +81,7 @@ namespace outrealxr.holomod
                 Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {sceneInstance.Scene.name}");
                 currentlyLoading = null;
                 
-                OnSceneFullyLoaded?.Invoke(scenesToLoad.Count == 0);
+                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
 
                 if (scenesToLoad.Count > 0) LoadNext();
                 else {
@@ -127,6 +127,8 @@ namespace outrealxr.holomod
             {
                 Debug.Log($"[SceneController - {gameObject.name}] Unloaded {sceneName}");
                 currentlyUnloading = null;
+             
+                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
                 if (scenesToUnload.Count > 0) UnloadNext();
             }
         }
