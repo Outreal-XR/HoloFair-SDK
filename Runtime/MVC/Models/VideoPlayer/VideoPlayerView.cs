@@ -56,7 +56,6 @@ namespace outrealxr.holomod
             RefreshTimeUntilCanvasFadesNow();
             SetControlsCanvasGroup(true);
             videoDisplayBackground.SetActive(val);
-            videoPlayer.SetActive(val);
         }
 
         public void RefreshTimeUntilCanvasFadesNow()
@@ -135,6 +134,8 @@ namespace outrealxr.holomod
                 playButton.SetActive(model.state == VideoPlayerModel.State.isPaused);
                 pauseButton.SetActive(model.state == VideoPlayerModel.State.isPlaying);
             }
+
+            videoPlayer.SetActive(model.fullScreen);
 
             maximizeButton.SetActive(!model.fullScreen);
             minimizeButton.SetActive(model.fullScreen);
