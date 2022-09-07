@@ -6,7 +6,7 @@ namespace outrealxr.holomod
     {
         public override string type => "force";
 
-        public Vector3 force;
+        public float force = 1;
         public ForceMode forceMode;
         
         [HideInInspector] public Rigidbody playerRb;
