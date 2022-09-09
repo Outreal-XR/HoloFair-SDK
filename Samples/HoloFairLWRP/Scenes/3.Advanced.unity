@@ -1620,7 +1620,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1745544260}
+  m_Mesh: {fileID: 1741780737}
 --- !u!33 &165471486
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -1628,7 +1628,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165471483}
-  m_Mesh: {fileID: 1745544260}
+  m_Mesh: {fileID: 1741780737}
 --- !u!23 &165471487
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1733,8 +1733,8 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
-  m_Mesh: {fileID: 1745544260}
-  m_VersionIndex: 0
+  m_Mesh: {fileID: 1741780737}
+  m_VersionIndex: 3
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9939,6 +9939,9 @@ MonoBehaviour:
   _OnTriggerExit:
     m_PersistentCalls:
       m_Calls: []
+  _OnTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1178890097
 GameObject:
   m_ObjectHideFlags: 0
@@ -10469,7 +10472,7 @@ MonoBehaviour:
           m_StringArgument: Visitor
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1763676159}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: outrealxr.holomod.View, outrealxr.holomod
         m_MethodName: Handle
         m_Mode: 1
@@ -21500,13 +21503,13 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &1745544260
+--- !u!43 &1741780737
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40248
+  m_Name: pb_Mesh53134
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21989,10 +21992,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763676160}
-  - component: {fileID: 1763676159}
-  - component: {fileID: 1763676158}
-  - component: {fileID: 1763676157}
   - component: {fileID: 1763676161}
+  - component: {fileID: 1763676163}
+  - component: {fileID: 1763676162}
   m_Layer: 0
   m_Name: Privilege Invited Visitor
   m_TagString: Untagged
@@ -22000,81 +22002,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1763676157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763676155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6f3d42dd92cca41b7cd2a645e353fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDirty: 0
-  TargetPrivilages: 
-  MinPrivilage: 3
-  OnGranted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1614571022}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Invited
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 398420578}
-        m_TargetAssemblyTypeName: outrealxr.holomod.View, outrealxr.holomod
-        m_MethodName: Handle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnRevoked:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1763676158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763676155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae4861f595504495a0e7c3b9b69a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Addressable: 
-  provider: {fileID: 1763676157}
-  view: {fileID: 1763676159}
-  reportMissingKeys: 0
---- !u!114 &1763676159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763676155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4b4ebc159a55a4abade9812ccd35d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  sendMessageOptions: 1
 --- !u!4 &1763676160
 Transform:
   m_ObjectHideFlags: 0
@@ -22103,6 +22030,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedGuid: 761094bee8bb7b4b8b8fe1f1f8a94c76
+--- !u!114 &1763676162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763676155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36442a6153b01b944a7bbb6bef68a838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 1763676163}
+  controller: {fileID: 0}
+  editAccess: 1
+  ReadOnStart: 1
+--- !u!114 &1763676163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763676155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6994fc41174539a489da39c699563eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MMOItemID: -1
+  Addressable: 
+  view: {fileID: 1763676162}
+  reportMissingKeys: 0
+  value: 
+  OnValid:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInvalid:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!43 &1766638288
 Mesh:
   m_ObjectHideFlags: 0

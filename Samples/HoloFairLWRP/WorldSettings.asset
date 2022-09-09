@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WorldSettings
   m_EditorClassIdentifier: 
   entryScene:
-    m_AssetGUID: 657b1dd94b2a561488580d3c150ddc1c
+    m_AssetGUID: 1342918cbb42699498790222b429d3a6
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
