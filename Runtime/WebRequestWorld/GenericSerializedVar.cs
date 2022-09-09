@@ -1,17 +1,20 @@
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace outrealxr.holomod.Runtime
 {
-    public abstract class ParserGeneric<T> : Parser where T : notnull
+    public abstract class GenericSerializedVar<T> : SerializedVar where T : notnull
     {
         [SerializeField] protected T value;
         [SerializeField] protected UnityEvent<T> OnValueUpdate;
 
-        public override void SetValue(JToken jToken) {
+        public override void Deserialize(JToken jToken) {
             value = jToken.Value<T>();
             OnValueUpdate?.Invoke(value);
         }
+
+        public override string Serialize() => JsonConvert.SerializeObject(value);
     }
 }
