@@ -82,7 +82,6 @@ namespace outrealxr.holomod
             else Debug.Log("[VideoProvider] Missing IsSynced key");
             if (data.ContainsKey("startTimestamp")) startTimestamp = data.GetValue("startTimestamp").Value<double>();
             else Debug.Log("[VideoProvider] Missing startTimestamp key");
-            RefreshThumbnail();
         }
 
         public void RefreshThumbnail()

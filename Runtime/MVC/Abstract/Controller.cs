@@ -20,7 +20,16 @@ namespace outrealxr.holomod
 
         public virtual void Read()
         {
-            model.FromJObject(WorldModel.instance.ReadData(model.guid));
+            try
+            {
+                if (model != null) model.FromJObject(WorldModel.instance.ReadData(model.guid));
+                else Debug.Log($"[ModelController] Unable to read the model because it is null.");
+            }
+            catch (System.Exception ex)
+            {
+                if (model == null) Debug.Log($"[ModelController] Unable to read the model because it is null.");
+                else Debug.Log($"[ModelController] Error was detected on read at {model.gameObject.name}: <color=#ed1a1a>{ex}</color>");
+            }
         }
 
         public virtual void Write()
