@@ -35,5 +35,15 @@ namespace outrealxr.holomod.Runtime
                 OnFail?.Invoke();
             }
         }
+        
+        public void AddInputVar(SerializedVar var) {
+            if (inputVars.Contains(var)) return;
+            inputVars.Add(var);
+        }
+        
+        public void RemoveInputVar(SerializedVar var) {
+            if (!inputVars.Contains(var)) return;
+            inputVars.Remove(var);
+        }
     }
 }

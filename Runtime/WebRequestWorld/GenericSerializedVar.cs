@@ -16,5 +16,7 @@ namespace outrealxr.holomod.Runtime
         }
 
         public override JToken Serialize() => JToken.FromObject(value);
+
+        public void SetValue(T newValue) => value = newValue;
     }
 }

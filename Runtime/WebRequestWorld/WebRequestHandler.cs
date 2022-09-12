@@ -13,5 +13,15 @@ namespace outrealxr.holomod.Runtime
         [SerializeField] protected List<SerializedVar> outputVars = new ();
         
         public void SetUrl(string url) => this.url = url;
+
+        public void AddOutputVar(SerializedVar var) {
+            if (outputVars.Contains(var)) return;
+            outputVars.Add(var);
+        }
+        
+        public void RemoveOutputVar(SerializedVar var) {
+            if (!outputVars.Contains(var)) return;
+            outputVars.Remove(var);
+        }
     }
 }

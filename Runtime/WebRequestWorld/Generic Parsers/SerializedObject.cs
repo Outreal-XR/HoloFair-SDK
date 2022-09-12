@@ -28,5 +28,15 @@ namespace outrealxr.holomod.Runtime
 
             return jObject;
         }
+
+        public void AddVar (SerializedVar var) {
+            if (vars.Contains(var)) return;
+            vars.Add(var);
+        }
+
+        public void RemoveVar(SerializedVar var) {
+            if (!vars.Contains(var)) return;
+            vars.Remove(var);
+        }
     }
 }
