@@ -14,12 +14,15 @@ namespace outrealxr.holomod.Runtime
         public void Execute() => StartCoroutine(SendGetRequest());
 
         private IEnumerator SendGetRequest() {
-            var form = new WWWForm();
+            var formData = new List<IMultipartFormSection>();
+            
+            foreach (var inputVar in inputVars) {
+                var value = inputVar.Serialize().ToString();
+                var keyName = inputVar.gameObject.name;
+                formData.Add(new MultipartFormDataSection(keyName, value));
+            }
 
-            foreach (var inputVar in inputVars) 
-                form.AddField(inputVar.gameObject.name, inputVar.Serialize().ToString());
-
-            var request = UnityWebRequest.Post(url, form);
+            var request = UnityWebRequest.Post(url, formData);
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success) {
