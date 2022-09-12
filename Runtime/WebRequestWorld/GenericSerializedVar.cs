@@ -15,6 +15,6 @@ namespace outrealxr.holomod.Runtime
             OnValueUpdate?.Invoke(value);
         }
 
-        public override string Serialize() => JsonConvert.SerializeObject(value);
+        public override JToken Serialize() => JToken.FromObject(value);
     }
 }

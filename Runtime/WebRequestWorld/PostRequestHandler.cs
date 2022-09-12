@@ -17,7 +17,7 @@ namespace outrealxr.holomod.Runtime
             var form = new WWWForm();
 
             foreach (var inputVar in inputVars) 
-                form.AddField(inputVar.gameObject.name, inputVar.Serialize());
+                form.AddField(inputVar.gameObject.name, inputVar.Serialize().ToString());
 
             var request = UnityWebRequest.Post(url, form);
             yield return request.SendWebRequest();
