@@ -556,7 +556,6 @@ MonoBehaviour:
   elapsedText: {fileID: 4120119169626188219}
   lengthText: {fileID: 4120119170345065460}
   errorText: {fileID: 4120119170230708481}
-  uiParent: {fileID: 4120119169434233618}
   playButton: {fileID: 4120119170119472093}
   pauseButton: {fileID: 4120119169398576108}
   maximizeButton: {fileID: 4105762079438309550}
@@ -3587,7 +3586,6 @@ GameObject:
   - component: {fileID: 1781088030480115857}
   - component: {fileID: 8091835452231793953}
   - component: {fileID: 735138240624311970}
-  - component: {fileID: 5219403384975257473}
   m_Layer: 5
   m_Name: Background - Fullscreen
   m_TagString: Untagged
@@ -3653,19 +3651,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5219403384975257473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5095697777713061438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cccd839efd5384ea19a75ff245967f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
 --- !u!1 &5457009093804764898
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,4 +3806,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cccd839efd5384ea19a75ff245967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
