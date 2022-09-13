@@ -10,5 +10,7 @@ namespace outrealxr.holomod.Runtime
         
         /// <returns> How long the stopwatch was ticking for in seconds. </returns>
         public double StopTimer() => start - Time.realtimeSinceStartupAsDouble;
+
+        public void StopAndWriteInto(SerializedFloat floatVar) => floatVar.SetValue((float)StopTimer());
     }
 }
