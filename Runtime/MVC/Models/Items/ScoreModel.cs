@@ -8,6 +8,7 @@ namespace outrealxr.holomod.Runtime
 
         [SerializeField] private float minScore;
         [SerializeField] private float maxScore;
+        float collectionTime = 0;
 
         [SerializeField, Space(10)] private Stopwatch stopwatch;
         public Stopwatch Stopwatch => stopwatch;
@@ -22,12 +23,9 @@ namespace outrealxr.holomod.Runtime
             get {
                 if (!stopwatch) return maxScore;
 
-                var time = (float)stopwatch.StopTimer();
+                collectionTime = (float)stopwatch.StopTimer();
 
-                if (time < gracePeriod) return maxScore;
-                if (time >= gracePeriod + maxTimeForMinScore) return minScore;
-
-                var interpolation = (time - gracePeriod) / maxTimeForMinScore;
+                var interpolation = Mathf.Clamp(maxTimeForMinScore + gracePeriod - collectionTime, 0, maxTimeForMinScore) / maxTimeForMinScore;
                 return Mathf.Lerp(minScore, maxScore, interpolation);
             }
         }

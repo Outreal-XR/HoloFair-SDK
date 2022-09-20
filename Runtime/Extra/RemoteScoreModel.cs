@@ -43,9 +43,11 @@ namespace outrealxr.holomod.Runtime
             }
             else
             {
-                Logger.LogWarning("Failed to receive data from the server.", this);
+                Logger.LogWarning($"Failed ({request.responseCode}) to post data to the server: {request.downloadHandler.text}" , this);
                 OnFail?.Invoke();
             }
+            request.Dispose();
+            formData.Clear();
         }
     }
 }
