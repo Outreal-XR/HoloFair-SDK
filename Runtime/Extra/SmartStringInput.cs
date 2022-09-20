@@ -2,7 +2,7 @@ using SaG.GuidReferences;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace outrealxr.holomod.Runtime
+namespace outrealxr.holomod
 {
     public class SmartStringInput : MonoBehaviour
     {

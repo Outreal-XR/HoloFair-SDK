@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace outrealxr.holomod.Runtime
+namespace outrealxr.holomod
 {
     public abstract class SmartStringSource : MonoBehaviour
     {

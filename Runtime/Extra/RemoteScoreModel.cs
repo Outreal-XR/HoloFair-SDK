@@ -8,7 +8,11 @@ namespace outrealxr.holomod.Runtime
 {
     public class RemoteScoreModel : WebRequestHandler
     {
-        public void Execute(double score) => StartCoroutine(SendPostRequest(score));
+        public void Execute(double score)
+        {
+            SetUrl(WorldSettings.instance.GetFormattedScoreUpdateHost());
+            StartCoroutine(SendPostRequest(score));
+        }
 
         private IEnumerator SendPostRequest(double score)
         {
