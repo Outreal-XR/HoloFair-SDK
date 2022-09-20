@@ -8,6 +8,14 @@ namespace outrealxr.holomod.Runtime
 {
     public class RemoteScoreModel : WebRequestHandler
     {
+
+        public static RemoteScoreModel instance;
+
+        private void Awake()
+        {
+            instance = this;
+        }
+
         public void Execute(double score)
         {
             SetUrl(WorldSettings.instance.GetFormattedScoreUpdateHost());

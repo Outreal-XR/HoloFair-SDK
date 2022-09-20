@@ -13,6 +13,11 @@ namespace outrealxr.holomod.Runtime
             (controller as BasicScoreController).AddScore(score);
         }
 
+        public void Save()
+        {
+            (controller as BasicScoreController).Save();
+        }
+
         public override void Edit() {
             Debug.LogWarning($"[BasicScoreView] Edit function is not implemented. Do not call it.");
         }

@@ -5,5 +5,7 @@ namespace outrealxr.holomod.Runtime
         public override void Handle() { }
 
         public abstract void AddScore(float score);
+
+        public abstract void Save();
     }
 }
