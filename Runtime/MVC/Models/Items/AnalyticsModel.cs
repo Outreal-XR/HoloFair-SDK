@@ -9,14 +9,29 @@ namespace outrealxr.holomod
 
         [SerializeField] private string postUrl;
         
-        public void SendData (string guid, int action) {
+        void SendData (int action) {
             var form = new WWWForm();
-            form.AddField("uuid", (view.controller as BasicAnalyticsController).UuId);
+
             form.AddField("guid", guid);
             form.AddField("action", action);
             form.AddField("room", (view.controller as BasicAnalyticsController).RoomName);
             
-            UnityWebRequest.Post(postUrl, form).SendWebRequest();
+            UnityWebRequest.Post(WorldSettings.instance.GetFormattedInteractionsHistoryPath(), form).SendWebRequest();
+        }
+
+        public void RecordImmediate()
+        {
+            SendData(0);
+        }
+
+        public void RecordStart()
+        {
+            SendData(1);
+        }
+
+        public void RecordEnd()
+        {
+            SendData(2);
         }
     }
 }

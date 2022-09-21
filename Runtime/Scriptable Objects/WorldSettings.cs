@@ -16,6 +16,7 @@ namespace outrealxr.holomod
         public static WorldSettings instance;
 
         public string ScoreUpdateHostFormat = "{0}/users/score/update.php?uuid={2}";
+        public string InteractionsHistoryPathFormat = "{0}/interactions/create.php?uuid={2}";
 
         public void Init()
         {
@@ -25,6 +26,11 @@ namespace outrealxr.holomod
         public string GetFormattedScoreUpdateHost()
         {
             return SmartStringSource.Instance.GetFormattedString(ScoreUpdateHostFormat, "n/a");
+        }
+
+        public string GetFormattedInteractionsHistoryPath()
+        {
+            return SmartStringSource.Instance.GetFormattedString(InteractionsHistoryPathFormat, "n/a");
         }
     }
 }
