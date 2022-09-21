@@ -1,6 +1,6 @@
 {
   "name": "com.outrealxr.holomod",
-  "version": "3.0.49",
+  "version": "3.0.50",
   "displayName": "HoloFair SDK",
   "description": "HoloMod allows users to create a universally compatible unity scenes for any unity project that wants to enable mods and user content",
   "unity": "2021.3",

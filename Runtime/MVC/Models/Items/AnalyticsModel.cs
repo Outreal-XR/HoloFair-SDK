@@ -9,6 +9,8 @@ namespace outrealxr.holomod
         public override string type => "analytics";
 
         [SerializeField] private string resource;
+        [TextArea(2,5)]
+        public string tags;
        
         IEnumerator SendData(int action, string resource)
         {
@@ -16,6 +18,7 @@ namespace outrealxr.holomod
             form.AddField("guid", guid);
             form.AddField("action", action);
             form.AddField("resource", resource);
+            form.AddField("tags", tags);
             form.AddField("room", (view.controller as BasicAnalyticsController).RoomName);
 
             using (UnityWebRequest www = UnityWebRequest.Post(WorldSettings.instance.GetFormattedInteractionsHistoryPath(), form))
