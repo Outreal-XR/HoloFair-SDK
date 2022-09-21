@@ -36,7 +36,7 @@ namespace outrealxr.holomod
         public Vector2 thumbnailRange = new Vector2(0, 15);
         public string textureProperty = "_BaseMap";
 
-        [Header("Extras")]
+        [Header("Optional")]
         public GameObject loadingVisual;
         [Tooltip("Used whenever thumbnail behavior is custom")]
         public ImageModel imageModel;
@@ -58,15 +58,22 @@ namespace outrealxr.holomod
 
         private IEnumerator Replay() {
             yield return new WaitForEndOfFrame();
-            
             (view as BasicVideoView).TogglePlay();
         }
 
         public void SetState(State state)
         {
             this.state = state;
-            if (state == State.Playing) VideoPlayerController.instance.SetSourceModel(this);
-            else if(state == State.Stopped) VideoPlayerController.instance.SetSourceModel(null);
+            if (state == State.Playing)
+            {
+                VideoPlayerController.instance.SetSourceModel(this);
+                if(analytics) analytics.RecordStartWithCustomResource(value);
+            }
+            else if (state == State.Stopped)
+            {
+                VideoPlayerController.instance.SetSourceModel(null);
+                if(analytics) analytics.RecordEndWithCustomResource(value);
+            }
         }
 
         public void SetFullScreen(bool val)
