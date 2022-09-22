@@ -106,6 +106,11 @@ namespace outrealxr.holomod
             return ((NetworkImageMeshRenderer)((BasicVideoView)view).networkImage).target;
         }
 
+        public bool IsTargetAvailable()
+        {
+            return (NetworkImageMeshRenderer)((BasicVideoView)view).networkImage != null;
+        }
+
         public override JObject ToJObject()
         {
             JObject data = base.ToJObject();

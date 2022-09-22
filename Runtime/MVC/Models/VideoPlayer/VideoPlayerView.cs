@@ -14,7 +14,7 @@ namespace outrealxr.holomod
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
         public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, progressbar, timespan, videoPlayer, loading, liveItem, errorItem;
-        bool autoHide = true;
+        bool autoHide = true, stopOnMinimize;
         public static VideoPlayerView instance;
 
         private void Awake()
@@ -32,6 +32,11 @@ namespace outrealxr.holomod
         {
             autoHide = val;
             if (!val) RefreshTimeUntilCanvasFadesNow();
+        }
+
+        public void SetStopOnMinimize(bool val)
+        {
+            stopOnMinimize = val;
         }
 
         public void ToggleControlsCanvasGroup()
@@ -56,6 +61,7 @@ namespace outrealxr.holomod
             RefreshTimeUntilCanvasFadesNow();
             SetControlsCanvasGroup(true);
             videoDisplayBackground.SetActive(val);
+            if (!val && stopOnMinimize) Stop();
         }
 
         public void RefreshTimeUntilCanvasFadesNow()
@@ -118,6 +124,7 @@ namespace outrealxr.holomod
         public void Stop()
         {
             VideoPlayerController.instance.Stop();
+            SetStopOnMinimize(false);
         }
 
         public void SetProgressSliderInteraction(bool val)
