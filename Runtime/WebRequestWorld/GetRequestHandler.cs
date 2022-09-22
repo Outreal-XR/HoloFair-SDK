@@ -12,8 +12,6 @@ namespace outrealxr.holomod.Runtime
         private IEnumerator SendGetRequest() {
             var request = new UnityWebRequest(url);
 
-            print(url);
-            
             request.downloadHandler = new DownloadHandlerBuffer();
             yield return request.SendWebRequest();
 
@@ -26,7 +24,7 @@ namespace outrealxr.holomod.Runtime
                 
                 OnSuccess?.Invoke();
             } else {
-                Logger.LogWarning($"Failed to receive data from the server. Error: {request.error}", this);  
+                Logger.LogWarning("Failed to receive data from the server.", this);  
                 OnFail?.Invoke();
             }
         }
