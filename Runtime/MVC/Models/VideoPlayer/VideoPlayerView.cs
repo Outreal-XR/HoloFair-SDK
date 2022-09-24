@@ -13,7 +13,7 @@ namespace outrealxr.holomod
         float timeUntilCanvasFadesNow = 0;
         public UnityEngine.UI.Slider progressAmount, volumeAmount;
         public TMPro.TextMeshProUGUI elapsedText, lengthText, errorText;
-        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, progressbar, timespan, videoPlayer, loading, liveItem, errorItem;
+        public GameObject playButton, pauseButton, maximizeButton, minimizeButton, videoDisplayBackground, videoDisplay, progressbar, timespan, videoPlayer, loading, liveItem, errorItem, bufferScreen;
         bool autoHide = true, stopOnMinimize;
         public static VideoPlayerView instance;
 
@@ -141,6 +141,7 @@ namespace outrealxr.holomod
                 playButton.SetActive(model.state == VideoPlayerModel.State.isPaused);
                 pauseButton.SetActive(model.state == VideoPlayerModel.State.isPlaying);
             }
+            bufferScreen.SetActive(model.state is VideoPlayerModel.State.IsBuffering);
 
             videoPlayer.SetActive(model.fullScreen);
 

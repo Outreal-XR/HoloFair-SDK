@@ -15,7 +15,8 @@ namespace outrealxr.holomod
             isLoading,
             isSeekingStarted,
             isSeekingEnded,
-            Error
+            Error,
+            IsBuffering
         }
 
         public State state;
