@@ -27,6 +27,7 @@ namespace outrealxr.holomod.Runtime
                 Logger.LogWarning("Failed to receive data from the server.", this);  
                 OnFail?.Invoke();
             }
+            request.Dispose();
         }
     }
 }
