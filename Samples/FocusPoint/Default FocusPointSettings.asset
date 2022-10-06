@@ -22,8 +22,8 @@ MonoBehaviour:
   focusRadius: 5
   focusCentering: 5
   rotationSpeed: 90
-  minVerticalAngle: -45
-  maxVerticalAngle: 45
+  minVerticalAngle: -25
+  maxVerticalAngle: 25
   alignDelay: 5
   alignSmoothRange: 45
   mobileSensitivity: 1
