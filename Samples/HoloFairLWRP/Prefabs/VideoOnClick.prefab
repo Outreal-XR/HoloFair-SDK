@@ -267,7 +267,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60a4fc41081487845b47167f39da34d8, type: 2}
+  - {fileID: 2100000, guid: 00e76e254533a3c46937b3920183ac5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -402,6 +402,7 @@ Transform:
   m_Children:
   - {fileID: 1715092705564893784}
   - {fileID: 1715092706106719945}
+  - {fileID: 4975821180429114101}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -422,6 +423,7 @@ MonoBehaviour:
   view: {fileID: 7736829578167297570}
   reportMissingKeys: 0
   value: https://holofairbahrain.s3.me-south-1.amazonaws.com/videos/Green+screen+spokesperson.mp4
+  analytics: {fileID: 0}
   IsSynced: 0
   startTimestamp: 0
   thumbnailBehavior: 1
@@ -481,3 +483,93 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   materialPropertyName: _BaseMap
   materialIndex: 0
+--- !u!1001 &8840187880650420858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1715092706660136291}
+    m_Modifications:
+    - target: {fileID: 4585512188700403851, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_Name
+      value: EditButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7736829578167297570}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Edit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: outrealxr.holomod.BasicStringView, outrealxr.holomod
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403854, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.211585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.89676
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0288086
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+--- !u!4 &4975821180429114101 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4585512188700403855, guid: b962dd70bd9748347b211a4f82be9a93, type: 3}
+  m_PrefabInstance: {fileID: 8840187880650420858}
+  m_PrefabAsset: {fileID: 0}

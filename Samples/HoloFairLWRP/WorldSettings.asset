@@ -16,7 +16,7 @@ MonoBehaviour:
   maxVariables: 15
   maxUsers: 2000
   maxSpectators: 0
-  AreaofInterest: {x: 25.1, y: 25.1, z: 25.1}
+  AreaofInterest: {x: 52.1, y: 52.1, z: 52.1}
   unverifiedUsersAllowed: 1
   ScoreUpdateHostFormat: '{0}/users/score/update.php?uuid={2}'
   InteractionsHistoryPathFormat: '{0}/interactions/create.php?uuid={2}'
