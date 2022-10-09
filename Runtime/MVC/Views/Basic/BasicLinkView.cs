@@ -8,5 +8,10 @@ namespace outrealxr.holomod
         {
             Debug.LogWarning($"[BasicLinkView] Value updated in {gameObject.name}, but no Apply logic is provided.");
         }
+
+        public void OpenLinkInCurrentTab()
+        {
+            (controller as BasicLinksController).OpenLinkInCurrentTab();
+        }
     }
 }

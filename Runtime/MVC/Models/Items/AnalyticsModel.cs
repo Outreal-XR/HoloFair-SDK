@@ -51,7 +51,7 @@ namespace outrealxr.holomod
             StartCoroutine(SendData(2, resource));
         }
 
-        internal void RecordImmediateWithCustomResource(string resource)
+        public void RecordImmediateWithCustomResource(string resource)
         {
             StartCoroutine(SendData(0, resource));
         }
