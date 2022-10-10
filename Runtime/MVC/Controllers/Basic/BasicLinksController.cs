@@ -5,7 +5,6 @@ namespace outrealxr.holomod
 {
     public class BasicLinksController : BasicStringController
     {
-
         public override void Handle()
         {
             LinkModel linkModel = (LinkModel)stringModel;
@@ -18,7 +17,7 @@ namespace outrealxr.holomod
 #if UNITY_WEBGL
             Debug.Log("[BasicLinksController] No override for WebGL is added");
 #else
-        Handle();
+            Handle();
 #endif
         }
     }

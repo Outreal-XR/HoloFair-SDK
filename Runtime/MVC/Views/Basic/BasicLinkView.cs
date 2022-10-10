@@ -11,6 +11,8 @@ namespace outrealxr.holomod
 
         public void OpenLinkInCurrentTab()
         {
+            if (!CheckForController()) return;
+            controller.SetModel(model);
             (controller as BasicLinksController).OpenLinkInCurrentTab();
         }
     }
