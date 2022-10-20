@@ -68,11 +68,13 @@ namespace outrealxr.holomod
             {
                 VideoPlayerController.instance.SetSourceModel(this);
                 if(analytics) analytics.RecordStartWithCustomResource(value);
+                (view as BasicVideoView).InvokeOnVideoStarted();
             }
             else if (state == State.Stopped)
             {
                 VideoPlayerController.instance.SetSourceModel(null);
                 if(analytics) analytics.RecordEndWithCustomResource(value);
+                (view as BasicVideoView).InvokeOnVideoEnded();
             }
         }
 

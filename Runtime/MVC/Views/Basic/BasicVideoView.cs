@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace outrealxr.holomod
 {
@@ -6,6 +7,12 @@ namespace outrealxr.holomod
     {
         [Tooltip("Assigned automatically on start after world init")]
         BasicVideosController basicVideosController;
+
+        [SerializeField] private UnityEvent OnVideoStarted;
+        [SerializeField] private UnityEvent OnVideoEnded;
+
+        public void InvokeOnVideoStarted() => OnVideoStarted?.Invoke();
+        public void InvokeOnVideoEnded() => OnVideoEnded?.Invoke();
 
         public void TogglePlay()
         {
