@@ -46,6 +46,7 @@ namespace outrealxr.holomod
                     SceneLoadingView.instance.LoadingView.SetActive(true);
                 else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 
+                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
                 LoadNext();
             }
             else
@@ -54,15 +55,13 @@ namespace outrealxr.holomod
             }
         }
 
-        void LoadNext()
-        {
+        private void LoadNext() {
             currentlyLoading = scenesToLoad.Dequeue();
             currentlyLoading.Load();
         }
 
-        void Load()
-        {
-            loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        private void Load() {
+            loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
             
             if (SceneLoadingView.instance)
@@ -73,8 +72,7 @@ namespace outrealxr.holomod
         }
 
         [SerializeField] private UnityEvent OnSceneLoaded;
-        void OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> arg)
-        {
+        private void OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> arg) {
             if (arg.Status == AsyncOperationStatus.Succeeded)
             {
                 sceneInstance = arg.Result;
@@ -128,7 +126,6 @@ namespace outrealxr.holomod
                 Debug.Log($"[SceneController - {gameObject.name}] Unloaded {sceneName}");
                 currentlyUnloading = null;
              
-                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
                 if (scenesToUnload.Count > 0) UnloadNext();
             }
         }
