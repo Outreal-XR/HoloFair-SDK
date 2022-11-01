@@ -44,19 +44,6 @@ namespace outrealxr.holomod.Editor
             Selection.activeObject = privilegeMod;
         }
         
-        [MenuItem(BasePath + "Respawn", false, 12)]
-        private static void CreateRespawnModObject(MenuCommand menuCommand) {
-            var respawnMod = new GameObject("default");
-
-            var respawnProvider = respawnMod.AddComponent<RespawnModel>();
-            respawnProvider.radius = 1f;
-
-            GameObjectUtility.SetParentAndAlign(respawnMod, menuCommand.context as GameObject);
-
-            Undo.RegisterCreatedObjectUndo(respawnMod, "Create " + respawnMod.name);
-            Selection.activeObject = respawnMod;
-        }
-        
         [MenuItem(BasePath + "Link", false, 12)]
         private static void CreateLinkModObject(MenuCommand menuCommand) {
             var linkMod = new GameObject("Link Mod");

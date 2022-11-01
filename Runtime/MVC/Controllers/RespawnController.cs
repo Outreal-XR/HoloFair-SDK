@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace outrealxr.holomod
 {
@@ -9,14 +10,17 @@ namespace outrealxr.holomod
         public float radius = 0.1f;
         [Tooltip("Feel free to assign a different rigidbody, however if null it will GameObject.FindGameObjectWithTag(\"LocalPlayer\").GetComponent<Rigidbody>()")]
         public Rigidbody player;
+        NavMeshAgent navMeshAgent;
 
         void Start()
         {
             if (player == null) player = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Rigidbody>();
+            if (player) navMeshAgent = player.GetComponentInChildren<NavMeshAgent>();
         }
 
         public void Respawn()
         {
+            if (navMeshAgent) navMeshAgent.ResetPath();
             player.position = GetRespawnPosition();
             player.rotation = transform.rotation;
         }
