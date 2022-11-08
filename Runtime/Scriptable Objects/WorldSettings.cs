@@ -13,7 +13,11 @@ namespace outrealxr.holomod
         public int maxVariables = 15, maxUsers = 2000, maxSpectators = 0;
         public Vector3 AreaofInterest;
         public bool unverifiedUsersAllowed = true;
-        public RenderPipelineAsset renderPipelineAsset;
+        public RenderPipelineAsset lowestSettings;
+        public RenderPipelineAsset defaultSettings;
+        public RenderPipelineAsset mediumSettings;
+        public RenderPipelineAsset highestSettings;
+        
 
         public static WorldSettings instance;
 
