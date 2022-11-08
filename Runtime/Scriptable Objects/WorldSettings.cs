@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace outrealxr.holomod
 {
@@ -12,6 +13,7 @@ namespace outrealxr.holomod
         public int maxVariables = 15, maxUsers = 2000, maxSpectators = 0;
         public Vector3 AreaofInterest;
         public bool unverifiedUsersAllowed = true;
+        public RenderPipelineAsset renderPipelineAsset;
 
         public static WorldSettings instance;
 
