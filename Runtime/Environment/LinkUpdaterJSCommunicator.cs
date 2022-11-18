@@ -32,6 +32,9 @@ namespace outrealxr.holomod
 #endif
         }
 
+        /// <summary>
+        /// Called from JavaScript
+        /// </summary>
         public void UpdateLink(string newLink) {
             EditStringView.instance.OnLinkUrlChange(newLink);
             EditStringView.instance.Apply();

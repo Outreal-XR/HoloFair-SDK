@@ -12,7 +12,7 @@ namespace outrealxr.holomod
         public Rigidbody player;
         NavMeshAgent navMeshAgent;
 
-        void Start()
+        void Awake()
         {
             if (player == null) player = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Rigidbody>();
             if (player) navMeshAgent = player.GetComponentInChildren<NavMeshAgent>();

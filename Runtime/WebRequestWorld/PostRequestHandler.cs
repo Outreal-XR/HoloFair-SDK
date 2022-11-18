@@ -14,12 +14,12 @@ namespace outrealxr.holomod.Runtime
         public void Execute() => StartCoroutine(SendGetRequest());
 
         private IEnumerator SendGetRequest() {
-            var formData = new List<IMultipartFormSection>();
-            
+            WWWForm formData = new WWWForm();
+
             foreach (var inputVar in inputVars) {
                 var value = inputVar.Serialize().ToString();
                 var keyName = inputVar.gameObject.name;
-                formData.Add(new MultipartFormDataSection(keyName, value));
+                formData.AddField(keyName, value);
             }
 
             var request = UnityWebRequest.Post(url, formData);
@@ -34,7 +34,7 @@ namespace outrealxr.holomod.Runtime
                 
                 OnSuccess?.Invoke();
             } else {
-                Logger.LogWarning("Failed to receive data from the server.", this);  
+                Logger.LogWarning($"Failed to receive data from the server. Result is {request.result}. Response is {request.downloadHandler.text}", this);  
                 OnFail?.Invoke();
             }
             request.Dispose();
