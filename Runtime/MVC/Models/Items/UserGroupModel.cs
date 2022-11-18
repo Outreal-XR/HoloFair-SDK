@@ -16,7 +16,7 @@ namespace outrealxr.holomod
 
         public override void Init()
         {
-            SetValue(value);
+
         }
 
         public void CompareValues() {

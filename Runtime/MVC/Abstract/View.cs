@@ -25,6 +25,12 @@ namespace outrealxr.holomod
             else Debug.LogWarning($"[View] WorldController instance doesn't exist. {gameObject.name} has no handle, write and read logic available.");
         }
 
+        void Start()
+        {
+            if(ReadOnStart) Read();
+            Init();
+        }
+
         public virtual void Init() { }
 
         public abstract void Apply();
