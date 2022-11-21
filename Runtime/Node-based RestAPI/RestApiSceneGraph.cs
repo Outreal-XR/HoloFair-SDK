@@ -19,9 +19,5 @@ namespace outrealxr.holomod
                 if (node is WebRequestHandlerNode {executeOnStart: true} webRequestNode)
                     webRequestNode.Execute();
         }
-
-        public void PrintLine(string text) {
-            print(text);
-        }
     }
 }
