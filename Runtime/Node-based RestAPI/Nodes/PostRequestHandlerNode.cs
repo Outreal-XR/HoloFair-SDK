@@ -11,13 +11,13 @@ namespace outrealxr.holomod
         [Input(dynamicPortList = true)] public List<VarConnection> InputVars = new ();
 
         public override void Execute() {
-            var formData = new List<IMultipartFormSection>();
-        
+            var formData = new WWWForm();
+
             var inputVars = GetInputValues<VarConnection>("InputVars");
             foreach (var inputVar in inputVars) {
                 var value = inputVar.Variable.Serialize().ToString();
                 var keyName = inputVar.Variable.name;
-                formData.Add(new MultipartFormDataSection(keyName, value));
+                formData.AddField(keyName, value);
             }
 
             var request = UnityWebRequest.Post(url, formData);
