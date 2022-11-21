@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using XNode;
 
 namespace outrealxr.holomod
@@ -18,6 +19,12 @@ namespace outrealxr.holomod
             foreach (var node in graph.nodes)
                 if (node is WebRequestHandlerNode {executeOnStart: true} webRequestNode)
                     webRequestNode.Execute();
+        }
+
+        public void UpdateNodeValue(string nodeName, string value) {
+            foreach (var node in graph.nodes)
+                if (node is VariableNode variableNode && variableNode.name == nodeName)
+                    variableNode.Parse(JToken.Parse(value));
         }
     }
 }
