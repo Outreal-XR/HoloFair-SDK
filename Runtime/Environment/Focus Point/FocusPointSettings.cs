@@ -8,7 +8,8 @@ namespace outrealxr.holomod {
         resetDistnace = 4,
         maxDistance = 10f,
         inputAccelaration = 10,
-        ZoomAcceleration = 8,
+        desktopZoomSensitivity = 0.5f,
+        mobileZoomSensitivity = 0.15f,
         defaultXAngle = 15,
         lookHeight = 0,
         focusRadius = 5f,
@@ -18,7 +19,7 @@ namespace outrealxr.holomod {
         maxVerticalAngle = 45f,
         alignDelay = 5,
         alignSmoothRange = 45,
-        desktopSensivity = 1f,
+        desktopSensitivity = 1f,
         mobileSensitivity = 1f;
 
         public bool isLocalCoordinates, applyXValue = true;
