@@ -108,10 +108,20 @@ namespace outrealxr.holomod
             return ((NetworkImageMeshRenderer)((BasicVideoView)view).networkImage).target;
         }
 
+        public Material GetSharedMaterial()
+        {
+            return ((NetworkImageMeshRendererShared)((BasicVideoView)view).networkImage).GetMaterial();
+        }
+
         public bool IsTargetAvailable()
         {
             return (NetworkImageMeshRenderer)((BasicVideoView)view).networkImage != null;
         }
+
+        public bool IsTargetShared()
+        {
+            return ((BasicVideoView)view).networkImage.GetType() == typeof(NetworkImageMeshRendererShared);
+        } 
 
         public override JObject ToJObject()
         {
