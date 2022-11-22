@@ -3,7 +3,7 @@ using System;
 namespace outrealxr.holomod
 {
     [Serializable]
-    public class VarConnection
+    public class NodeConnection
     {
         public VariableNode Variable;
     }

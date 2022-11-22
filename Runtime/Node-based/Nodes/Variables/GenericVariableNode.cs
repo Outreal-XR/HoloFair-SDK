@@ -23,5 +23,9 @@ namespace outrealxr.holomod
 			if (port.fieldName.Equals("Value")) return Value;
 			return null;
 		}
+
+		public void SetValue(T value) {
+			Value = value;
+		}
 	}
 }

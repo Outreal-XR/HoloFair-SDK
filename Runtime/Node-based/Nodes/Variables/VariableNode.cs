@@ -6,14 +6,14 @@ namespace outrealxr.holomod
     [NodeWidth(300)]
     public abstract class VariableNode : Node
     {
-        [Input(connectionType: ConnectionType.Override, backingValue = ShowBackingValue.Never)] public VarConnection ConnectionIn;
-        [Output] public VarConnection ConnectionOut;
+        [Input(connectionType: ConnectionType.Override, backingValue = ShowBackingValue.Never)] public NodeConnection ConnectionIn;
+        [Output] public NodeConnection ConnectionOut;
 
-        private VarConnection _conOut;
+        private NodeConnection _conOut;
     
         protected override void Init() {
             base.Init();
-            _conOut = new VarConnection {Variable = this};
+            _conOut = new NodeConnection {Variable = this};
         }
 
         public override object GetValue(NodePort port) {

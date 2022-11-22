@@ -8,12 +8,12 @@ namespace outrealxr.holomod
     [NodeTint("#F89880")]
     public class PostRequestHandlerNode : WebRequestHandlerNode
     {
-        [Input(dynamicPortList = true)] public List<VarConnection> InputVars = new ();
+        [Input(dynamicPortList = true)] public List<NodeConnection> InputVars = new ();
 
         public override void Execute() {
             var formData = new WWWForm();
 
-            var inputVars = GetInputValues<VarConnection>("InputVars");
+            var inputVars = GetInputValues<NodeConnection>("InputVars");
             foreach (var inputVar in inputVars) {
                 var value = inputVar.Variable.Serialize().ToString();
                 var keyName = inputVar.Variable.name;

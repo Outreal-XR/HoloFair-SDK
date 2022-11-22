@@ -2,7 +2,7 @@ using System;
 using outrealxr.holomod;
 using XNodeEditor;
 
-[CustomNodeGraphEditor(typeof(RestApiGraph))]
+[CustomNodeGraphEditor(typeof(HoloModGraph))]
 public class RestApiGraphEditor : NodeGraphEditor 
 {
     public override string GetNodeMenuName(Type type) {
