@@ -13,7 +13,7 @@ namespace outrealxr.holomod
 	
 		// Return the correct value of an output port when requested
 		public override object GetValue(NodePort port) {
-			if (port.fieldName.Equals("smartString")) return SmartStringSource.Instance.GetFormattedString(stringFormat, _guid.GetStringGuid());
+			if (port.fieldName.Equals("smartString")) return SmartStringSource.Instance.GetFormattedString(stringFormat, _guid != null ? _guid.GetStringGuid() : "");
 			return null; // Replace this
 		}
 	}
