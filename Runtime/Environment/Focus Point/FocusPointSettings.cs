@@ -18,6 +18,7 @@ namespace outrealxr.holomod {
         maxVerticalAngle = 45f,
         alignDelay = 5,
         alignSmoothRange = 45,
+        desktopSensivity = 1f,
         mobileSensitivity = 1f;
 
         public bool isLocalCoordinates, applyXValue = true;
