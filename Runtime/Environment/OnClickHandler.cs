@@ -8,7 +8,33 @@ namespace outrealxr.holomod
         public Texture2D cursorTexture;
         public CursorMode cursorMode = CursorMode.Auto;
         public Vector2 hotSpot = Vector2.zero;
-        public UnityEvent OnEnter, OnDown, OnUp, OnExit, OnClick;
+        public UnityEvent OnEnter = new (), OnExit = new(), OnClick = new();
+        bool hovered;
+
+        void OnEnable()
+        {
+            OnEnter.AddListener(ShowCursor);
+            OnExit.AddListener(HideCursor);
+        }
+
+        void OnDisable()
+        {
+            if (hovered) HideCursor();
+            OnEnter.RemoveListener(ShowCursor);
+            OnExit.RemoveListener(HideCursor);
+        }
+
+        void ShowCursor()
+        {
+            hovered = true;
+            ReplaceCursor(true);
+        }
+
+        void HideCursor()
+        {
+            hovered = false;
+            ReplaceCursor(false);
+        }
 
         public void ReplaceCursor(bool isHovered)
         {
