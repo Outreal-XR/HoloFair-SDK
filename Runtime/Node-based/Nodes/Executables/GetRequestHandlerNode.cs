@@ -8,6 +8,7 @@ namespace outrealxr.holomod
 	public class GetRequestHandlerNode : WebRequestHandlerNode
 	{
 		public override void Execute() {
+			url = GetInputPort("url").GetInputValue<string>();
 			var request = new UnityWebRequest(url);
 
 			request.downloadHandler = new DownloadHandlerBuffer();
