@@ -13,13 +13,17 @@ namespace outrealxr.holomod
         public override void Execute() {
             var formData = new WWWForm();
 
-            var inputVars = GetInputValues<NodeConnection>("InputVars");
-            foreach (var inputVar in inputVars) {
-                var value = inputVar.Variable.Serialize().ToString();
-                var keyName = inputVar.Variable.name;
+            var enumerator = DynamicInputs.GetEnumerator();
+            while (enumerator.MoveNext()) {
+                if (!enumerator.Current.fieldName.Contains("InputVars")) continue;
+                if (enumerator.Current.Connection.node is not VariableNode varNode) continue;
+
+                var value = varNode.Serialize().ToString();
+                var keyName = varNode.name;
                 formData.AddField(keyName, value);
             }
 
+            url = GetInputPort("url").GetInputValue<string>();
             var request = UnityWebRequest.Post(url, formData);
         
             request.SendWebRequest().completed += _ => OnPostRequestCompleted(request);
