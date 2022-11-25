@@ -1,6 +1,6 @@
 {
   "name": "com.outrealxr.holomod",
-  "version": "3.0.76",
+  "version": "3.0.78",
   "displayName": "HoloFair SDK",
   "description": "HoloMod allows users to create a universally compatible unity scenes for any unity project that wants to enable mods and user content",
   "unity": "2021.3",
@@ -18,7 +18,8 @@
     "com.unity.addressables": "1.19.18",
     "com.unity.textmeshpro": "3.0.4",
     "com.unity.visualscripting": "1.7.8",
-    "com.github.siccity.xnode": "1.8.0"
+    "com.github.siccity.xnode": "1.8.0",
+    "com.outrealxr.networkimages": "1.0.9"
   },
   "samples": [
     {
