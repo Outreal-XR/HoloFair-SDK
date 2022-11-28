@@ -16,7 +16,8 @@ MonoBehaviour:
   resetDistnace: 4
   maxDistance: 10
   inputAccelaration: 10
-  ZoomAcceleration: 8
+  desktopZoomSensitivity: 0.4
+  mobileZoomSensitivity: 0.15
   defaultXAngle: 15
   lookHeight: 0
   focusRadius: 5
@@ -26,6 +27,7 @@ MonoBehaviour:
   maxVerticalAngle: 25
   alignDelay: 5
   alignSmoothRange: 45
-  mobileSensitivity: 1
+  desktopSensitivity: 1
+  mobileSensitivity: 2
   isLocalCoordinates: 0
   applyXValue: 1
