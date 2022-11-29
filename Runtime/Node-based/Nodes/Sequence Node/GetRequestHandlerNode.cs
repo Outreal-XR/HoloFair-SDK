@@ -7,7 +7,7 @@ namespace outrealxr.holomod
 	[NodeTint("#7393B3")]
 	public class GetRequestHandlerNode : WebRequestHandlerNode
 	{
-		public override void Execute() {
+		protected override void ExecuteLogic() {
 			url = GetInputPort("url").GetInputValue<string>();
 			var request = new UnityWebRequest(url);
 

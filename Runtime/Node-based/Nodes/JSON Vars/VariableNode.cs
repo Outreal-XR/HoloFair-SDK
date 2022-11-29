@@ -13,7 +13,6 @@ namespace outrealxr.holomod
     
         protected override void Init() {
             base.Init();
-            _conOut = new NodeConnection {Variable = this};
         }
 
         public override object GetValue(NodePort port) {

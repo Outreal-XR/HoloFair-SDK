@@ -10,16 +10,9 @@ namespace outrealxr.holomod
             ExecuteStartNodes();
         }
 
-        public void ExecuteNodeByName(string nodeName) {
-            foreach (var node in graph.nodes)
-                if (node is IExecutable executable && node.name == nodeName)
-                    executable.Execute();
+        public void ExecuteStartNodes() {
+
         }
 
-        public void ExecuteStartNodes() {
-            foreach (var node in graph.nodes)
-                if (node is IExecutable executable && executable.ExecuteOnStart())
-                    executable.Execute();
-        }
     }
 }
