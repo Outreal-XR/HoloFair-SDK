@@ -10,7 +10,7 @@ namespace outrealxr.holomod
     {
         [Input(dynamicPortList = true)] public List<NodeConnection> InputVars = new ();
 
-        public override void Execute() {
+        protected override void ExecuteLogic() {
             var formData = new WWWForm();
 
             var enumerator = DynamicInputs.GetEnumerator();

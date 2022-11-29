@@ -4,7 +4,7 @@ using XNode;
 
 namespace outrealxr.holomod
 {
-	public class SmartStringNode : Node
+	public class SmartStringNode : HoloNode
 	{
 
 		[SerializeField] private GuidComponent _guid;
