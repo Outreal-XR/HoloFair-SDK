@@ -10,7 +10,17 @@ namespace outrealxr.holomod
         }
 
         public void ExecuteStartNodes() {
+            foreach (var node in graph.nodes) {
+                if (node is StartNode startNode) 
+                    startNode.Initialize();
+            }
+        }
 
+        public void ExecuteEvent(string eventName) {
+            foreach (var node in graph.nodes) {
+                if (node is EventTriggerNode eventNode) 
+                    eventNode.Initialize();
+            }
         }
     }
 }
