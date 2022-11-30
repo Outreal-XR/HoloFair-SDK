@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿using UnityEngine;
 
 namespace outrealxr.holomod
 {
 	public abstract class SequenceNode : HoloNode
 	{
-		[Input] protected NodeConnection Previous;
+		[Input, SerializeField] protected NodeConnection Previous;
 
 		public virtual void Execute() {
 			ExecuteLogic();

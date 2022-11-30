@@ -1,9 +1,10 @@
-﻿using XNode;
+﻿using UnityEngine;
+using XNode;
 
 namespace outrealxr.holomod
 {
 	public abstract class HoloNode : Node
 	{
-		[Output] protected NodeConnection Next;
+		[Output, SerializeField] protected NodeConnection Next;
 	}
 }
