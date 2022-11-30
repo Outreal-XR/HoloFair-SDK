@@ -19,7 +19,7 @@ namespace outrealxr.holomod
                     throw new Exception("Loop exceeded max iterations.");
 
                 if (GetOutputPort("Next").IsConnected) 
-                    if (GetOutputPort("Next").node is SequenceNode nextNode)
+                    if (GetOutputPort("Next").Connection.node is SequenceNode nextNode)
                         nextNode.Execute();
                 
                 i++;

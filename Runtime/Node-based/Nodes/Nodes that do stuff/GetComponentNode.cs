@@ -15,7 +15,7 @@ namespace outrealxr.holomod
             if (GetInputPort("_gameObject").IsConnected)
                 _gameObject = GetInputValue<GameObject>("_gameObject");
 
-            _gameObject.GetComponent(GetType(_type));
+            _component = _gameObject.GetComponent(GetType(_type));
         }
 
         private static Type GetType(ComponentType type) {

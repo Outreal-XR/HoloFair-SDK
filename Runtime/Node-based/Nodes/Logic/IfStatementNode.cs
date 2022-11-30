@@ -15,11 +15,11 @@ namespace outrealxr.holomod
 
             if (_condition) {
                 if (GetOutputPort("_true").IsConnected)
-                    if (GetOutputPort("_true").node is SequenceNode nextNode)
+                    if (GetOutputPort("_true").Connection.node is SequenceNode nextNode)
                         nextNode.Execute();
             } else {
                 if (GetOutputPort("_false").IsConnected)
-                    if (GetOutputPort("_false").node is SequenceNode nextNode)
+                    if (GetOutputPort("_false").Connection.node is SequenceNode nextNode)
                         nextNode.Execute();
             }
         }

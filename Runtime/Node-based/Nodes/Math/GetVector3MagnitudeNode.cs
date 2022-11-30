@@ -9,9 +9,7 @@ namespace outrealxr.holomod
         [Input, SerializeField] private Vector3 _vector3;
         [Output, SerializeField] private float _magnitude;
         
-        protected override void ExecuteLogic() {
-            throw new System.NotImplementedException();
-        }
+        protected override void ExecuteLogic() { }
 
         public override object GetValue(NodePort port) {
             if (port.fieldName.Equals("_magnitude")) {

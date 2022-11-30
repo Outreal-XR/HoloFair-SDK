@@ -16,7 +16,7 @@ namespace outrealxr.holomod
         private IEnumerator Wait() {
             yield return GetAwaitPeriod();
             if (GetOutputPort("Next").IsConnected) 
-                if (GetOutputPort("Next").node is SequenceNode nextNode)
+                if (GetOutputPort("Next").Connection.node is SequenceNode nextNode)
                     nextNode.Execute();
         }
 

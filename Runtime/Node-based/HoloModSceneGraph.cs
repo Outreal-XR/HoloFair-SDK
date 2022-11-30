@@ -18,7 +18,7 @@ namespace outrealxr.holomod
 
         public void ExecuteEvent(string eventName) {
             foreach (var node in graph.nodes) {
-                if (node is EventTriggerNode eventNode) 
+                if (node is EventTriggerNode eventNode && eventNode.EventName.Equals(eventName)) 
                     eventNode.Initialize();
             }
         }

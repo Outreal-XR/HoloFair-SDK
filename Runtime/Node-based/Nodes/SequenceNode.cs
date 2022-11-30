@@ -9,8 +9,10 @@ namespace outrealxr.holomod
 		public virtual void Execute() {
 			ExecuteLogic();
 			
+			Debug.Log($"executing {this.name}");
+			
 			if (GetOutputPort("Next").IsConnected) 
-				if (GetOutputPort("Next").node is SequenceNode nextNode)
+				if (GetOutputPort("Next").Connection.node is SequenceNode nextNode)
 					nextNode.Execute();
 		}
 
