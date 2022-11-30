@@ -1,6 +1,5 @@
 using Newtonsoft.Json.Linq;
 using SaG.GuidReferences;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,31 +13,26 @@ namespace outrealxr.holomod
 
         [Header("Local variables")]
         public string normalizedTimeParameterName = "progress";
-        [Tooltip("ms")]
-        public double lagCompensationAmount = 100;
         [Tooltip("UTC Timestamp in milliseconds")]
-        public double now, startTime;
+        public double startTime;
         public float elapsedTime;
         public float animationLength;
         public Animator animator;
-        readonly DateTime beginningOfTheWorld = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        public double serverTimeDifference = 0;
         
         public override string type => "animator";
 
         void Start()
         {
-            startTime = DateTime.UtcNow.Subtract(beginningOfTheWorld).TotalMilliseconds;
+            startTime = UniversalTimeModel.Now;
             Apply();
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
-            // TODO AnimatorModel.cs may be not working correcly.
         }
 
         public void SetStateName(string val)
         {
             stateName = val;
-            startTime = now;
+            startTime = UniversalTimeModel.Now;
         }
 
         public void SetLayerIndex(int val)
@@ -51,7 +45,7 @@ namespace outrealxr.holomod
             base.FromJObject(data);
             stateName = data.GetValue("stateName").Value<string>();
             layerIndex = data.GetValue("layerIndex").Value<int>();
-            startTime = data.GetValue("startTime").Value<double>() - lagCompensationAmount;
+            startTime = data.GetValue("startTime").Value<double>();
             AnimatorStateInfo current = animator.GetCurrentAnimatorStateInfo(layerIndex);
             Debug.Log($"[AnimatorModel] old ({current.fullPathHash}): {current.length}");
             Apply();
@@ -69,8 +63,7 @@ namespace outrealxr.holomod
 
         void LateUpdate()
         {
-            now = DateTime.Now.ToUniversalTime().Subtract(beginningOfTheWorld).TotalMilliseconds;
-            elapsedTime = Mathf.Clamp(((float)(now + UniversalTimeModel.ServerTimeDifference - startTime)) / 1000f, 0f, animationLength);
+            elapsedTime = Mathf.Clamp((float)(UniversalTimeModel.Now - startTime), 0f, animationLength);
             if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }
