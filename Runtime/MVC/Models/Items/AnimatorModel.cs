@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using SaG.GuidReferences;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ namespace outrealxr.holomod
 
         [Header("Local variables")]
         public string normalizedTimeParameterName = "progress";
-        [Tooltip("UTC Timestamp in milliseconds")]
         public double startTime;
         public float elapsedTime;
         public float animationLength;
@@ -23,7 +23,7 @@ namespace outrealxr.holomod
 
         void Start()
         {
-            startTime = UniversalTimeModel.Now;
+            startTime = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             Apply();
             view.model = this;
             guid = GetComponent<GuidComponent>().GetStringGuid();
