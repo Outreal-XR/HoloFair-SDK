@@ -13,6 +13,7 @@ namespace outrealxr.holomod
         public int layerIndex;
 
         [Header("Local variables")]
+        public bool loop;
         public string normalizedTimeParameterName = "progress";
         public double startTime;
         public float elapsedTime;
@@ -63,7 +64,8 @@ namespace outrealxr.holomod
 
         void LateUpdate()
         {
-            elapsedTime = Mathf.Clamp((float)(UniversalTimeModel.Now - startTime), 0f, animationLength);
+            if (loop) elapsedTime = ((float)(UniversalTimeModel.Now - startTime)) % animationLength;
+            else elapsedTime = Mathf.Clamp((float)(UniversalTimeModel.Now - startTime), 0f, animationLength);
             if (animationLength > 0)
                 animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
         }
