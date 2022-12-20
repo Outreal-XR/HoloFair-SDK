@@ -18,15 +18,15 @@ namespace outrealxr.holomod
             return data;
         }
 
-        public static void ToTransform(this JObject jobject, Model model)
+        public static void ToTransform(this JObject jobject)
         {
-            Transform transform = model.transform;
+            Transform transform = null;
             if (jobject.ContainsKey("localPosition")) transform.localPosition = jobject.GetValue("localPosition").ToObject<JObject>().ToVector3();
-            else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing locationPosition key");
+            //else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing locationPosition key");
             if (jobject.ContainsKey("localEulerAngles")) transform.localEulerAngles = jobject.GetValue("localEulerAngles").ToObject<JObject>().ToVector3();
-            else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing localEulerAngles key");
+            //else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing localEulerAngles key");
             if (jobject.ContainsKey("localScale")) transform.localScale = jobject.GetValue("localScale").ToObject<JObject>().ToVector3();
-            else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing localScale key");
+            //else if (model.reportMissingKeys) Debug.Log("[Extensions] Missing localScale key");
         }
 
         public static JObject ToJObject(this Vector3 vector3)
