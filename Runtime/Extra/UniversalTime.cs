@@ -14,6 +14,5 @@ namespace com.outrealxr.holomod
         /// Seconds
         /// </summary>
         public static double Now => (ServerTime / 1000) + TotalRequestDuration + TimeSinceLastRequest;
-        
     }   
 }

@@ -10,6 +10,9 @@ namespace com.outrealxr.holomod
         
         private Action<string> _onSelect;
 
+        public Transform AvatarDestination => _avatarDestination;
+        public Transform PlayerControllerDestination => _playerControllerDestination;
+
         public void SetAction(Action<string> onSelect) => _onSelect = onSelect;
         public void Select() => _onSelect?.Invoke(GetValue);
     }
