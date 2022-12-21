@@ -11,7 +11,7 @@ namespace com.outrealxr.holomod
 
         [SerializeField] private GuidComponent _guid;
         
-        private void Start() {
+        protected virtual void Start() {
             Factories.Instance.RegisterView(this);
             if (_readOnStart) Read();
         }

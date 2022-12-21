@@ -4,7 +4,7 @@ namespace com.outrealxr.holomod
     {
 
         public override void Edit() {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
