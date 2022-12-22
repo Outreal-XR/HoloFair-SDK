@@ -1,6 +1,6 @@
 namespace com.outrealxr.holomod
 {
-    public abstract class IntView : View<int>
+    public abstract class IntView : ViewT<int>
     {
 
     }

@@ -8,7 +8,8 @@ namespace com.outrealxr.holomod
         protected ModelFactory<string> _stringFactory;
         protected ModelFactory<double> _doubleFactory;
         protected ModelFactory<int> _intFactory;
-        
+
+        protected readonly Dictionary<string, View> _views = new();
         protected readonly Dictionary<string, StringView> _stringViews = new();
         protected readonly Dictionary<string, DoubleView> _doubleViews = new();
         protected readonly Dictionary<string, IntView> _intViews = new();
@@ -23,9 +24,14 @@ namespace com.outrealxr.holomod
             _doubleFactory = new ModelFactory<double>();
         }
 
-        public abstract void Init();
+        public void RegisterView(View view) {
+            if (_views.ContainsKey(view.Guid)) return;
+            _views.Add(view.Guid, view);
 
-        public void RegisterView<T>(View<T> view) {
+            SetHandler(view);
+        }
+        
+        public void RegisterView<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
                     if (_stringViews.ContainsKey(view.Guid)) return;
@@ -44,7 +50,7 @@ namespace com.outrealxr.holomod
             SetHandler(view);
         }
         
-        public void DeregisterView<T>(View<T> view) {
+        public void DeregisterView<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
                     if (!_stringViews.ContainsKey(view.Guid)) return;
@@ -61,11 +67,11 @@ namespace com.outrealxr.holomod
             }
         }
 
-        protected abstract void SetHandler<T>(View<T> view);
+        protected abstract void SetHandler(View view);
 
         public abstract void WriteData<T>(ModelData<T> data);
 
-        public void ReadData<T>(View<T> view) {
+        public void ReadData<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
                     if (_stringFactory.HasModel(view.Guid))
@@ -82,8 +88,8 @@ namespace com.outrealxr.holomod
             }
         }
 
-        private void ReadData<T, T2>(T view, Dictionary<string, T> dict, Model<T2> model) where T : View<T2> {
-            if (!dict.ContainsKey(view.Guid)) RegisterView<T2>(view);
+        private void ReadData<T, T2>(T view, IReadOnlyDictionary<string, T> dict, Model<T2> model) where T : ViewT<T2> {
+            if (!dict.ContainsKey(view.Guid)) RegisterView(view);
             view.SetValue(model.Value, model.Position);
             model.SetView(view);
         }

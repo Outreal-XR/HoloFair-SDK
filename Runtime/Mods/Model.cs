@@ -5,7 +5,7 @@ namespace com.outrealxr.holomod
     public sealed class Model<T> where T: notnull
     {
         public T Value { get; private set; }
-        private View<T> _view;
+        private ViewT<T> _view;
         public readonly string Guid;
         public Vector3 Position { get; private set; }
 
@@ -14,7 +14,7 @@ namespace com.outrealxr.holomod
             Guid = modelData.Guid;
         }
 
-        public void SetView(View<T> view) => _view = view;
+        public void SetView(ViewT<T> view) => _view = view;
 
         public void SetValue(Vector3 pos, T val) {
             Value = val;

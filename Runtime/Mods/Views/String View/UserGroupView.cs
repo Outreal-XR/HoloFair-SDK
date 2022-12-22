@@ -9,10 +9,11 @@ namespace com.outrealxr.holomod
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;
 
-        [SerializeField] private int _userGroupId;
+        [SerializeField] private static int _userGroupId;
         private int[] _validIds;
 
-        public void SetUserGroupId(int id) => _userGroupId = id;
+        public static int UserGroupId => _userGroupId;
+        public static void SetUserGroupId(int id) => _userGroupId = id;
 
         public override void SetValue(string value, Vector3 position) {
             base.SetValue(value, position);
@@ -35,12 +36,12 @@ namespace com.outrealxr.holomod
 
         public void CompareValues() {
             foreach (var grpId in _validIds) {
-                if (grpId != _userGroupId && _userGroupId != 2147483647) continue;
+                if (grpId != UserGroupId && UserGroupId != 2147483647) continue;
                 
-                if (_userGroupId == 2147483647)
+                if (UserGroupId == 2147483647)
                     Debug.LogWarning($"[UserGroupModel] Admin or moderator detected at {gameObject.name}");
                 else
-                    Debug.LogWarning($"[UserGroupModel] Group ID {_userGroupId} matched one of " +
+                    Debug.LogWarning($"[UserGroupModel] Group ID {UserGroupId} matched one of " +
                                      $"the values in {string.Join(',', _validIds)} at {gameObject.name}");
                 OnValid?.Invoke();
                 return;

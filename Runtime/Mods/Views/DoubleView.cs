@@ -1,6 +1,6 @@
 namespace com.outrealxr.holomod
 {
-    public abstract class DoubleView : View<double>
+    public abstract class DoubleView : ViewT<double>
     {
 
         public override void Edit() {

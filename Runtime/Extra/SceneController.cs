@@ -42,9 +42,9 @@ namespace com.outrealxr.holomod
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
             if (currentlyLoading == null)
             {
-                if (SceneLoadingView.instance)
-                    SceneLoadingView.instance.LoadingView.SetActive(true);
-                else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                // if (SceneLoadingView.instance)
+                //     SceneLoadingView.instance.LoadingView.SetActive(true);
+                // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 
                 OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
                 LoadNext();
@@ -64,9 +64,9 @@ namespace com.outrealxr.holomod
             loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
             
-            if (SceneLoadingView.instance)
-                SceneLoadingView.instance.current = this;
-            else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+            // if (SceneLoadingView.instance)
+            //     SceneLoadingView.instance.current = this;
+            // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
 
             Debug.Log($"[SceneController - {gameObject.name}] Loading {sceneName}");
         }
@@ -83,9 +83,9 @@ namespace com.outrealxr.holomod
 
                 if (scenesToLoad.Count > 0) LoadNext();
                 else {
-                    if (SceneLoadingView.instance)
-                        SceneLoadingView.instance.LoadingView.SetActive(false);
-                    else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                    // if (SceneLoadingView.instance)
+                    //     SceneLoadingView.instance.LoadingView.SetActive(false);
+                    // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 }
                 
                 SceneManager.SetActiveScene(sceneInstance.Scene);
