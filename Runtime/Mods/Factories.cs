@@ -51,19 +51,32 @@ namespace com.outrealxr.holomod
         }
         
         
-        protected void AddOrUpdateModel<T>(ModelFactory<T> modelFactory, T value, Vector3 position, string guid) {
-            var modelData = new ModelData<T>(value, guid, position);
+        protected void AddOrUpdateModel<T>(ModelFactory<T> modelFactory, T value, Vector3 position, string id) {
+            var modelData = new ModelData<T>(value, id, position);
 
-            if (!modelFactory.HasModel(guid))
+            if (!modelFactory.HasModel(id))
                 modelFactory.AddModel(modelData);
             else
                 modelFactory.WriteData(modelData);
-            
-            
+
+            TryUpdateView(modelData);
         }
 
-        private void UpdateIfViewExists() {
-            
+        private void TryUpdateView<T>(ModelData<T> data) {
+            switch (data) {
+                case ModelData<double> dData:
+                    if (_doubleViews.ContainsKey(dData.Id))
+                        _doubleViews[dData.Id].SetValue(dData.Value, dData.Position);
+                    break;
+                case ModelData<int> iData:
+                    if (_intViews.ContainsKey(iData.Id))
+                        _intViews[iData.Id].SetValue(iData.Value, iData.Position);
+                    break;
+                case ModelData<string> sData:
+                    if (_stringViews.ContainsKey(sData.Id))
+                        _stringViews[sData.Id].SetValue(sData.Value, sData.Position);
+                    break;
+            }
         }
 
         public void DeregisterView<T>(ViewT<T> view) {
