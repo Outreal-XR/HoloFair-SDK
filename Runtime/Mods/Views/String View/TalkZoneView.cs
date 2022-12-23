@@ -1,7 +1,6 @@
 using System;
-using com.outrealxr.holomod;
 
-namespace com.outrealxr.networkimages
+namespace com.outrealxr.holomod
 {
     public class TalkZoneView : StringView
     {

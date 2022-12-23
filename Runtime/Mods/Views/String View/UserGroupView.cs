@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,11 +10,25 @@ namespace com.outrealxr.holomod
         [SerializeField] private UnityEvent OnValid;
         [SerializeField] private UnityEvent OnInvalid;
 
-        [SerializeField] private static int _userGroupId;
+        private static int _userGroupId;
         private int[] _validIds;
 
+        private static event Action OnUserGrpIdReceive;
+
+        protected override void Start() {
+            base.Start();
+            OnUserGrpIdReceive += CompareValues;
+        }
+
+        private void OnDestroy() {
+            OnUserGrpIdReceive -= CompareValues;
+        }
+
         public static int UserGroupId => _userGroupId;
-        public static void SetUserGroupId(int id) => _userGroupId = id;
+        public static void SetUserGroupId(int id) {
+            _userGroupId = id;
+            OnUserGrpIdReceive?.Invoke();
+        }
 
         public override void SetValue(string value, Vector3 position) {
             base.SetValue(value, position);

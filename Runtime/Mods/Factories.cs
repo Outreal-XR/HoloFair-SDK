@@ -50,6 +50,22 @@ namespace com.outrealxr.holomod
             SetHandler(view);
         }
         
+        
+        protected void AddOrUpdateModel<T>(ModelFactory<T> modelFactory, T value, Vector3 position, string guid) {
+            var modelData = new ModelData<T>(value, guid, position);
+
+            if (!modelFactory.HasModel(guid))
+                modelFactory.AddModel(modelData);
+            else
+                modelFactory.WriteData(modelData);
+            
+            
+        }
+
+        private void UpdateIfViewExists() {
+            
+        }
+
         public void DeregisterView<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:

@@ -8,12 +8,12 @@ namespace com.outrealxr.holomod
         [SerializeField] private Transform _avatarDestination;
         [SerializeField] private Transform _playerControllerDestination;
         
-        private Action<string> _onSelect;
+        private Action<EmoteView> _onSelect;
 
         public Transform AvatarDestination => _avatarDestination;
         public Transform PlayerControllerDestination => _playerControllerDestination;
 
-        public void SetAction(Action<string> onSelect) => _onSelect = onSelect;
-        public void Select() => _onSelect?.Invoke(GetValue);
+        public void SetAction(Action<EmoteView> onSelect) => _onSelect = onSelect;
+        public void Select() => _onSelect?.Invoke(this);
     }
 }

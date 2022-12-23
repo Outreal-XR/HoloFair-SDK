@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace com.thedrhax14.sfsopenworldclient
+namespace com.outrealxr.holomod
 {
     public class PlatformValidator : MonoBehaviour
     {

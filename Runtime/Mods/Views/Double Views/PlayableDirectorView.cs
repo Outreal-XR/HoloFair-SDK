@@ -21,11 +21,10 @@ namespace com.outrealxr.holomod
         public override void SetValue(double value, Vector3 position) {
             base.SetValue(value, position);
             
-            var now = DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-            _lagCompensation = (now - value) / 1000;
+            _lagCompensation = (UniversalTime.Now - value) / 1000;
 
             if (_director.time == 0) _director.Play();
-            if (now >= value) _director.time = _lagCompensation;
+            if (UniversalTime.Now >= value) _director.time = _lagCompensation;
         }
     }
 }

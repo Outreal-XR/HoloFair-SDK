@@ -7,11 +7,11 @@ namespace com.outrealxr.holomod
     {
         [SerializeField] private ForceMode _forceMode;
 
-        private Action<double> _applyForce;
+        private Action<Vector3, ForceMode> _applyForce;
 
-        public void SetAction(Action<double> applyForce) => _applyForce = applyForce;
+        public void SetAction(Action<Vector3, ForceMode> applyForce) => _applyForce = applyForce;
 
-        public void ApplyForce() => _applyForce?.Invoke(GetValue);
+        public void ApplyForce() => _applyForce?.Invoke(transform.up * (float) GetValue, _forceMode);
     }
 
 }

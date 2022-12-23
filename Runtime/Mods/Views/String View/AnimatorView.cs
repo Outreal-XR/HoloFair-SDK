@@ -1,14 +1,14 @@
 using System;
+using System.Collections;
+using Newtonsoft.Json.Linq;
+using SaG.GuidReferences;
 using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
-    public class AnimatorView : StringView
+    //TODO fix this class
+    public class AnimatorModel : StringView
     {
-        [SerializeField] private Animator _animator;
-
-        private Action<string> _onPlayAnimation;
-        public void RegisterPlay(Action<string> action) => _onPlayAnimation = action;
-        public void PlayAnimation() => _onPlayAnimation?.Invoke(GetValue);
+        //idk what goes here
     }
 }
