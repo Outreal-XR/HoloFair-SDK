@@ -25,8 +25,8 @@ namespace com.outrealxr.holomod
         }
 
         public void RegisterView(View view) {
-            if (_views.ContainsKey(view.Guid)) return;
-            _views.Add(view.Guid, view);
+            if (_views.ContainsKey(view.ViewId)) return;
+            _views.Add(view.ViewId, view);
 
             SetHandler(view);
         }
@@ -34,16 +34,16 @@ namespace com.outrealxr.holomod
         public void RegisterView<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
-                    if (_stringViews.ContainsKey(view.Guid)) return;
-                    _stringViews.Add(sView.Guid, sView); 
+                    if (_stringViews.ContainsKey(view.ViewId)) return;
+                    _stringViews.Add(sView.ViewId, sView); 
                     break;
                 case DoubleView dView:
-                    if (_doubleViews.ContainsKey(view.Guid)) return;
-                    _doubleViews.Add(dView.Guid, dView); 
+                    if (_doubleViews.ContainsKey(view.ViewId)) return;
+                    _doubleViews.Add(dView.ViewId, dView); 
                     break;
                 case IntView iView:
-                    if (_intViews.ContainsKey(view.Guid)) return;
-                    _intViews.Add(iView.Guid, iView);
+                    if (_intViews.ContainsKey(view.ViewId)) return;
+                    _intViews.Add(iView.ViewId, iView);
                     break;
             }
 
@@ -69,16 +69,16 @@ namespace com.outrealxr.holomod
         public void DeregisterView<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
-                    if (!_stringViews.ContainsKey(view.Guid)) return;
-                    _stringViews.Remove(sView.Guid); 
+                    if (!_stringViews.ContainsKey(view.ViewId)) return;
+                    _stringViews.Remove(sView.ViewId); 
                     break;
                 case DoubleView dView:
-                    if (!_doubleViews.ContainsKey(view.Guid)) return;
-                    _doubleViews.Remove(dView.Guid); 
+                    if (!_doubleViews.ContainsKey(view.ViewId)) return;
+                    _doubleViews.Remove(dView.ViewId); 
                     break;
                 case IntView iView:
-                    if (!_intViews.ContainsKey(view.Guid)) return;
-                    _intViews.Remove(iView.Guid);
+                    if (!_intViews.ContainsKey(view.ViewId)) return;
+                    _intViews.Remove(iView.ViewId);
                     break;
             }
         }
@@ -90,22 +90,22 @@ namespace com.outrealxr.holomod
         public void ReadData<T>(ViewT<T> view) {
             switch (view) {
                 case StringView sView:
-                    if (_stringFactory.HasModel(view.Guid))
-                        ReadData(sView, _stringViews, _stringFactory.GetModel(view.Guid));
+                    if (_stringFactory.HasModel(view.ViewId))
+                        ReadData(sView, _stringViews, _stringFactory.GetModel(view.ViewId));
                     break;
                 case DoubleView dView:
-                    if (_doubleFactory.HasModel(view.Guid))
-                        ReadData(dView, _doubleViews, _doubleFactory.GetModel(view.Guid));
+                    if (_doubleFactory.HasModel(view.ViewId))
+                        ReadData(dView, _doubleViews, _doubleFactory.GetModel(view.ViewId));
                     break;
                 case IntView iView:
-                    if (_intFactory.HasModel(view.Guid))
-                        ReadData(iView, _intViews, _intFactory.GetModel(view.Guid));
+                    if (_intFactory.HasModel(view.ViewId))
+                        ReadData(iView, _intViews, _intFactory.GetModel(view.ViewId));
                     break;
             }
         }
 
         private void ReadData<T, T2>(T view, IReadOnlyDictionary<string, T> dict, Model<T2> model) where T : ViewT<T2> {
-            if (!dict.ContainsKey(view.Guid)) RegisterView(view);
+            if (!dict.ContainsKey(view.ViewId)) RegisterView(view);
             view.SetValue(model.Value, model.Position);
             model.SetView(view);
         }

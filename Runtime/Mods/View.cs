@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
-    [RequireComponent(typeof(GuidComponent))]
     public class View : MonoBehaviour
     {
         [SerializeField] private GuidComponent _guid;
 
-        public string Guid => _guid.GetStringGuid();
+        [SerializeField] private int _builderId;
+        
+        public string ViewId => _guid ? _guid.GetStringGuid() : _builderId.ToString();
+
+        public void SetBuilderId(int id) {
+            _builderId = id;
+        }
 
         protected virtual void Start() {
             _guid = GetComponent<GuidComponent>();

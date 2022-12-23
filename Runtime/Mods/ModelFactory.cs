@@ -8,16 +8,16 @@ namespace com.outrealxr.holomod
         private readonly Dictionary<string, Model<T>> _models = new();
 
         public void AddModel(ModelData<T> data) {
-            if (!_models.ContainsKey(data.Guid)) {
+            if (!_models.ContainsKey(data.Id)) {
                 var model = new Model<T>(data);
                 
-                _models.Add(model.Guid, model);
+                _models.Add(model.Id, model);
             } else
                 WriteData(data);
         }
 
         public void WriteData(ModelData<T> data) {
-            if (_models.TryGetValue(data.Guid, out var model)) 
+            if (_models.TryGetValue(data.Id, out var model)) 
                 model.SetValue(data.Position, data.Value);
             
             Debug.LogWarning("[WorldModel] No model with given GUID found.");
@@ -36,16 +36,14 @@ namespace com.outrealxr.holomod
 
     public struct ModelData<T> where T : notnull
     {
-        public string Guid;
-        public Vector3 Position;
-        public T Value;
-        public bool Dynamic;
+        public readonly string Id;
+        public readonly Vector3 Position;
+        public readonly T Value;
 
-        public ModelData(T value, string guid, Vector3 position, bool dynamic = false) {
+        public ModelData(T value, string id, Vector3 position) {
             Value = value;
             Position = position;
-            Guid = guid;
-            Dynamic = dynamic;
+            Id = id;
         }
     }
 }

@@ -6,12 +6,12 @@ namespace com.outrealxr.holomod
     {
         public T Value { get; private set; }
         private ViewT<T> _view;
-        public readonly string Guid;
+        public readonly string Id;
         public Vector3 Position { get; private set; }
 
         public Model(ModelData<T> modelData) {
             Value = modelData.Value;
-            Guid = modelData.Guid;
+            Id = modelData.Id;
         }
 
         public void SetView(ViewT<T> view) => _view = view;

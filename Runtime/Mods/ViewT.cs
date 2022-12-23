@@ -11,7 +11,7 @@ namespace com.outrealxr.holomod
         }
 
         public void Write(T value) {
-            Factories.Instance.WriteData(new ModelData<T>(value, Guid, transform.position));
+            Factories.Instance.WriteData(new ModelData<T>(value, ViewId, transform.position));
         }
         
         public abstract void Edit();
