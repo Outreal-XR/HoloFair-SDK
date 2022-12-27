@@ -12,9 +12,9 @@ namespace com.outrealxr.holomod
         public void RegisterOnPlay(Action<string> action) => _onPlay = action;
         public void Play() => _onPlay?.Invoke(GetValue);
 
-        private Action<string> _onStop;
-        public void RegisterOnStop(Action<string> action) => _onStop = action;
-        public void Stop() => _onStop?.Invoke(GetValue);
+        private Action _onStop;
+        public void RegisterOnStop(Action action) => _onStop = action;
+        public void Stop() => _onStop?.Invoke();
 
         private Action<string> _onToggle;
         public void RegisterOnToggle(Action<string> action) => _onToggle = action;
