@@ -10,7 +10,6 @@ namespace com.outrealxr.holomod
         public void AddModel(ModelData<T> data) {
             if (!_models.ContainsKey(data.Id)) {
                 var model = new Model<T>(data);
-                
                 _models.Add(model.Id, model);
             } else
                 WriteData(data);
@@ -19,8 +18,8 @@ namespace com.outrealxr.holomod
         public void WriteData(ModelData<T> data) {
             if (_models.TryGetValue(data.Id, out var model)) 
                 model.SetValue(data.Position, data.Value);
-            
-            Debug.LogWarning("[WorldModel] No model with given GUID found.");
+            else 
+                Debug.LogWarning("[ModelFactory] No model with given GUID found.");
         }
 
         public bool HasModel(string guid) => _models.ContainsKey(guid);
@@ -28,8 +27,7 @@ namespace com.outrealxr.holomod
         public Model<T> GetModel(string guid) {
             if (_models.TryGetValue(guid, out var model))
                 return model;
-
-            Debug.LogWarning("[WorldModel] No model with given GUID found.");
+            Debug.LogWarning("[ModelFactory] No model with given GUID found.");
             return null;
         }
     }

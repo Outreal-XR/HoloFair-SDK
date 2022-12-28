@@ -22,5 +22,9 @@ namespace com.outrealxr.holomod
         }
         
         public virtual T GetValue => _value;
+
+        protected override void OnDestroy() {
+            Factories.Instance.DeregisterView<T>(this);
+        }
     }
 }

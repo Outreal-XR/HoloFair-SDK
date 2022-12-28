@@ -1,3 +1,4 @@
+using System;
 using SaG.GuidReferences;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ namespace com.outrealxr.holomod
         protected virtual void Start() {
             _guid = GetComponent<GuidComponent>();
             Factories.Instance.RegisterView(this);
+        }
+
+        protected virtual void OnDestroy() {
+            Factories.Instance.DeregisterView(this);
         }
     }
 }

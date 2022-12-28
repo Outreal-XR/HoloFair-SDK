@@ -48,6 +48,7 @@ namespace com.outrealxr.holomod
             }
 
             SetHandler(view);
+            ReadData(view);
         }
         
         
@@ -77,6 +78,11 @@ namespace com.outrealxr.holomod
                         _stringViews[sData.Id].SetValue(sData.Value, sData.Position);
                     break;
             }
+        }
+
+        public void DeregisterView(View view) {
+            if (!_views.ContainsKey(view.ViewId)) return;
+            _views.Remove(view.ViewId);
         }
 
         public void DeregisterView<T>(ViewT<T> view) {

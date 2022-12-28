@@ -12,6 +12,7 @@ namespace com.outrealxr.holomod
         public Model(ModelData<T> modelData) {
             Value = modelData.Value;
             Id = modelData.Id;
+            Position = modelData.Position;
         }
 
         public void SetView(ViewT<T> view) => _view = view;
