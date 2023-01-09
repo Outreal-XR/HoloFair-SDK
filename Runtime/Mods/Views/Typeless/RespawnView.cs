@@ -9,6 +9,9 @@ namespace com.outrealxr.holomod
 
         private Action<Vector3> _onRespawn;
         public void RegisterAction(Action<Vector3> action) => _onRespawn = action;
-        
+
+        public void Respawn() {
+            _onRespawn?.Invoke(_respawnPoint.position);
+        }
     }
 }
