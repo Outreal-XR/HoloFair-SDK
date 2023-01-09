@@ -33,12 +33,15 @@ namespace com.outrealxr.holomod
                 if (UniversalTime.Now > _after && _state != State.After) {
                     OnAfter?.Invoke();
                     _state = State.After;
+                    print("after: " + UniversalTime.Now);
                 } else if (UniversalTime.Now <= _before && _state != State.Before) {
                     OnBefore?.Invoke();
                     _state = State.Before;
-                } else if (_state != State.During) {
+                    print("before: " + UniversalTime.Now);
+                } else if (UniversalTime.Now > _before && UniversalTime.Now < _after && _state != State.During) {
                     OnDuring?.Invoke();   
                     _state = State.During;
+                    print("during: " + UniversalTime.Now);
                 }
             }
         }

@@ -18,15 +18,15 @@ namespace com.outrealxr.holomod
 
         public abstract void Prepare(VideoPlayerView view);
 
-        public virtual void SetSourceModel(VideoView sourceModel)
+        public virtual void SetSourceModel(VideoView view)
         {
-            if(sourceModel == null) Stop();
+            if(view == null) Stop();
             else
             {
                 Play();
                 VideoPlayerView.instance.ApplyVolume();
             }
-            this.sourceModel = sourceModel;
+            this.sourceModel = view;
         }
 
         public abstract void SetFullScreen(bool val);
