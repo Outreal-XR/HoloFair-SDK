@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using com.outrealxr.holomod;
 using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
     public abstract class VideoPlayerController : MonoBehaviour
     {
-        public VideoView sourceModel;
+        [SerializeField] protected VideoView _view;
 
         public static VideoPlayerController instance;
 
@@ -18,7 +15,7 @@ namespace com.outrealxr.holomod
 
         public abstract void Prepare(VideoPlayerView view);
 
-        public virtual void SetSourceModel(VideoView view)
+        public virtual void SetSource(VideoView view)
         {
             if(view == null) Stop();
             else
@@ -26,7 +23,7 @@ namespace com.outrealxr.holomod
                 Play();
                 VideoPlayerView.instance.ApplyVolume();
             }
-            this.sourceModel = view;
+            this._view = view;
         }
 
         public abstract void SetFullScreen(bool val);

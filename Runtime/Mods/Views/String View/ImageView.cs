@@ -5,7 +5,7 @@ namespace com.outrealxr.holomod
 {
     public class ImageView : LinkView
     {
-        [SerializeField] private NetworkImage _networkImage;
+        [SerializeField] protected NetworkImage _networkImage;
 
         public void LoadImage() {
             _networkImage.SetAndEnqueue(GetValue);

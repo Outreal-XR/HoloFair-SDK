@@ -1,12 +1,67 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using com.outrealxr.networkimages;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace com.outrealxr.holomod
 {
     public class VideoView : ImageView
     {
-        [SerializeField] private GameObject _loading;
-        [SerializeField] private GameObject _live;
+        public enum State
+        {
+            Stopped,
+            Playing,
+            Loading,
+            Error
+        }
+
+        public enum ThumbnailBehavior
+        {
+            Generate,
+            Download,
+            None,
+            Custom
+        }
+
+        [SerializeField] [Header("Local Settings")]
+        private ThumbnailBehavior _thumbnailBehavior;
+        [SerializeField] private State _state;
+
+        [SerializeField] [Tooltip("Changes automatically whenever value ends with m3u8")]
+        private bool _isFullScreenOnPlay;
+
+        [SerializeField] [Tooltip("Changes automatically whenever value ends with m3u8")]
+        private bool _isLive;
+        
+        [Tooltip("Used whenever thumbnail behavior is custom"), SerializeField]
+        private ImageView _imageView;
+        
+        [SerializeField] private string _textureProperty = "_BaseMap";
+
+        public bool IsLive => _isLive;
+        public bool IsFullScreenOnPlay => _isFullScreenOnPlay;
+
+        public string TextureProperty => _textureProperty;
+
+        public void SetState(State state) {
+            this._state = state;
+            if (state == State.Playing) {
+                SetSource();
+                OnVideoStarted?.Invoke();
+            } else if (state == State.Stopped) {
+                SetSource();
+                OnVideoEnded?.Invoke();
+            }
+        }
+        
+        [SerializeField] private UnityEvent OnVideoStarted;
+        [SerializeField] private UnityEvent OnVideoEnded;
+
+        private Action<bool> _onFullscreen;
+        public void RegisterOnFullScreen(Action<bool> action) => _onFullscreen = action;
+        public void SetFullScreen(bool val) => _onFullscreen?.Invoke(val);
 
         private Action<string> _onPlay;
         public void RegisterOnPlay(Action<string> action) => _onPlay = action;
@@ -19,5 +74,39 @@ namespace com.outrealxr.holomod
         private Action<string> _onToggle;
         public void RegisterOnToggle(Action<string> action) => _onToggle = action;
         public void Toggle() => _onToggle?.Invoke(GetValue);
+        
+        private Action<VideoView> _onSetSource;
+        public void RegisterOnSetSource(Action<VideoView> action) => _onSetSource = action;
+        public void SetSource() => _onSetSource?.Invoke(this);
+
+        public override void SetValue(string value, Vector3 position) {
+            base.SetValue(value, position);
+            _isLive = value.EndsWith("m3u8");
+            
+            if (_state == State.Playing) {
+                Stop();
+                StartCoroutine(Replay());
+            }
+        }
+        
+        private IEnumerator Replay() {
+            yield return new WaitForEndOfFrame();
+            Toggle();
+        }
+        
+        public void RefreshThumbnail()
+        {
+            if (!IsLive && _thumbnailBehavior == ThumbnailBehavior.Generate)
+                Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
+            else if (_thumbnailBehavior == ThumbnailBehavior.Download)
+                LoadImage();
+            else if (_thumbnailBehavior == ThumbnailBehavior.Custom)
+                _imageView.LoadImage();
+        }
+        
+        public MeshRenderer GetMeshRenderer() => ((NetworkImageMeshRenderer)_networkImage).target;
+        public Material GetSharedMaterial() => ((NetworkImageMeshRendererShared)_networkImage).GetMaterial();
+        public bool IsTargetAvailable() => (NetworkImageMeshRenderer)_networkImage != null;
+        public bool IsTargetShared() => _networkImage.GetType() == typeof(NetworkImageMeshRendererShared);
     }
 }
