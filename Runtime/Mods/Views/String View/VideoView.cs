@@ -65,7 +65,10 @@ namespace com.outrealxr.holomod
 
         private Action<string> _onPlay;
         public void RegisterOnPlay(Action<string> action) => _onPlay = action;
-        public void Play() => _onPlay?.Invoke(GetValue);
+        public void Play() {
+            SetSource();
+            _onPlay?.Invoke(GetValue);
+        }
 
         private Action _onStop;
         public void RegisterOnStop(Action action) => _onStop = action;
@@ -73,8 +76,11 @@ namespace com.outrealxr.holomod
 
         private Action<string> _onToggle;
         public void RegisterOnToggle(Action<string> action) => _onToggle = action;
-        public void Toggle() => _onToggle?.Invoke(GetValue);
-        
+        public void Toggle() {
+            SetSource();
+            _onToggle?.Invoke(GetValue);
+        }
+
         private Action<VideoView> _onSetSource;
         public void RegisterOnSetSource(Action<VideoView> action) => _onSetSource = action;
         public void SetSource() => _onSetSource?.Invoke(this);

@@ -50,6 +50,8 @@ namespace com.outrealxr.holomod
         }
 
         public void CompareValues() {
+            if (_validIds == null) return;
+            
             foreach (var grpId in _validIds) {
                 if (grpId != UserGroupId && UserGroupId != 2147483647) continue;
                 

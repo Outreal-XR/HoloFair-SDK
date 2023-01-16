@@ -46,7 +46,7 @@ namespace com.outrealxr.holomod
                     _intViews.Add(iView.ViewId, iView);
                     break;
             }
-
+            
             SetHandler(view);
             ReadData(view);
         }
