@@ -15,15 +15,15 @@ namespace com.outrealxr.holomod
         [Tooltip("Must be a scene")]
         public AssetReference sceneAsset;
 
-        public AsyncOperationHandle<SceneInstance> loadSceneAssetHandler;
-        public static SceneController currentlyLoading;
-        static SceneController currentlyUnloading;
+        public AsyncOperationHandle<SceneInstance> LoadSceneAssetHandler;
+        public static SceneController CurrentlyLoading;
+        private static SceneController _currentlyUnloading;
 
-        AsyncOperationHandle<SceneInstance> unloadSceneAssetHandler;
-        SceneInstance sceneInstance;
+        private AsyncOperationHandle<SceneInstance> _unloadSceneAssetHandler;
+        private SceneInstance _sceneInstance;
 
-        static Queue<SceneController> scenesToLoad = new ();
-        static Queue<SceneController> scenesToUnload = new ();
+        private static readonly Queue<SceneController> ScenesToLoad = new ();
+        private static readonly Queue<SceneController> ScenesToUnload = new ();
 
         void Awake()
         {
@@ -36,33 +36,33 @@ namespace com.outrealxr.holomod
         {
             Debug.Log($"[SceneController - {gameObject.name}] Trying to load {sceneName}");
 
-            if (!scenesToLoad.Contains(this) && !SceneManager.GetSceneByName(sceneName).isLoaded) 
-                scenesToLoad.Enqueue(this);
+            if (!ScenesToLoad.Contains(this) && !SceneManager.GetSceneByName(sceneName).isLoaded) 
+                ScenesToLoad.Enqueue(this);
             
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
-            if (currentlyLoading == null)
+            if (CurrentlyLoading == null)
             {
                 // if (SceneLoadingView.instance)
                 //     SceneLoadingView.instance.LoadingView.SetActive(true);
                 // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 
-                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
+                OnSceneStateChange?.Invoke(ScenesToLoad.Count == 0);
                 LoadNext();
             }
             else
             {
-                Debug.Log($"[SceneController - {gameObject.name}] Waiting for {currentlyLoading.sceneName} to load to continue loading {sceneName}");
+                Debug.Log($"[SceneController - {gameObject.name}] Waiting for {CurrentlyLoading.sceneName} to load to continue loading {sceneName}");
             }
         }
 
         private void LoadNext() {
-            currentlyLoading = scenesToLoad.Dequeue();
-            currentlyLoading.Load();
+            CurrentlyLoading = ScenesToLoad.Dequeue();
+            CurrentlyLoading.Load();
         }
 
         private void Load() {
-            loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
+            LoadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            LoadSceneAssetHandler.Completed += OnSceneLoadCompleted;
             
             // if (SceneLoadingView.instance)
             //     SceneLoadingView.instance.current = this;
@@ -75,20 +75,20 @@ namespace com.outrealxr.holomod
         private void OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> arg) {
             if (arg.Status == AsyncOperationStatus.Succeeded)
             {
-                sceneInstance = arg.Result;
-                Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {sceneInstance.Scene.name}");
-                currentlyLoading = null;
+                _sceneInstance = arg.Result;
+                Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {_sceneInstance.Scene.name}");
+                CurrentlyLoading = null;
                 
-                OnSceneStateChange?.Invoke(scenesToLoad.Count == 0);
+                OnSceneStateChange?.Invoke(ScenesToLoad.Count == 0);
 
-                if (scenesToLoad.Count > 0) LoadNext();
+                if (ScenesToLoad.Count > 0) LoadNext();
                 else {
                     // if (SceneLoadingView.instance)
                     //     SceneLoadingView.instance.LoadingView.SetActive(false);
                     // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 }
                 
-                SceneManager.SetActiveScene(sceneInstance.Scene);
+                SceneManager.SetActiveScene(_sceneInstance.Scene);
             } else if (arg.Status == AsyncOperationStatus.Failed) {
                 //Failed to load addressable
 
@@ -100,22 +100,22 @@ namespace com.outrealxr.holomod
         public void TryToUnloadNext()
         {
             Debug.Log($"[SceneController - {gameObject.name}] Trying to unload {sceneName}");
-            if (!scenesToUnload.Contains(this)) scenesToUnload.Enqueue(this);
+            if (!ScenesToUnload.Contains(this)) ScenesToUnload.Enqueue(this);
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
-            if (currentlyUnloading == null) UnloadNext();
+            if (_currentlyUnloading == null) UnloadNext();
             else Debug.Log($"[SceneController - {gameObject.name}] Waiting to unload {sceneName}");
         }
 
         void UnloadNext()
         {
-            currentlyUnloading = scenesToUnload.Dequeue();
-            currentlyUnloading.Unload();
+            _currentlyUnloading = ScenesToUnload.Dequeue();
+            _currentlyUnloading.Unload();
         }
 
         void Unload()
         {
-            unloadSceneAssetHandler = Addressables.UnloadSceneAsync(sceneInstance);
-            unloadSceneAssetHandler.Completed += OnSceneUnloadCompleted;
+            _unloadSceneAssetHandler = Addressables.UnloadSceneAsync(_sceneInstance);
+            _unloadSceneAssetHandler.Completed += OnSceneUnloadCompleted;
             Debug.Log($"[SceneController - {gameObject.name}] Unloading {sceneName}");
         }
 
@@ -124,9 +124,9 @@ namespace com.outrealxr.holomod
             if (arg.Status == AsyncOperationStatus.Succeeded)
             {
                 Debug.Log($"[SceneController - {gameObject.name}] Unloaded {sceneName}");
-                currentlyUnloading = null;
+                _currentlyUnloading = null;
              
-                if (scenesToUnload.Count > 0) UnloadNext();
+                if (ScenesToUnload.Count > 0) UnloadNext();
             }
         }
     }
