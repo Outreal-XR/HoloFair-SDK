@@ -22,6 +22,7 @@ namespace com.outrealxr.holomod
 
         public override void SetValue(string value, Vector3 position) {
             base.SetValue(value, position);
+            animator.Play(value);
             startTime = UniversalTime.Now;
             StartCoroutine(UpdateAnimationLength());
         }
