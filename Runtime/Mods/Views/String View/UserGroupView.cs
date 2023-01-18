@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +19,7 @@ namespace com.outrealxr.holomod
             OnUserGrpIdReceive += CompareValues;
         }
 
-        private void OnDestroy() {
+        protected override void OnDestroy() {
             OnUserGrpIdReceive -= CompareValues;
         }
 
