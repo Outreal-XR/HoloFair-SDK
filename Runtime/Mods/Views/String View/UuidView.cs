@@ -10,28 +10,28 @@ namespace com.outrealxr.holomod
         [SerializeField] private UnityEvent OnInvalid;
 
         private static string _userUuid;
-        private string[] _validIds;
+        [SerializeField] private string[] _validIds;
 
         private static event Action OnUuidReceive;
 
         protected override void Start() {
             base.Start();
-            OnUuidReceive += CompareValues;
+            ParseArray();
         }
 
-        protected override void OnDestroy() {
-            OnUuidReceive -= CompareValues;
-        }
 
         public static void SetUuId(string id) {
             _userUuid = id;
-            OnUuidReceive?.Invoke();
         }
 
         public override void SetValue(string value, Vector3 position) {
             base.SetValue(value, position);
-            
-            _validIds = value.Split(',');
+
+            ParseArray();
+        }
+
+        private void ParseArray() {
+            _validIds = GetValue.Split(',');
 
             CompareValues();
         }
