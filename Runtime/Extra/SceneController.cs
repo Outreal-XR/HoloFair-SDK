@@ -15,8 +15,8 @@ namespace com.outrealxr.holomod
         [Tooltip("Must be a scene")]
         public AssetReference sceneAsset;
 
-        public AsyncOperationHandle<SceneInstance> LoadSceneAssetHandler;
-        public static SceneController CurrentlyLoading;
+        public AsyncOperationHandle<SceneInstance> loadSceneAssetHandler;
+        public static SceneController currentlyLoading;
         private static SceneController _currentlyUnloading;
 
         private AsyncOperationHandle<SceneInstance> _unloadSceneAssetHandler;
@@ -40,52 +40,51 @@ namespace com.outrealxr.holomod
                 ScenesToLoad.Enqueue(this);
             
             else Debug.Log($"[SceneController - {gameObject.name}] {sceneName} already queued");
-            if (CurrentlyLoading == null)
+            if (currentlyLoading == null)
             {
-                // if (SceneLoadingView.instance)
-                //     SceneLoadingView.instance.LoadingView.SetActive(true);
-                // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                if (SceneLoadingView.instance)
+                     SceneLoadingView.instance.View.SetActive(true);
+                else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 
                 OnSceneStateChange?.Invoke(ScenesToLoad.Count == 0);
                 LoadNext();
             }
             else
             {
-                Debug.Log($"[SceneController - {gameObject.name}] Waiting for {CurrentlyLoading.sceneName} to load to continue loading {sceneName}");
+                Debug.Log($"[SceneController - {gameObject.name}] Waiting for {currentlyLoading.sceneName} to load to continue loading {sceneName}");
             }
         }
 
         private void LoadNext() {
-            CurrentlyLoading = ScenesToLoad.Dequeue();
-            CurrentlyLoading.Load();
+            currentlyLoading = ScenesToLoad.Dequeue();
+            currentlyLoading.Load();
         }
 
         private void Load() {
-            LoadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            LoadSceneAssetHandler.Completed += OnSceneLoadCompleted;
+            loadSceneAssetHandler = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            loadSceneAssetHandler.Completed += OnSceneLoadCompleted;
             
-            // if (SceneLoadingView.instance)
-            //     SceneLoadingView.instance.current = this;
-            // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+            if (SceneLoadingView.instance) SceneLoadingView.instance.current = this;
+            else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
 
             Debug.Log($"[SceneController - {gameObject.name}] Loading {sceneName}");
         }
 
         [SerializeField] private UnityEvent OnSceneLoaded;
+
         private void OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> arg) {
             if (arg.Status == AsyncOperationStatus.Succeeded)
             {
                 _sceneInstance = arg.Result;
                 Debug.Log($"[SceneController - {gameObject.name}] Loaded {sceneName}: {_sceneInstance.Scene.name}");
-                CurrentlyLoading = null;
+                currentlyLoading = null;
                 
                 OnSceneStateChange?.Invoke(ScenesToLoad.Count == 0);
 
                 if (ScenesToLoad.Count > 0) LoadNext();
                 else {
-                    // if (SceneLoadingView.instance)
-                    //     SceneLoadingView.instance.LoadingView.SetActive(false);
-                    // else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
+                    if (SceneLoadingView.instance) SceneLoadingView.instance.View.SetActive(false);
+                    else Debug.LogWarning("[SceneController] SceneLoading view is missing. Don't worry, scene is still loading.");
                 }
                 
                 SceneManager.SetActiveScene(_sceneInstance.Scene);
