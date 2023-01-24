@@ -7,7 +7,7 @@ namespace com.outrealxr.holomod
         [Tooltip("Required")]
         public GameObject View;
         [Tooltip("Optional")]
-        public TMPro.TextMeshPro text;
+        public TMPro.TextMeshProUGUI text;
         public string format = "{0:P2}";
         [Tooltip("Optional")]
         public UnityEngine.UI.Image image;
