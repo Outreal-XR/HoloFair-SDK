@@ -4,7 +4,7 @@ namespace com.outrealxr.holomod
 {
     public abstract class ViewT<T> : View
     {
-        [SerializeField] private T _value;
+        [SerializeField] protected T _value;
 
         protected override void Start() {
             Factories.Instance.RegisterView(this);

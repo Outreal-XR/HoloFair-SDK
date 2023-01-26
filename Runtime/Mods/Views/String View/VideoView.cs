@@ -45,14 +45,18 @@ namespace com.outrealxr.holomod
 
         public string TextureProperty => _textureProperty;
 
+        protected override void Start()
+        {
+            Factories.Instance.RegisterView(this);
+        }
+
         public void SetState(State state) {
             this._state = state;
             if (state == State.Playing) {
-                SetSource();
                 OnVideoStarted?.Invoke();
             } else if (state == State.Stopped) {
-                SetSource();
                 OnVideoEnded?.Invoke();
+                RefreshThumbnail();
             }
         }
         
@@ -86,26 +90,34 @@ namespace com.outrealxr.holomod
         public void SetSource() => _onSetSource?.Invoke(this);
 
         public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+            _value = value;
+            transform.position = position;
             _isLive = value.EndsWith("m3u8");
             
             if (_state == State.Playing) {
                 Stop();
                 StartCoroutine(Replay());
             }
+            else
+            {
+                RefreshThumbnail();
+            }
         }
         
         private IEnumerator Replay() {
             yield return new WaitForEndOfFrame();
-            Toggle();
+            Play();
         }
         
         public void RefreshThumbnail()
         {
             if (!IsLive && _thumbnailBehavior == ThumbnailBehavior.Generate)
-                Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download instead");
+                Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download or ThumbnailBehavior.Custom instead");
             else if (_thumbnailBehavior == ThumbnailBehavior.Download)
-                LoadImage();
+            {
+                if (GetValue.Contains(".mp4")) _imageView.SetValue(GetValue.Replace(".mp4", ".jpg"), _imageView.transform.position);
+                else if (GetValue.Contains(".m3u8")) _imageView.SetValue(GetValue.Replace(".m3u8", ".jpg"), _imageView.transform.position);
+            }
             else if (_thumbnailBehavior == ThumbnailBehavior.Custom)
                 _imageView.LoadImage();
         }
