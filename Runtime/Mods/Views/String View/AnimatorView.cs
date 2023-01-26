@@ -20,8 +20,8 @@ namespace com.outrealxr.holomod
             startTime = UniversalTime.Now;
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
             animator.Play(value);
             startTime = UniversalTime.Now;
             StartCoroutine(UpdateAnimationLength());

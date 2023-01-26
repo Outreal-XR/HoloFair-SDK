@@ -50,6 +50,11 @@ namespace com.outrealxr.holomod
             Factories.Instance.RegisterView(this);
         }
 
+        public override void Edit()
+        {
+            JavaScriptMessageReciever.instance.StartEdit(new VideoParser(this));
+        }
+
         public void SetState(State state) {
             this._state = state;
             if (state == State.Playing) {
@@ -89,9 +94,8 @@ namespace com.outrealxr.holomod
         public void RegisterOnSetSource(Action<VideoView> action) => _onSetSource = action;
         public void SetSource() => _onSetSource?.Invoke(this);
 
-        public override void SetValue(string value, Vector3 position) {
+        public override void SetValue(string value) {
             _value = value;
-            transform.position = position;
             _isLive = value.EndsWith("m3u8");
             
             if (_state == State.Playing) {
@@ -115,8 +119,8 @@ namespace com.outrealxr.holomod
                 Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download or ThumbnailBehavior.Custom instead");
             else if (_thumbnailBehavior == ThumbnailBehavior.Download)
             {
-                if (GetValue.Contains(".mp4")) _imageView.SetValue(GetValue.Replace(".mp4", ".jpg"), _imageView.transform.position);
-                else if (GetValue.Contains(".m3u8")) _imageView.SetValue(GetValue.Replace(".m3u8", ".jpg"), _imageView.transform.position);
+                if (GetValue.Contains(".mp4")) _imageView.SetValue(GetValue.Replace(".mp4", ".jpg"));
+                else if (GetValue.Contains(".m3u8")) _imageView.SetValue(GetValue.Replace(".m3u8", ".jpg"));
             }
             else if (_thumbnailBehavior == ThumbnailBehavior.Custom)
                 _imageView.LoadImage();

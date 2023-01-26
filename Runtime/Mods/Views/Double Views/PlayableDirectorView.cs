@@ -9,6 +9,10 @@ namespace com.outrealxr.holomod
         [SerializeField] private double _lagCompensation;
         [SerializeField] private PlayableDirector _director;
 
+        public override void Edit()
+        {
+            JavaScriptMessageReciever.instance.StartEdit(new PlayableDirectorParser(this));
+        }
 
         public void Play() {
             _director.Play();
@@ -18,8 +22,8 @@ namespace com.outrealxr.holomod
             _director.Stop();
         }
 
-        public override void SetValue(double value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(double value) {
+            base.SetValue(value);
             
             _lagCompensation = (UniversalTime.Now - value) / 1000;
 

@@ -12,13 +12,18 @@ namespace com.outrealxr.holomod
             LoadImage();
         }
 
+        public override void Edit()
+        {
+            JavaScriptMessageReciever.instance.StartEdit(new ImageParser(this));
+        }
+
         public void LoadImage() {
             _networkImage.SetAndEnqueue(GetValue);
             print("loading image");
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
             LoadImage();
         }
     }

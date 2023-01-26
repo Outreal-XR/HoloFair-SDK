@@ -16,9 +16,8 @@ namespace com.outrealxr.holomod
         
         public abstract void Edit();
 
-        public virtual void SetValue(T value, Vector3 position) {
+        public virtual void SetValue(T value) {
             _value = value;
-            transform.position = position;
         }
         
         public virtual T GetValue => _value;

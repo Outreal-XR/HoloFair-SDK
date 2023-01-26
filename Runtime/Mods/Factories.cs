@@ -67,15 +67,15 @@ namespace com.outrealxr.holomod
             switch (data) {
                 case ModelData<double> dData:
                     if (_doubleViews.ContainsKey(dData.Id))
-                        _doubleViews[dData.Id].SetValue(dData.Value, dData.Position);
+                        _doubleViews[dData.Id].SetValue(dData.Value);
                     break;
                 case ModelData<int> iData:
                     if (_intViews.ContainsKey(iData.Id))
-                        _intViews[iData.Id].SetValue(iData.Value, iData.Position);
+                        _intViews[iData.Id].SetValue(iData.Value);
                     break;
                 case ModelData<string> sData:
                     if (_stringViews.ContainsKey(sData.Id))
-                        _stringViews[sData.Id].SetValue(sData.Value, sData.Position);
+                        _stringViews[sData.Id].SetValue(sData.Value);
                     break;
             }
         }
@@ -125,7 +125,7 @@ namespace com.outrealxr.holomod
 
         private void ReadData<T, T2>(T view, IReadOnlyDictionary<string, T> dict, Model<T2> model) where T : ViewT<T2> {
             if (!dict.ContainsKey(view.ViewId)) RegisterView(view);
-            view.SetValue(model.Value, model.Position);
+            view.SetValue(model.Value);
             model.SetView(view);
         }
     }

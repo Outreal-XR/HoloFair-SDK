@@ -24,8 +24,8 @@ namespace com.outrealxr.holomod
             _userUuid = id;
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
 
             ParseArray();
         }

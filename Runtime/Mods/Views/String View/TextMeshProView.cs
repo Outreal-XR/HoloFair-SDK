@@ -7,8 +7,8 @@ namespace com.outrealxr.holomod
     {
         [SerializeField] private TMP_Text _text;
         
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
             _text.SetText(value);
         }
     }

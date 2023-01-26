@@ -27,7 +27,12 @@ namespace com.outrealxr.holomod
             base.Start();
             UpdateTheTimeUTC();
         }
-        
+
+        public override void Edit()
+        {
+            JavaScriptMessageReciever.instance.StartEdit(new UTCTimerParser(this));
+        }
+
         void Update() {
             if (_before > 0) {
                 if (UniversalTime.Now > _after && _state != State.After) {
@@ -46,8 +51,8 @@ namespace com.outrealxr.holomod
             }
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
             UpdateTheTimeUTC();
         }
 

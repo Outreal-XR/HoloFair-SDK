@@ -29,8 +29,8 @@ namespace com.outrealxr.holomod
             OnUserGrpIdReceive?.Invoke();
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
             
             var strings = value.Split(',');
 

@@ -20,7 +20,7 @@ namespace com.outrealxr.holomod
         public void SetValue(Vector3 pos, T val) {
             Value = val;
             Position = pos;
-            if (_view) _view.SetValue(val, pos);
+            if (_view) _view.SetValue(val);
         }
     }
 }

@@ -30,8 +30,8 @@ namespace com.outrealxr.holomod
             OnUserRolesReceive?.Invoke();
         }
 
-        public override void SetValue(string value, Vector3 position) {
-            base.SetValue(value, position);
+        public override void SetValue(string value) {
+            base.SetValue(value);
 
             _validRoles = value.Split(',');
 
