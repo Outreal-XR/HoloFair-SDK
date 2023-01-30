@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
 
         public override void OpenView()
         {
-            OpenEdit("image");
+            OpenEdit(view.name, view.ViewId, "image");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
 
         public override void OpenView()
         {
-            OpenEdit("utcTimer");
+            OpenEdit(view.name, view.ViewId, "utcTimer");
         }
 
         public override void Parse(string input)

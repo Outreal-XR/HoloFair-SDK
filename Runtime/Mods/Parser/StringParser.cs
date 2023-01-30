@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
 
         public override void OpenView()
         {
-            OpenEdit("text");
+            OpenEdit(view.name, view.ViewId, "text");
         }
 
         public override void Parse(string input)
