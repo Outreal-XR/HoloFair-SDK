@@ -31,7 +31,7 @@ namespace com.outrealxr.holomod
         public virtual void SetLock(bool state)
         {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            WebGLInput.captureAllKeyboardInput = state;
+            WebGLInput.captureAllKeyboardInput = !state;
             Debug.Log("[JavaScriptMessageReciever] WebGLInput.captureAllKeyboardInput: " + WebGLInput.captureAllKeyboardInput);
 #endif
         }
