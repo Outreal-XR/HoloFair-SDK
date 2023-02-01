@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
     {
 
         public static JavaScriptMessageReciever instance;
-        JavaScriptMessageParser parser;
+        protected JavaScriptMessageParser parser;
 
         void Start()
         {
@@ -18,20 +18,22 @@ namespace com.outrealxr.holomod
         public virtual void Process(string input)
         {
             parser.Parse(input);
-#if !UNITY_EDITOR && UNITY_WEBGL
-            WebGLInput.captureAllKeyboardInput = true;
-            Debug.Log("[JavaScriptMessageReciever] WebGLInput.captureAllKeyboardInput: " + WebGLInput.captureAllKeyboardInput);
-#endif
+            SetLock(false);
         }
 
         public virtual void StartEdit(JavaScriptMessageParser parser)
         {
             this.parser = parser;
+            SetLock(true);
+            
+        }
+
+        public virtual void SetLock(bool state)
+        {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            WebGLInput.captureAllKeyboardInput = false;
+            WebGLInput.captureAllKeyboardInput = state;
             Debug.Log("[JavaScriptMessageReciever] WebGLInput.captureAllKeyboardInput: " + WebGLInput.captureAllKeyboardInput);
 #endif
-            parser.OpenView();
         }
     }
 }
