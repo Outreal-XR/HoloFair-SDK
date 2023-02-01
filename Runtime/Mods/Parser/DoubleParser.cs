@@ -13,11 +13,11 @@ namespace com.outrealxr.holomod
         {
             if(double.TryParse(input, out double result))
             {
-                view.SetValue(result);
+                view.Write(result);
             }
             else
             {
-                view.SetValue(0);
+                view.Write(0);
             }
         }
     }

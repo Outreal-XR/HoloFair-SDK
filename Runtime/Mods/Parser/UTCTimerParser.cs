@@ -11,7 +11,7 @@ namespace com.outrealxr.holomod
 
         public override void Parse(string input)
         {
-            view.SetValue(input);
+            view.Write(input);
         }
     }
 }

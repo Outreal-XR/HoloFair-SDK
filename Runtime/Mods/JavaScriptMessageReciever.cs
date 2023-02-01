@@ -20,11 +20,17 @@ namespace com.outrealxr.holomod
         public void Process(string input)
         {
             parser.Parse(input);
+#if !UNITY_EDITOR && UNITY_WEBGL
+            WebGLInput.captureAllKeyboardInput = true;
+#endif
         }
 
         public void StartEdit(JavaScriptMessageParser parser)
         {
             this.parser = parser;
+#if !UNITY_EDITOR && UNITY_WEBGL
+            WebGLInput.captureAllKeyboardInput = false;
+#endif
             parser.OpenView();
         }
     }
