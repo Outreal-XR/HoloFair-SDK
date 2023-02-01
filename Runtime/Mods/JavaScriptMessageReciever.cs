@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace com.outrealxr.holomod
@@ -17,19 +15,21 @@ namespace com.outrealxr.holomod
         }
 
         //Used by JavaScript
-        public void Process(string input)
+        public virtual void Process(string input)
         {
             parser.Parse(input);
 #if !UNITY_EDITOR && UNITY_WEBGL
             WebGLInput.captureAllKeyboardInput = true;
+            Debug.Log("[JavaScriptMessageReciever] WebGLInput.captureAllKeyboardInput: " + WebGLInput.captureAllKeyboardInput);
 #endif
         }
 
-        public void StartEdit(JavaScriptMessageParser parser)
+        public virtual void StartEdit(JavaScriptMessageParser parser)
         {
             this.parser = parser;
 #if !UNITY_EDITOR && UNITY_WEBGL
             WebGLInput.captureAllKeyboardInput = false;
+            Debug.Log("[JavaScriptMessageReciever] WebGLInput.captureAllKeyboardInput: " + WebGLInput.captureAllKeyboardInput);
 #endif
             parser.OpenView();
         }

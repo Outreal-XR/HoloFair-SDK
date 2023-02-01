@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace com.outrealxr.zonetalks.Runtime
+namespace com.outrealxr.holomod
 {
     public class ControlLocker : MonoBehaviour
     {

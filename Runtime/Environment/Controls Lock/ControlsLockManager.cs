@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace com.outrealxr.zonetalks.Runtime
+namespace com.outrealxr.holomod
 {
     public class ControlsLockManager : MonoBehaviour
     {
