@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
 
         public override void OpenView()
         {
-            OpenEdit(view.name, view.ViewId, "playerDirector");
+            OpenEdit(view.name, view.ViewId, "playerDirector", view.GetValue + "");
         }
     }
 }

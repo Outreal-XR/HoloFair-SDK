@@ -5,7 +5,7 @@ namespace com.outrealxr.holomod
     public abstract class JavaScriptMessageParser
     {
         [DllImport("__Internal")]
-        protected static extern void OpenEdit(string name, string id, string edittype);
+        protected static extern void OpenEdit(string name, string id, string edittype, string value);
         public abstract void Parse(string input);
         public abstract void OpenView();
     }
