@@ -4,17 +4,17 @@ namespace com.outrealxr.holomod
 {
     public class LocalizedObjectView : View
     {
-        [SerializeField] private GameObject _englishObject;
-        [SerializeField] private GameObject _arabicObject;
-        
-        public enum Locale {
+        public enum Locale
+        {
             English,
             Arabic
         }
 
+        [SerializeField] private Locale _target;
+        [SerializeField] private GameObject _object;
+
         public void LanguageChanged (Locale locale) {
-            _englishObject.SetActive(locale == Locale.English);
-            _arabicObject.SetActive(locale == Locale.Arabic);
+            _object.SetActive(locale == _target);
         }
     }
 }
