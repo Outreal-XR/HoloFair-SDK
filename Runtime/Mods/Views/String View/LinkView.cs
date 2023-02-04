@@ -11,11 +11,12 @@ namespace com.outrealxr.holomod
         }
 
         public void OpenInNewTab() {
-            throw new NotImplementedException();
+            throw new NotImplementedException("[LinkView] Not implemented, please, use OpenInSameTab()");
         }
 
         public void OpenInSameTab() {
             Application.OpenURL(GetValue);
+            Analytics.instance.RecordImmediate(this, GetValue);
         }
     }
 }

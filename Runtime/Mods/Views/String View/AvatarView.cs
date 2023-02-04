@@ -6,6 +6,10 @@ namespace com.outrealxr.holomod
     {
         private Action<string> _onSelect;
         public void RegisterAction(Action<string> action) => _onSelect = action;
-        public void Select() => _onSelect?.Invoke(GetValue);
+        public void Select()
+        {
+            _onSelect?.Invoke(GetValue);
+            Analytics.instance.RecordImmediate(this, GetValue);
+        }
     }
 }

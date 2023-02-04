@@ -14,6 +14,10 @@ namespace com.outrealxr.holomod
         public Transform PlayerControllerDestination => _playerControllerDestination;
 
         public void SetAction(Action<EmoteView> onSelect) => _onSelect = onSelect;
-        public void Select() => _onSelect?.Invoke(this);
+        public void Select()
+        {
+            _onSelect?.Invoke(this);
+            Analytics.instance.RecordImmediate(this, GetValue);
+        }
     }
 }

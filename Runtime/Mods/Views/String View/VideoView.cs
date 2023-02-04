@@ -56,12 +56,14 @@ namespace com.outrealxr.holomod
         }
 
         public void SetState(State state) {
-            this._state = state;
+            _state = state;
             if (state == State.Playing) {
                 OnVideoStarted?.Invoke();
+                Analytics.instance.RecordStart(this, GetValue);
             } else if (state == State.Stopped) {
                 OnVideoEnded?.Invoke();
                 RefreshThumbnail();
+                Analytics.instance.RecordEnd(this, GetValue);
             }
         }
         

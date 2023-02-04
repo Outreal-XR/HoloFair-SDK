@@ -9,7 +9,8 @@ namespace com.outrealxr.holomod
         [SerializeField] private GuidComponent _guid;
 
         [SerializeField] private int _builderId;
-        
+        [SerializeField] public string tags;
+
         public string ViewId => _guid ? _guid.GetStringGuid() : _builderId.ToString();
 
         public void SetBuilderId(int id) {
