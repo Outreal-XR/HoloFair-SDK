@@ -7,6 +7,12 @@ namespace com.outrealxr.holomod
         private Action<string> _onJoin;
         public void RegisterJoin(Action<string> action) =>_onJoin = action;
 
+        protected override void Start()
+        {
+            base.Start();
+            tags = "talkezone";
+        }
+
         public void Join()
         {
             _onJoin?.Invoke(GetValue);

@@ -48,6 +48,7 @@ namespace com.outrealxr.holomod
         protected override void Start()
         {
             Factories.Instance.RegisterView(this);
+            tags = "video";
         }
 
         public override void Edit()

@@ -11,13 +11,18 @@ namespace com.outrealxr.holomod
         public string apiPath;
         public static Analytics instance;
 
+        private void Awake()
+        {
+            instance = this;
+        }
+
         IEnumerator SendData(View view, int action, string resource)
         {
             WWWForm form = new WWWForm();
             form.AddField("guid", view.ViewId);
             form.AddField("action", action);
             form.AddField("resource", resource);
-            form.AddField("tags", view.tags);
+            form.AddField("tags", string.IsNullOrWhiteSpace(view.tags) ? "null" : view.tags);
             form.AddField("room", GetRoomName());
 
             using (UnityWebRequest www = UnityWebRequest.Post(GetFormattedAPIPath(), form))
