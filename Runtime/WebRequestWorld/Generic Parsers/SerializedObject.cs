@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace outrealxr.holomod.Runtime
@@ -23,7 +22,7 @@ namespace outrealxr.holomod.Runtime
             var jObject = new JObject();
 
             foreach (var serVar in vars) {
-                jObject.Add(serVar.GameObject().name, serVar.Serialize());
+                jObject.Add(serVar.gameObject.name, serVar.Serialize());
             }
 
             return jObject;
