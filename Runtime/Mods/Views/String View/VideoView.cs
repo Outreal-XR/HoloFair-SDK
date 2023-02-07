@@ -29,12 +29,11 @@ namespace com.outrealxr.holomod
 
         [SerializeField] [Header("Local Settings")]
         private ThumbnailBehavior _thumbnailBehavior;
-        [SerializeField] private State _state;
+        private State _state;
 
-        [SerializeField] [Tooltip("Changes automatically whenever value ends with m3u8")]
+        [SerializeField] [Tooltip("Whether the video should open full screen whenever user tries to watch it.")]
         private bool _isFullScreenOnPlay;
 
-        [SerializeField] [Tooltip("Changes automatically whenever value ends with m3u8")]
         private bool _isLive;
         
         [Tooltip("Used whenever thumbnail behavior is custom"), SerializeField]
