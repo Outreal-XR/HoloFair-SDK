@@ -30,5 +30,7 @@ namespace com.outrealxr.holomod
             base.SetValue(value);
             LoadImage();
         }
+
+        public NetworkImage NetworkImage => _networkImage;
     }
 }

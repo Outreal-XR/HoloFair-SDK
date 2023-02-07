@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using com.outrealxr.networkimages;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace com.outrealxr.holomod
 {
-    public class VideoView : ImageView
+    public class VideoView : LinkView
     {
         public enum State
         {
@@ -46,13 +45,7 @@ namespace com.outrealxr.holomod
 
         public string TextureProperty => _textureProperty;
 
-        protected override void Start()
-        {
-            Factories.Instance.RegisterView(this);
-        }
-
-        public override void Edit()
-        {
+        public override void Edit() {
             JavaScriptMessageReciever.instance.StartEdit(new VideoParser(this));
         }
 
@@ -133,9 +126,9 @@ namespace com.outrealxr.holomod
                 _imageView.LoadImage();
         }
         
-        public MeshRenderer GetMeshRenderer() => ((NetworkImageMeshRenderer)_networkImage).target;
-        public Material GetSharedMaterial() => ((NetworkImageMeshRendererShared)_networkImage).GetMaterial();
-        public bool IsTargetAvailable() => (NetworkImageMeshRenderer)_networkImage != null;
-        public bool IsTargetShared() => _networkImage.GetType() == typeof(NetworkImageMeshRendererShared);
+        public MeshRenderer GetMeshRenderer() => ((NetworkImageMeshRenderer)_imageView.NetworkImage).target;
+        public Material GetSharedMaterial() => ((NetworkImageMeshRendererShared)_imageView.NetworkImage).GetMaterial();
+        public bool IsTargetAvailable() => (NetworkImageMeshRenderer)_imageView.NetworkImage != null;
+        public bool IsTargetShared() => _imageView.NetworkImage.GetType() == typeof(NetworkImageMeshRendererShared);
     }
 }
