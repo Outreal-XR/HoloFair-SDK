@@ -1,6 +1,6 @@
 namespace com.outrealxr.holomod
 {
-    public class VideoParser : ImageParser
+    public class VideoParser : LinkParser
     {
         public VideoParser(VideoView view) : base(view) { }
 
