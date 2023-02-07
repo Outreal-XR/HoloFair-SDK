@@ -16,6 +16,8 @@ namespace com.outrealxr.holomod
 
         private static event Action OnUserRolesReceive;
 
+        public override string Tags => "roles";
+
         protected override void Start() {
             base.Start();
             OnUserRolesReceive += CompareValues;

@@ -16,5 +16,7 @@ namespace com.outrealxr.holomod
         {
             Analytics.instance.RecordEnd(this, GetValue);
         }
+
+        public override string Tags => "analytics";
     }
 }

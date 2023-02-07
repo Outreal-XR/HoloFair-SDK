@@ -14,6 +14,8 @@ namespace com.outrealxr.holomod
 
         private static event Action OnUuidReceive;
 
+        public override string Tags => "uuid"; 
+
         protected override void Start() {
             base.Start();
             ParseArray();

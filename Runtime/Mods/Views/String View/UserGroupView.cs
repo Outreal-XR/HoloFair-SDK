@@ -14,6 +14,8 @@ namespace com.outrealxr.holomod
 
         private static event Action OnUserGrpIdReceive;
 
+        public override string Tags => "usergroup";
+
         protected override void Start() {
             base.Start();
             OnUserGrpIdReceive += CompareValues;

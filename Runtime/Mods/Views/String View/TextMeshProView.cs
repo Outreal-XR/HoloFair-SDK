@@ -11,5 +11,7 @@ namespace com.outrealxr.holomod
             base.SetValue(value);
             _text.SetText(value);
         }
+
+        public override string Tags => "tmp";
     }
 }

@@ -13,5 +13,7 @@ namespace com.outrealxr.holomod
         public void Respawn() {
             _onRespawn?.Invoke(_respawnPoint.position);
         }
+
+        public override string Tags => "respawn";
     }
 }

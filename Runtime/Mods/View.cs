@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
-    public class View : MonoBehaviour
+    public abstract class View : MonoBehaviour
     {
-        [SerializeField] private GuidComponent _guid;
-
-        [SerializeField] private int _builderId;
-        [SerializeField] public string tags;
+        private GuidComponent _guid;
+        private int _builderId;
 
         public string ViewId => _guid ? _guid.GetStringGuid() : _builderId.ToString();
+        public abstract string Tags { get; }
 
         public void SetBuilderId(int id) {
             _builderId = id;

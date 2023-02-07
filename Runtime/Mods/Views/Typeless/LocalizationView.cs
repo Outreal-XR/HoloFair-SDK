@@ -21,5 +21,7 @@ namespace com.outrealxr.holomod
             else
                 _onLocaleInvalid?.Invoke();
         }
+
+        public override string Tags => "localization";  
     }
 }

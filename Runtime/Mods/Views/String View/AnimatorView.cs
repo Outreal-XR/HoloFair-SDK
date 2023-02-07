@@ -15,6 +15,8 @@ namespace com.outrealxr.holomod
         public Animator animator;
 
 
+        public override string Tags => "animator";
+
         protected override void Start() {
             base.Start();
             startTime = UniversalTime.Now;

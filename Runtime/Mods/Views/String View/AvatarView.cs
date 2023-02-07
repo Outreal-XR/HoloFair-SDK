@@ -6,11 +6,7 @@ namespace com.outrealxr.holomod
     {
         private Action<string> _onSelect;
 
-        protected override void Start()
-        {
-            base.Start();
-            tags = "avatar";
-        }
+        public override string Tags => "avatar";
 
         public void RegisterAction(Action<string> action) => _onSelect = action;
         public void Select()

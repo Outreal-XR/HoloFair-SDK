@@ -23,6 +23,8 @@ namespace com.outrealxr.holomod
 
         [SerializeField] private State _state;
 
+        public override string Tags => "timer";
+
         protected override void Start() {
             base.Start();
             UpdateTheTimeUTC();

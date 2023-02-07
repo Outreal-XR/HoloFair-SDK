@@ -5,12 +5,7 @@ namespace com.outrealxr.holomod
 {
     public class LinkView : StringView
     {
-
-        protected override void Start()
-        {
-            base.Start();
-            tags = "link";
-        }
+        public override string Tags => "link";
 
         public override void Edit()
         {

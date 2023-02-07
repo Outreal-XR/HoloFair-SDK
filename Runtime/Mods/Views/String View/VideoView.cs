@@ -25,6 +25,8 @@ namespace com.outrealxr.holomod
             Custom
         }
 
+        public override string Tags => "video";
+
         [SerializeField] [Header("Local Settings")]
         private ThumbnailBehavior _thumbnailBehavior;
         [SerializeField] private State _state;
@@ -48,7 +50,6 @@ namespace com.outrealxr.holomod
         protected override void Start()
         {
             Factories.Instance.RegisterView(this);
-            tags = "video";
         }
 
         public override void Edit()

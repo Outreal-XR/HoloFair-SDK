@@ -12,6 +12,7 @@ namespace com.outrealxr.holomod
         public void SetAction(Action<Vector3, ForceMode> applyForce) => _applyForce = applyForce;
 
         public void ApplyForce() => _applyForce?.Invoke(transform.up * (float) GetValue, _forceMode);
+        public override string Tags => "addForce";
     }
 
 }

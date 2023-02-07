@@ -30,5 +30,7 @@ namespace com.outrealxr.holomod
             if (_director.time == 0) _director.Play();
             if (UniversalTime.Now >= value) _director.time = _lagCompensation;
         }
+
+        public override string Tags => "director";
     }
 }

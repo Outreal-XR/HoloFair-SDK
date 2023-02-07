@@ -22,7 +22,7 @@ namespace com.outrealxr.holomod
             form.AddField("guid", view.ViewId);
             form.AddField("action", action);
             form.AddField("resource", resource);
-            form.AddField("tags", string.IsNullOrWhiteSpace(view.tags) ? "null" : view.tags);
+            form.AddField("tags", string.IsNullOrWhiteSpace(view.Tags) ? "null" : view.Tags);
             form.AddField("room", GetRoomName());
 
             using (UnityWebRequest www = UnityWebRequest.Post(GetFormattedAPIPath(), form))
