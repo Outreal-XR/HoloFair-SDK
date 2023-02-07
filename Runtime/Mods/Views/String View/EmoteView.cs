@@ -10,9 +10,27 @@ namespace com.outrealxr.holomod
         
         private Action<EmoteView> _onSelect;
 
-        public Transform AvatarDestination => _avatarDestination;
-        public Transform PlayerControllerDestination => _playerControllerDestination;
-        
+        public Transform AvatarDestination {
+            get {
+                if (!_avatarDestination) {
+                    Debug.LogError($"[EmoteView] The avatar destination field of \"{gameObject.name}\" is null!");
+                    throw new Exception();
+                }
+
+                return _avatarDestination;
+            }
+        }
+
+        public Transform PlayerControllerDestination {
+            get {
+                if (!_playerControllerDestination) {
+                    Debug.LogError($"[EmoteView] The player controller destination field of \"{gameObject.name}\" is null!");
+                    throw new Exception();
+                }
+                return _playerControllerDestination;
+            }
+        }
+
         public void SetAction(Action<EmoteView> onSelect) => _onSelect = onSelect;
         public void Select()
         {

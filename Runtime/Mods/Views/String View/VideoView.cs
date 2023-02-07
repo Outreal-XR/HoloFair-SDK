@@ -117,8 +117,12 @@ namespace com.outrealxr.holomod
             Play();
         }
         
-        public void RefreshThumbnail()
-        {
+        public void RefreshThumbnail() {
+            if (_imageView == null) {
+                Debug.LogError($"[VideoView] The image view field of \"{gameObject.name}\" is null!");
+                return;
+            }
+
             if (!IsLive && _thumbnailBehavior == ThumbnailBehavior.Generate)
                 Debug.LogWarning("Took too much to make it possible. Please use ThumbnailBehavior.Download or ThumbnailBehavior.Custom instead");
             else if (_thumbnailBehavior == ThumbnailBehavior.Download)

@@ -24,7 +24,12 @@ namespace com.outrealxr.holomod
 
         public override void SetValue(double value) {
             base.SetValue(value);
-            
+
+            if (!_director) {
+                Debug.LogError($"[PlayableDirectorView] The director field of \"{gameObject.name}\" is null!");
+                return;
+            }
+
             _lagCompensation = (UniversalTime.Now - value) / 1000;
 
             if (_director.time == 0) _director.Play();

@@ -18,8 +18,12 @@ namespace com.outrealxr.holomod
         }
 
         public void LoadImage() {
+            if (_networkImage == null) {
+                Debug.LogError($"[ImageView] The network image field of \"{gameObject.name}\" is null!");
+                return;
+            }
             _networkImage.SetAndEnqueue(GetValue);
-            print("loading image");
+            Debug.Log($"[ImageView]  Fetching image...");
         }
 
         public override void SetValue(string value) {

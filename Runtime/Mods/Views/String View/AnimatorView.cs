@@ -24,6 +24,12 @@ namespace com.outrealxr.holomod
 
         public override void SetValue(string value) {
             base.SetValue(value);
+
+            if (!animator) {
+                Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
+                return;
+            }
+
             animator.Play(value);
             startTime = UniversalTime.Now;
             StartCoroutine(UpdateAnimationLength());
@@ -31,6 +37,10 @@ namespace com.outrealxr.holomod
 
         private IEnumerator UpdateAnimationLength()
         {
+            if (!animator) {
+                Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
+                yield break;
+            }
             yield return new WaitForFixedUpdate();
             var current = animator.GetCurrentAnimatorStateInfo(layerIndex);
             animationLength = current.length;
@@ -39,6 +49,11 @@ namespace com.outrealxr.holomod
 
         private void LateUpdate()
         {
+            if (!animator) {
+                Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
+                return;
+            }
+            
             if (loop) elapsedTime = ((float)(UniversalTime.Now - startTime)) % animationLength;
             else elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - startTime), 0f, animationLength);
             if (animationLength > 0)
