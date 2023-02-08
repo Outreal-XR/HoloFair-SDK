@@ -10,8 +10,8 @@ namespace com.outrealxr.holomod
         [SerializeField] private UnityEvent OnDuring;
         [SerializeField] private UnityEvent OnAfter;
 
-        [SerializeField] private double _before;
-        [SerializeField] private double _after;
+        private double _before;
+        private double _after;
         
         private enum State
         {
@@ -21,7 +21,7 @@ namespace com.outrealxr.holomod
             After
         }
 
-        [SerializeField] private State _state;
+        private State _state;
 
         public override string Tags => "timer";
 
