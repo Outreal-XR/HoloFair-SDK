@@ -6,7 +6,7 @@ namespace com.outrealxr.holomod
 {
     public class PlayableDirectorView : DoubleView
     {
-        [SerializeField] private double _lagCompensation;
+        private double _lagCompensation;
         [SerializeField] private PlayableDirector _director;
 
         public override void Edit()

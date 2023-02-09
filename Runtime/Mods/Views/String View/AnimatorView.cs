@@ -6,58 +6,58 @@ namespace com.outrealxr.holomod
     public class AnimatorView : StringView
     {
         [Header("Local variables")]
-        public bool loop;
-        public string normalizedTimeParameterName = "progress";
-        public double startTime;
-        public int layerIndex;
+        [SerializeField] private bool _loop;
+        [SerializeField] private string _normalizedTimeParameterName = "progress";
+        private double _startTime;
+        [SerializeField] private int _layerIndex;
         public float elapsedTime;
         public float animationLength;
-        public Animator animator;
+        [SerializeField] private Animator _animator;
 
 
         public override string Tags => "animator";
 
         protected override void Start() {
             base.Start();
-            startTime = UniversalTime.Now;
+            _startTime = UniversalTime.Now;
         }
 
         public override void SetValue(string value) {
             base.SetValue(value);
 
-            if (!animator) {
+            if (!_animator) {
                 Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
                 return;
             }
 
-            animator.Play(value);
-            startTime = UniversalTime.Now;
+            _animator.Play(value);
+            _startTime = UniversalTime.Now;
             StartCoroutine(UpdateAnimationLength());
         }
 
         private IEnumerator UpdateAnimationLength()
         {
-            if (!animator) {
+            if (!_animator) {
                 Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
                 yield break;
             }
             yield return new WaitForFixedUpdate();
-            var current = animator.GetCurrentAnimatorStateInfo(layerIndex);
+            var current = _animator.GetCurrentAnimatorStateInfo(_layerIndex);
             animationLength = current.length;
             LateUpdate();
         }
 
         private void LateUpdate()
         {
-            if (!animator) {
+            if (!_animator) {
                 Debug.LogError($"[AnimatorView] The animator field of \"{gameObject.name}\" is null!");
                 return;
             }
             
-            if (loop) elapsedTime = ((float)(UniversalTime.Now - startTime)) % animationLength;
-            else elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - startTime), 0f, animationLength);
+            if (_loop) elapsedTime = ((float)(UniversalTime.Now - _startTime)) % animationLength;
+            else elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - _startTime), 0f, animationLength);
             if (animationLength > 0)
-                animator.SetFloat(normalizedTimeParameterName, elapsedTime / animationLength);
+                _animator.SetFloat(_normalizedTimeParameterName, elapsedTime / animationLength);
         }
     }
 }
