@@ -10,8 +10,8 @@ namespace com.outrealxr.holomod
         [SerializeField] private string _normalizedTimeParameterName = "progress";
         private double _startTime;
         [SerializeField] private int _layerIndex;
-        public float elapsedTime;
-        public float animationLength;
+        private float _elapsedTime;
+        private float _animationLength;
         [SerializeField] private Animator _animator;
 
 
@@ -43,7 +43,7 @@ namespace com.outrealxr.holomod
             }
             yield return new WaitForFixedUpdate();
             var current = _animator.GetCurrentAnimatorStateInfo(_layerIndex);
-            animationLength = current.length;
+            _animationLength = current.length;
             LateUpdate();
         }
 
@@ -54,10 +54,10 @@ namespace com.outrealxr.holomod
                 return;
             }
             
-            if (_loop) elapsedTime = ((float)(UniversalTime.Now - _startTime)) % animationLength;
-            else elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - _startTime), 0f, animationLength);
-            if (animationLength > 0)
-                _animator.SetFloat(_normalizedTimeParameterName, elapsedTime / animationLength);
+            if (_loop) _elapsedTime = ((float)(UniversalTime.Now - _startTime)) % _animationLength;
+            else _elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - _startTime), 0f, _animationLength);
+            if (_animationLength > 0)
+                _animator.SetFloat(_normalizedTimeParameterName, _elapsedTime / _animationLength);
         }
     }
 }
