@@ -5,7 +5,7 @@ namespace com.outrealxr.holomod
 {
     public abstract class View : MonoBehaviour
     {
-        private GuidComponent _guid;
+        protected GuidComponent _guid;
         private int _builderId;
 
         public string ViewId => _guid ? _guid.GetStringGuid() : _builderId.ToString();

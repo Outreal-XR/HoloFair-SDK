@@ -1,3 +1,4 @@
+using SaG.GuidReferences;
 using UnityEngine;
 
 namespace com.outrealxr.holomod
@@ -7,6 +8,7 @@ namespace com.outrealxr.holomod
         [SerializeField] protected T _value;
 
         protected override void Start() {
+            _guid = GetComponent<GuidComponent>();
             Factories.Instance.RegisterView(this);
         }
 
