@@ -10,7 +10,7 @@ namespace com.outrealxr.holomod
         [SerializeField] private UnityEvent OnInvalid;
 
         private static string _userUuid;
-        [SerializeField] private string[] _validIds;
+        private string[] _validIds;
 
         private static event Action OnUuidReceive;
 
