@@ -9,6 +9,10 @@ namespace com.outrealxr.holomod
         
         public override void SetValue(string value) {
             base.SetValue(value);
+            if (!_text) {
+                Debug.LogError($"[TextMeshProView] The text field of \"{gameObject.name}\" is null!");
+                return;
+            }
             _text.SetText(value);
         }
 
