@@ -19,6 +19,7 @@ namespace com.outrealxr.holomod
         protected override void Start() {
             base.Start();
             OnUserGrpIdReceive += CompareValues;
+            SetValue(_value);
         }
 
         protected override void OnDestroy() {
