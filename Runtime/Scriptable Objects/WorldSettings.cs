@@ -27,8 +27,7 @@ namespace outrealxr.holomod
         public string PackageJsonText => _jsonText;
 
         private void OnValidate() {
-            _jsonText = _packageJson.text;
-
+            if (_packageJson != null) _jsonText = _packageJson.text;
         }
         
         public void Init()
