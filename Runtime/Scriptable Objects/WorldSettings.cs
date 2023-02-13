@@ -19,12 +19,18 @@ namespace outrealxr.holomod
         public RenderPipelineAsset highestSettings;
 
         [SerializeField] private TextAsset _packageJson;
+        private string _jsonText;
         
         public string ScoreUpdateHostFormat = "{0}/users/score/update.php?uuid={2}";
         public string InteractionsHistoryPathFormat = "{0}/interactions/create.php?uuid={2}";
 
-        public TextAsset PackageJson => _packageJson;
+        public string PackageJsonText => _jsonText;
 
+        private void OnValidate() {
+            _jsonText = _packageJson.text;
+
+        }
+        
         public void Init()
         {
         }
