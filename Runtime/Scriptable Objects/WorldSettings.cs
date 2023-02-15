@@ -17,16 +17,21 @@ namespace outrealxr.holomod
         public RenderPipelineAsset defaultSettings;
         public RenderPipelineAsset mediumSettings;
         public RenderPipelineAsset highestSettings;
+
+        [SerializeField] private TextAsset _packageJson;
+        [SerializeField] private string _jsonText;
         
-
-        public static WorldSettings instance;
-
         public string ScoreUpdateHostFormat = "{0}/users/score/update.php?uuid={2}";
         public string InteractionsHistoryPathFormat = "{0}/interactions/create.php?uuid={2}";
 
+        public string PackageJsonText => _jsonText;
+
+        private void OnValidate() {
+            if (_packageJson != null) _jsonText = _packageJson.text;
+        }
+        
         public void Init()
         {
-            instance = this;
         }
 
         public string GetFormattedScoreUpdateHost()

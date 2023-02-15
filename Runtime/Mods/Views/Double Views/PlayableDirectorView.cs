@@ -15,6 +15,7 @@ namespace com.outrealxr.holomod
         }
 
         public void Play() {
+            Write(UniversalTime.Now);
             _director.Play();
         }
         
