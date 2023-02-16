@@ -60,7 +60,7 @@ namespace com.outrealxr.holomod
             VideoPlayerModel.instance.SetFullScreen(val);
             RefreshTimeUntilCanvasFadesNow();
             SetControlsCanvasGroup(true);
-            videoDisplayBackground.SetActive(val);
+            videoDisplayBackground.SetActive(true);
             if (!val && stopOnMinimize) Stop();
         }
 
