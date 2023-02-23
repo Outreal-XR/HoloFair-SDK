@@ -1,14 +1,18 @@
 using System;
-using com.outrealxr.holomod;
-using outrealxr.holomod;
 using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
     public static class InputDataModel
     {
+    	public static enum AuthMode
+        {
+            ThirdParty = 0,
+            HoloFair = 1
+        }
+
         public static string code = "7153208", uuid = "", avatar = "ybot basic", remoteWorldModelPath = "";
-        public static int authMode = (int) SFSLogin.AuthMode.ThirdParty;
+        public static int authMode = (int) AuthMode.ThirdParty;
         public static int userid = -1;
         internal static string username = "";
 
@@ -47,16 +51,16 @@ namespace com.outrealxr.holomod
 
         public static void SetAuthMode(string val)
         {
-            if (!int.TryParse(val, out authMode)) Debug.Log($"[InputDataModel] Invalid value for auto mode: {val}. Expected a int from 0 ({SFSLogin.AuthMode.ThirdParty}) to 1 ({SFSLogin.AuthMode.HoloFair})");
+            if (!int.TryParse(val, out authMode)) Debug.Log($"[InputDataModel] Invalid value for auto mode: {val}. Expected a int from 0 ({AuthMode.ThirdParty}) to 1 ({AuthMode.HoloFair})");
         }
 
         public static void SetDebug(string val) {
             throw new NotImplementedException();
         }
 
-        public static SFSLogin.AuthMode GetAuthMode()
+        public static AuthMode GetAuthMode()
         {
-            return (SFSLogin.AuthMode) authMode;
+            return (AuthMode) authMode;
         }
 
         public static class DeepLinkMap
