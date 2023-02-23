@@ -1,16 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace com.outrealxr.holomod
 {
-    public class UserRolesView : StringView
+    public class UserRolesView : UserView
     {
-        [SerializeField] private UnityEvent OnValid;
-        [SerializeField] private UnityEvent OnInvalid;
-
         private static string[] _userRoles;
         private string[] _validRoles;
 
@@ -40,7 +33,7 @@ namespace com.outrealxr.holomod
             CompareValues();
         }
 
-        public void CompareValues() {
+        public override void CompareValues() {
             if (_validRoles == null) return;
 
             foreach (var validRole in _validRoles)
