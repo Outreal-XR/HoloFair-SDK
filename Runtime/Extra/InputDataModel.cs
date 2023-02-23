@@ -5,7 +5,7 @@ namespace com.outrealxr.holomod
 {
     public static class InputDataModel
     {
-    	public static enum AuthMode
+    	public enum AuthMode
         {
             ThirdParty = 0,
             HoloFair = 1
@@ -14,7 +14,7 @@ namespace com.outrealxr.holomod
         public static string code = "7153208", uuid = "", avatar = "ybot basic", remoteWorldModelPath = "";
         public static int authMode = (int) AuthMode.ThirdParty;
         public static int userid = -1;
-        internal static string username = "";
+        public static string username = "", roomName = "";
 
         public static void LoadPlayerPrefs()
         {
@@ -56,6 +56,11 @@ namespace com.outrealxr.holomod
 
         public static void SetDebug(string val) {
             throw new NotImplementedException();
+        }
+        
+        public static void SetRoomName(string room)
+        {
+            roomName = room;
         }
 
         public static AuthMode GetAuthMode()

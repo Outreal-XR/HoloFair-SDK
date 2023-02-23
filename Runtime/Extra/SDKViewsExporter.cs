@@ -14,7 +14,7 @@ namespace com.outrealxr.holomod
         public void Export()
         {
             JObject json = new();
-            string roomName = "my room"; //FindObjectOfType<SFSConnection>().Connection.LastJoinedRoom.Name
+            string roomName = InputDataModel.roomName;
             json.Add("room", roomName);
 
             JObject viewsJSON = new();
