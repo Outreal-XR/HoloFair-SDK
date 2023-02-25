@@ -4,7 +4,7 @@ namespace com.outrealxr.holomod
 {
     public class DeviceOrientationListener : MonoBehaviour
     {
-        public DeviceOrientation expectedDeviceOrientation;
+        public DeviceOrientation[] expectedDeviceOrientations;
         DeviceOrientation lastDeviceOrientation = DeviceOrientation.Unknown;
         public UnityEngine.Events.UnityEvent OnValid, OnInvalid;
 
@@ -13,7 +13,7 @@ namespace com.outrealxr.holomod
             if (lastDeviceOrientation != Input.deviceOrientation)
             {
                 lastDeviceOrientation = Input.deviceOrientation;
-                if (lastDeviceOrientation == expectedDeviceOrientation) OnValid.Invoke();
+                if (expectedDeviceOrientations.Length > 0 && System.Array.IndexOf(expectedDeviceOrientations, lastDeviceOrientation) > -1) OnValid.Invoke();
                 else OnInvalid.Invoke();
             }
         }
