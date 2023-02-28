@@ -5,19 +5,15 @@ using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
-    public class ExtensionResponseView : View
+    public class ExtensionResponseView : StringView
     {
-        [SerializeField] protected string _extentionName;
         [SerializeField] private List<SerializedVar> _outputVariables = new();
 
-        protected Action<string, List<SerializedVar>> _onResponseRecieved;
+        private Action<string, List<SerializedVar>> _onResponseReceived;
 
         public override string Tags => "extensionResponse";
-        public void RegisterAction(Action<string, List<SerializedVar>> action) => _onResponseRecieved = action;
 
-        public void Receive()
-        {
-            _onResponseRecieved?.Invoke(_extentionName, _outputVariables);
-        }
+        public List<SerializedVar> OutputVariables => _outputVariables;
+
     }
 }
