@@ -1,14 +1,9 @@
 using System;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace com.outrealxr.holomod
 {
-    public class UuidView : StringView
+    public class UuidView : UserView
     {
-        [SerializeField] private UnityEvent OnValid;
-        [SerializeField] private UnityEvent OnInvalid;
-
         private static string _userUuid;
         private string[] _validIds;
 
@@ -38,7 +33,7 @@ namespace com.outrealxr.holomod
             CompareValues();
         }
 
-        public void CompareValues() {
+        public override void CompareValues() {
             if (_validIds == null) return;
             
             foreach (var validId in _validIds){

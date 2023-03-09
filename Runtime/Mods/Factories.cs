@@ -83,7 +83,10 @@ namespace com.outrealxr.holomod
         public void DeregisterView(View view) {
             if (!_views.ContainsKey(view.ViewId)) return;
             _views.Remove(view.ViewId);
+            UnhandleView(view);
         }
+
+        protected abstract void UnhandleView(View view);
 
         public void DeregisterView<T>(ViewT<T> view) {
             switch (view) {
@@ -100,6 +103,7 @@ namespace com.outrealxr.holomod
                     _intViews.Remove(iView.ViewId);
                     break;
             }
+            UnhandleView(view);
         }
 
         protected abstract void SetHandler(View view);

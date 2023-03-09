@@ -1,14 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace com.outrealxr.holomod
 {
-    public class UserGroupView : StringView
+    public class UserGroupView : UserView
     {
-        [SerializeField] private UnityEvent OnValid;
-        [SerializeField] private UnityEvent OnInvalid;
-
         private static int _userGroupId;
         private int[] _validIds;
 
@@ -51,7 +47,7 @@ namespace com.outrealxr.holomod
             CompareValues();
         }
 
-        public void CompareValues() {
+        public override void CompareValues() {
             if (_validIds == null) return;
             
             foreach (var grpId in _validIds) {
