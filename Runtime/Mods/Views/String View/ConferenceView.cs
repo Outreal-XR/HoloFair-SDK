@@ -1,15 +1,19 @@
 using System;
+using UnityEngine;
 
 namespace com.outrealxr.holomod
 {
-    public class ConferenceView : StringView
+    public class ConferenceView : TalkZoneView
     {
+        [SerializeField] private string[] _roles;
+        [SerializeField] private string[] _mutedRoles;
+        
 
         public bool IsModerationOn = false;
 
-        private Action<string, bool> _onJoin;
+        private Action<string, bool, string[], string[]> _onJoin;
 
-        public void RegisterJoin(Action<string, bool> action) => _onJoin = action;
+        public void RegisterJoin(Action<string, bool, string[], string[]> action) => _onJoin = action;
 
         private Action _onLeave;
 
@@ -17,7 +21,7 @@ namespace com.outrealxr.holomod
 
         public virtual void Join()
         {
-            _onJoin?.Invoke(GetValue, IsModerationOn);
+            _onJoin?.Invoke(GetValue, IsModerationOn, _roles, _mutedRoles);
             Analytics.instance.RecordStart(this, GetValue);
         }
 
