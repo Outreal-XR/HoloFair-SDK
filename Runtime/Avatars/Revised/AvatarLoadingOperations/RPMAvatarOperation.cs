@@ -39,8 +39,12 @@ namespace com.outrealxr.avatars.revised
         float started;
 
         public override void Handle(AvatarModel model) {
-            running = true;
+            IsRunning = true;
             StartCoroutine(LoadAvatar(model));
+        }
+
+        public override void Stop() {
+            throw new System.NotImplementedException();
         }
 
         private IEnumerator LoadAvatar(AvatarModel model) {
@@ -58,7 +62,7 @@ namespace com.outrealxr.avatars.revised
                 gltfAsset.Dispose();
                 Destroy(gltfHolder);
                 Debug.LogError($"[RPMAvatarOperation] Failed to load {model.src}, because {reason}. Skipped.");
-                running = false;
+                IsRunning = false;
                 model.SetAvatar(null);
                 yield break;
             }
@@ -71,26 +75,26 @@ namespace com.outrealxr.avatars.revised
             model.SetAvatar(gltfHolder);
 
             Debug.Log($"[RPMAvatarOperation] Loaded {src}");
-            running = false;
+            IsRunning = false;
         }
 
-        bool WaitWhile(float started, GameObject gltfHolder, AvatarModel model, out string reason)
+        private bool WaitWhile(float started, GameObject gltfHolder, AvatarModel model, out string reason)
         {
-            if (Time.time > started + timeout)
-            {
+            if (Time.time > started + timeout) {
                 reason = "Timeout";
                 return false;
             }
-            if (gltfHolder.transform.childCount > 0)
-            {
+            
+            if (gltfHolder.transform.childCount > 0) {
                 reason = "Model ready";
                 return false;
             }
-            if (!model.IsVisible())
-            {
+            
+            if (!model.IsVisible()) {
                 reason = "View of the model is not visible anymore";
                 return false;
             }
+            
             reason = "";
             return true;
         }

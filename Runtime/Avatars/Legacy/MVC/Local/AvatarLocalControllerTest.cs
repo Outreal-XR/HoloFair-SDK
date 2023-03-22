@@ -11,7 +11,7 @@ namespace com.outrealxr.avatars
 
         public override void UpdateLocalModel(string src)
         {
-            AvatarModel.instance.gameObject.GetComponent<AvatarView>().RequestToReveal(src);
+            AvatarModel.instance.gameObject.GetComponent<PlayerAvatarView>().RequestToReveal(src);
         }
     }
 }

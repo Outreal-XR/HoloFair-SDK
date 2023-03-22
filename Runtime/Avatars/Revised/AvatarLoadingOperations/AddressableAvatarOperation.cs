@@ -12,33 +12,36 @@ namespace com.outrealxr.avatars.revised
     {
         private DownloadStatus _downloadStatus;
 
-        public override void Handle(AvatarModel model)
-        {
-            running = true;
+        public override void Handle(AvatarModel model) {
+            IsRunning = true;
             StartCoroutine(Download(model));
         }
 
+        public override void Stop() {
+            //TODO implement. Not touched since 22/03/2023.
+            throw new NotImplementedException();
+        }
+
         private void Update() { 
-            Percent = _downloadStatus.Percent;
+            if (IsRunning)
+                Percent = _downloadStatus.Percent;
         }
 
         private IEnumerator Download(AvatarModel model) {
-            AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(model.src);
+            var locationsHandle = Addressables.LoadResourceLocationsAsync(model.src);
             yield return locationsHandle;
-            if (locationsHandle.Result.Count > 0)
-            {
+            
+            if (locationsHandle.Result.Count > 0) {
                 var handle = Addressables.InstantiateAsync(model.src);
                 _downloadStatus = handle.GetDownloadStatus();
                 yield return handle;
                 Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
                 model.SetAvatar(handle.Result);
-            }
-            else
-            {
+            } else {
                 Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}");
                 model.SetAvatar(null);
             }
-            running = false;
+            IsRunning = false;
         }
     }
 }
