@@ -5,7 +5,7 @@ namespace outrealxr.holomod
 {
     public class OnClickHandler : MonoBehaviour
     {
-        [field:SerializeField] public float HoldInteractionTime { get; private set; }
+        public float HoldInteractionTime = 0.4f;
         public Texture2D cursorTexture;
         public CursorMode cursorMode = CursorMode.Auto;
         public Vector2 hotSpot = Vector2.zero;
