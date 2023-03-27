@@ -15,7 +15,7 @@ namespace com.outrealxr.holomod
         }
 
         public void Play() {
-            Write(UniversalTime.Now);
+            Write(UniversalTime.MillisecondsNow);
             _director.Play();
         }
         
@@ -31,10 +31,10 @@ namespace com.outrealxr.holomod
                 return;
             }
 
-            _lagCompensation = (UniversalTime.Now - value) / 1000;
+            _lagCompensation = UniversalTime.SecondsNow - (value/1000);
 
             if (_director.time == 0) _director.Play();
-            if (UniversalTime.Now >= value) _director.time = _lagCompensation;
+            if (UniversalTime.MillisecondsNow >= value) _director.time = _lagCompensation;
         }
 
         public override string Tags => "director";

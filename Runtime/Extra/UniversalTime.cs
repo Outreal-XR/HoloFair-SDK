@@ -10,9 +10,7 @@ namespace com.outrealxr.holomod
         public static double TimeSinceLastRequest => ClientNow - RecievedTimestamp;
         public static double TotalRequestDuration => RecievedTimestamp - SentTimestamp;
         public static double ServerTime = 0;
-        /// <summary>
-        /// Seconds
-        /// </summary>
-        public static double Now => (ServerTime / 1000) + TotalRequestDuration + TimeSinceLastRequest;
+        public static double MillisecondsNow => ServerTime + TotalRequestDuration + TimeSinceLastRequest;
+        public static double SecondsNow => MillisecondsNow / 1000f;
     }   
 }

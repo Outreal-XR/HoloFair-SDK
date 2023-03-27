@@ -37,18 +37,18 @@ namespace com.outrealxr.holomod
 
         void Update() {
             if (_before > 0) {
-                if (UniversalTime.Now > _after && _state != State.After) {
+                if (UniversalTime.SecondsNow > _after && _state != State.After) {
                     OnAfter?.Invoke();
                     _state = State.After;
-                    print("after: " + UniversalTime.Now);
-                } else if (UniversalTime.Now <= _before && _state != State.Before) {
+                    print("after: " + UniversalTime.SecondsNow);
+                } else if (UniversalTime.SecondsNow <= _before && _state != State.Before) {
                     OnBefore?.Invoke();
                     _state = State.Before;
-                    print("before: " + UniversalTime.Now);
-                } else if (UniversalTime.Now > _before && UniversalTime.Now < _after && _state != State.During) {
+                    print("before: " + UniversalTime.SecondsNow);
+                } else if (UniversalTime.SecondsNow > _before && UniversalTime.SecondsNow < _after && _state != State.During) {
                     OnDuring?.Invoke();   
                     _state = State.During;
-                    print("during: " + UniversalTime.Now);
+                    print("during: " + UniversalTime.SecondsNow);
                 }
             }
         }
