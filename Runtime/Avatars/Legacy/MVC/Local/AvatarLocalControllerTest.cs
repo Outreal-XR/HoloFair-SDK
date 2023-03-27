@@ -1,3 +1,4 @@
+using com.outrealxr.avatars.revised;
 using UnityEngine;
 
 namespace com.outrealxr.avatars

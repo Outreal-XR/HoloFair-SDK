@@ -51,7 +51,7 @@ namespace com.outrealxr.avatars.revised
             var gltfHolder = new GameObject(GltfHolderName);
             var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
 
-            string src = $"{model.src}?meshLoad={(int) lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
+            string src = $"{model.Src}?meshLoad={(int) lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
 
             yield return gltfAsset.Load(src);
 
@@ -61,7 +61,7 @@ namespace com.outrealxr.avatars.revised
             if (gltfHolder.transform.childCount == 0) {
                 gltfAsset.Dispose();
                 Destroy(gltfHolder);
-                Debug.LogError($"[RPMAvatarOperation] Failed to load {model.src}, because {reason}. Skipped.");
+                Debug.LogError($"[RPMAvatarOperation] Failed to load {model.Src}, because {reason}. Skipped.");
                 IsRunning = false;
                 model.SetAvatar(null);
                 yield break;

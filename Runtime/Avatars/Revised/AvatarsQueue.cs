@@ -32,7 +32,7 @@ namespace com.outrealxr.avatars.revised
             _text.gameObject.SetActive(false);
 
             if (queue.Count == 0) return;
-            if (operation != null && operation.running) {
+            if (operation != null && operation.IsRunning) {
                 _text.gameObject.SetActive(true);
                 _text.text = $"Loading: {current.src} - {operation.Percent}%";
                 return;

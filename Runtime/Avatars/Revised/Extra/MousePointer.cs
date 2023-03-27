@@ -11,8 +11,8 @@ namespace com.outrealxr.avatars
             if (Mouse.current.leftButton.wasPressedThisFrame) {
                 Vector3 mousePos = Mouse.current.position.ReadValue();
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out RaycastHit hit)) {
-                    revised.AvatarView view = hit.collider.GetComponent<revised.AvatarView>();
-                    if (view) view.Reveal();
+                    revised.AvatarUser user = hit.collider.GetComponent<revised.AvatarUser>();
+                    if (user) user.Reveal();
                 }
             }
         }

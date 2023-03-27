@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace com.outrealxr.avatars.revised
 {
@@ -28,17 +26,17 @@ namespace com.outrealxr.avatars.revised
         }
 
         private IEnumerator Download(AvatarModel model) {
-            var locationsHandle = Addressables.LoadResourceLocationsAsync(model.src);
+            var locationsHandle = Addressables.LoadResourceLocationsAsync(model.Src);
             yield return locationsHandle;
             
             if (locationsHandle.Result.Count > 0) {
-                var handle = Addressables.InstantiateAsync(model.src);
+                var handle = Addressables.InstantiateAsync(model.Src);
                 _downloadStatus = handle.GetDownloadStatus();
                 yield return handle;
-                Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
+                Debug.Log($"[AddressableAvatarOperation] Loaded {model.Src}");
                 model.SetAvatar(handle.Result);
             } else {
-                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}");
+                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.Src}");
                 model.SetAvatar(null);
             }
             IsRunning = false;
