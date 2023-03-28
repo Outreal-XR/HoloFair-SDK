@@ -28,43 +28,43 @@ namespace com.outrealxr.avatars.revised
             HighRes = 4
         }
 
-        [SerializeField] private RuntimeAnimatorController runtimeAnimatorController;
-        [SerializeField] private UnityEngine.Avatar animationAvatar;
-        [SerializeField] private float timeout = 60;
+        private RuntimeAnimatorController runtimeAnimatorController;
+        private UnityEngine.Avatar animationAvatar;
+        private float timeout = 60;
 
-        public SupportedLOD lod = SupportedLOD.Low;
-        public SupportedResolutions resolution = SupportedResolutions.Low;
-        public Atlas atlasResolution = Atlas.LowRes;
-        public const string GltfHolderName = "GLTF Holder";
+        private SupportedLOD _lod = SupportedLOD.Low;
+        private SupportedResolutions resolution = SupportedResolutions.Low;
+        private Atlas atlasResolution = Atlas.LowRes;
+        private const string GltfHolderName = "GLTF Holder";
         float started;
 
-        public override void Handle(AvatarModel model) {
-            IsRunning = true;
-            StartCoroutine(LoadAvatar(model));
+        public override void Handle(AvatarOwner owner) {
+            LoadAvatar(owner);
         }
 
         public override void Stop() {
             throw new System.NotImplementedException();
         }
 
-        private IEnumerator LoadAvatar(AvatarModel model) {
+        private async void LoadAvatar(AvatarOwner owner) {
             var gltfHolder = new GameObject(GltfHolderName);
             var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
 
-            string src = $"{model.Src}?meshLoad={(int) lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
+            var src = $"{owner.Src}?meshLoad={(int) _lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
 
-            yield return gltfAsset.Load(src);
+            await gltfAsset.Load(src);
 
             var started = Time.time;
             var reason = "";
-            yield return new WaitWhile(() => WaitWhile(started, gltfHolder, model, out reason));
+            
+            //await new WaitWhile(() => WaitWhile(started, gltfHolder, owner, out reason));
+            
             if (gltfHolder.transform.childCount == 0) {
                 gltfAsset.Dispose();
-                Destroy(gltfHolder);
-                Debug.LogError($"[RPMAvatarOperation] Failed to load {model.Src}, because {reason}. Skipped.");
-                IsRunning = false;
-                model.SetAvatar(null);
-                yield break;
+                Object.Destroy(gltfHolder);
+                Debug.LogError($"[RPMAvatarOperation] Failed to load {owner.Src}, because {reason}. Skipped.");
+                owner.SetAvatar(null);
+                return;
             }
 
             //Add the animator and assign the controller and avatar
@@ -72,13 +72,12 @@ namespace com.outrealxr.avatars.revised
             animator.runtimeAnimatorController = runtimeAnimatorController;
             animator.avatar = animationAvatar;
             gltfHolder.AddComponent<AnimatorParameters>();
-            model.SetAvatar(gltfHolder);
+            owner.SetAvatar(gltfHolder);
 
             Debug.Log($"[RPMAvatarOperation] Loaded {src}");
-            IsRunning = false;
         }
 
-        private bool WaitWhile(float started, GameObject gltfHolder, AvatarModel model, out string reason)
+        private bool WaitWhile(float started, GameObject gltfHolder, AvatarOwner owner, out string reason)
         {
             if (Time.time > started + timeout) {
                 reason = "Timeout";
@@ -90,7 +89,7 @@ namespace com.outrealxr.avatars.revised
                 return false;
             }
             
-            if (!model.IsVisible()) {
+            if (!owner.IsVisible) {
                 reason = "View of the model is not visible anymore";
                 return false;
             }

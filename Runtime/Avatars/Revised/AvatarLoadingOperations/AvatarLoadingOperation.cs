@@ -1,14 +1,14 @@
+using System;
 using com.outrealxr.avatars.revised;
-using UnityEngine;
 
 namespace com.outrealxr.avatars
 {
-    public abstract class AvatarLoadingOperation : MonoBehaviour
+    public abstract class AvatarLoadingOperation
     {
-        public float Percent { get; protected set; }
-        public bool IsRunning { get; protected set; } = false;
-
-        public abstract void Handle(AvatarModel model);
+        public abstract void Handle(AvatarOwner owner);
         public abstract void Stop();
+        
+        public event Action OnOperationCompleted;
+        protected void InvokeOnOperationCompleted() => OnOperationCompleted?.Invoke();
     }
 }
