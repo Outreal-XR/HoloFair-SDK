@@ -19,7 +19,7 @@ namespace com.outrealxr.holomod
 
         protected override void Start() {
             base.Start();
-            _startTime = UniversalTime.Now;
+            _startTime = UniversalTime.SecondsNow;
         }
 
         public override void SetValue(string value) {
@@ -31,7 +31,7 @@ namespace com.outrealxr.holomod
             }
 
             _animator.Play(value);
-            _startTime = UniversalTime.Now;
+            _startTime = UniversalTime.SecondsNow;
             StartCoroutine(UpdateAnimationLength());
         }
 
@@ -54,8 +54,8 @@ namespace com.outrealxr.holomod
                 return;
             }
             
-            if (_loop) _elapsedTime = ((float)(UniversalTime.Now - _startTime)) % _animationLength;
-            else _elapsedTime = Mathf.Clamp((float)(UniversalTime.Now - _startTime), 0f, _animationLength);
+            if (_loop) _elapsedTime = ((float)(UniversalTime.SecondsNow - _startTime)) % _animationLength;
+            else _elapsedTime = Mathf.Clamp((float)(UniversalTime.SecondsNow - _startTime), 0f, _animationLength);
             if (_animationLength > 0)
                 _animator.SetFloat(_normalizedTimeParameterName, _elapsedTime / _animationLength);
         }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -14,27 +13,34 @@ namespace com.outrealxr.holomod
             JavaScriptMessageReciever.instance.StartEdit(new PlayableDirectorParser(this));
         }
 
-        public void Play() {
-            Write(UniversalTime.Now);
+        public void Play()
+        {
+            Write(UniversalTime.SecondsNow);
             _director.Play();
         }
-        
-        public void Stop() {
+
+        public void Stop()
+        {
             _director.Stop();
         }
 
-        public override void SetValue(double value) {
+        public override void SetValue(double value)
+        {
             base.SetValue(value);
 
-            if (!_director) {
+            if (!_director)
+            {
                 Debug.LogError($"[PlayableDirectorView] The director field of \"{gameObject.name}\" is null!");
                 return;
             }
 
-            _lagCompensation = (UniversalTime.Now - value) / 1000;
+            _lagCompensation = UniversalTime.SecondsNow - value;
 
-            if (_director.time == 0) _director.Play();
-            if (UniversalTime.Now >= value) _director.time = _lagCompensation;
+            if (_director.time == 0) 
+                _director.Play();
+
+            if (UniversalTime.SecondsNow >= value)
+                _director.time = _lagCompensation;
         }
 
         public override string Tags => "director";
