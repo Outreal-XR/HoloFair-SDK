@@ -5,9 +5,10 @@ namespace com.outrealxr.avatars
 {
     public abstract class AvatarLoadingOperation
     {
-        public abstract void Handle(AvatarOwner owner);
-        public abstract void Stop();
+        protected AvatarOwner Owner;
         
+        public abstract void Handle();
+
         public event Action OnOperationCompleted;
         protected void InvokeOnOperationCompleted() => OnOperationCompleted?.Invoke();
     }

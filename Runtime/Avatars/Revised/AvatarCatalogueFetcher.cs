@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using com.outrealxr.holomod;
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -13,7 +13,7 @@ namespace com.outrealxr.avatars.ManyToMany
     {
         private const string UrlFormat = "{0}{1}";
 
-        private static List<AvatarCatalogueSet.Data> _datas = new();
+        private static readonly List<AvatarCatalogueSet.Data> _datas = new();
 
         public static void FetchCatalogue() {
             _datas.Clear();
@@ -34,27 +34,30 @@ namespace com.outrealxr.avatars.ManyToMany
 
             var array = JArray.Parse(www.downloadHandler.text);
 
+            if (array.Count == 0) return;
+
             foreach (var jToken in array) {
                 var catalogue = jToken.Value<string>();
-                await Addressables.LoadContentCatalogAsync(catalogue, true).Task;
+                await Addressables.LoadContentCatalogAsync(catalogue, true);
             }
 
             var loadResourceLocationsHandle =
                 Addressables.LoadResourceLocationsAsync("AvatarSelectData", typeof(AvatarCatalogueSet));
-            await loadResourceLocationsHandle.Task;
+            await loadResourceLocationsHandle;
 
             if (loadResourceLocationsHandle.Status != AsyncOperationStatus.Succeeded) {
                 //TODO Throw warning here
+                Debug.LogError("");
                 return;
             }
 
             foreach (var location in loadResourceLocationsHandle.Result) {
                 var loadAssetHandle = Addressables.LoadAssetAsync<AvatarCatalogueSet>(location);
-                await loadAssetHandle.Task;
+                await loadAssetHandle;
                 var model = loadAssetHandle.Result;
 
                 foreach (var data in model.CatalogueSetData) {
-
+                    _datas.Add(data);
                 }
             }
         }

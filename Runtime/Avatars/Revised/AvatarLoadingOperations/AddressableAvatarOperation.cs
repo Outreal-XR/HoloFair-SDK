@@ -1,4 +1,4 @@
-using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -6,30 +6,33 @@ namespace com.outrealxr.avatars.revised
 {
     public class AddressableAvatarOperation : AvatarLoadingOperation
     {
-        public override void Handle(AvatarOwner owner) {
-            Download(owner);
-        }
-
-        public override void Stop() {
-            //TODO implement. Not touched since 22/03/2023.
-            throw new NotImplementedException();
+        public AddressableAvatarOperation(AvatarOwner owner) {
+            Owner = owner;
         }
         
-        private async void Download(AvatarOwner owner) {
-            var locationsHandle = Addressables.LoadResourceLocationsAsync(owner.Src);
-            await locationsHandle.Task;
-            
-            if (locationsHandle.Result.Count > 0) {
-                var handle = Addressables.InstantiateAsync(owner.Src);
-                await handle.Task;
-                Debug.Log($"[AddressableAvatarOperation] Loaded {owner.Src}");
-                owner.SetAvatar(handle.Result);
-            } else {
-                Debug.Log($"[AddressableAvatarOperation] Failed to load {owner.Src}");
-                owner.SetAvatar(null);
-            }
+        public override void Handle() {
+            Download();
+        }
 
-            InvokeOnOperationCompleted();
+        private async void Download() {
+            try {
+                var locationsHandle = Addressables.LoadResourceLocationsAsync(Owner.Src);
+                await locationsHandle;
+
+                if (locationsHandle.Result.Count > 0) {
+                    var handle = Addressables.InstantiateAsync(Owner.Src);
+                    await handle;
+                    Debug.Log($"[AddressableAvatarOperation] Loaded {Owner.Src}");
+                    Owner.SetAvatar(handle.Result);
+                }
+                else {
+                    Debug.Log($"[AddressableAvatarOperation] Failed to load {Owner.Src}");
+                    Owner.SetAvatar(null);
+                }
+            }
+            finally {
+                InvokeOnOperationCompleted();
+            }
         }
     }
 }

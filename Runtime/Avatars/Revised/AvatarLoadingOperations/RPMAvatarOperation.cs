@@ -1,4 +1,4 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using GLTFast;
 using UnityEngine;
 
@@ -27,75 +27,76 @@ namespace com.outrealxr.avatars.revised
             MediumRes = 2,
             HighRes = 4
         }
-
-        private RuntimeAnimatorController runtimeAnimatorController;
-        private UnityEngine.Avatar animationAvatar;
-        private float timeout = 60;
-
-        private SupportedLOD _lod = SupportedLOD.Low;
-        private SupportedResolutions resolution = SupportedResolutions.Low;
-        private Atlas atlasResolution = Atlas.LowRes;
+        
         private const string GltfHolderName = "GLTF Holder";
-        float started;
+        private const float Timeout = 60;
 
-        public override void Handle(AvatarOwner owner) {
-            LoadAvatar(owner);
+        private readonly RuntimeAnimatorController _runtimeAnimatorController;
+        private readonly Avatar _animationAvatar;
+        private readonly SupportedLOD _lod;
+        private readonly SupportedResolutions _resolution;
+        private readonly Atlas _atlasResolution; 
+
+        public RPMAvatarOperation (AvatarOwner owner, Avatar animationAvatar, RuntimeAnimatorController runtimeAnimatorController, SupportedLOD lod = SupportedLOD.Low, SupportedResolutions resolution = SupportedResolutions.Low, Atlas atlasResolution = Atlas.LowRes) {
+            Owner = owner;
+
+            _animationAvatar = animationAvatar;
+            _runtimeAnimatorController = runtimeAnimatorController;
+            _lod = lod;
+            _resolution = resolution;
+            _atlasResolution = atlasResolution;
         }
 
-        public override void Stop() {
-            throw new System.NotImplementedException();
+        public override void Handle() {
+            LoadAvatar();
         }
 
-        private async void LoadAvatar(AvatarOwner owner) {
-            var gltfHolder = new GameObject(GltfHolderName);
-            var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
+        private async void LoadAvatar() {
+            try {
+                var gltfHolder = new GameObject(GltfHolderName);
+                var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
 
-            var src = $"{owner.Src}?meshLoad={(int) _lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
+                var src = $"{Owner.Src}?meshLoad={(int) _lod}&textureAtlas={(int) _atlasResolution * 256}&textureSizeLimit={(int) _resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
 
-            await gltfAsset.Load(src);
+                await gltfAsset.Load(src); 
 
-            var started = Time.time;
-            var reason = "";
-            
-            //await new WaitWhile(() => WaitWhile(started, gltfHolder, owner, out reason));
-            
-            if (gltfHolder.transform.childCount == 0) {
-                gltfAsset.Dispose();
-                Object.Destroy(gltfHolder);
-                Debug.LogError($"[RPMAvatarOperation] Failed to load {owner.Src}, because {reason}. Skipped.");
-                owner.SetAvatar(null);
-                return;
+                var started = Time.time;
+                
+                while (true) {
+                    if (gltfHolder.transform.childCount > 0)
+                        break;
+
+                    if (Time.time > started + Timeout) {
+                        LoadFailed(gltfAsset, gltfHolder, "Timeout");
+                        return;
+                    }
+
+                    if (!Owner.IsVisible) {
+                        LoadFailed(gltfAsset, gltfHolder, "Owner of the model is not visible anymore");
+                        return;
+                    }
+
+                    await UniTask.Yield();
+                }
+
+                //Add the animator and assign the controller and avatar
+                var animator = gltfHolder.AddComponent<Animator>();
+                animator.runtimeAnimatorController = _runtimeAnimatorController;
+                animator.avatar = _animationAvatar;
+                gltfHolder.AddComponent<AnimatorParameters>();
+                Owner.SetAvatar(gltfHolder);
+                
+                Debug.Log($"[RPMAvatarOperation] Loaded {src}");
+            } finally {
+                InvokeOnOperationCompleted();
             }
-
-            //Add the animator and assign the controller and avatar
-            var animator = gltfHolder.AddComponent<Animator>();
-            animator.runtimeAnimatorController = runtimeAnimatorController;
-            animator.avatar = animationAvatar;
-            gltfHolder.AddComponent<AnimatorParameters>();
-            owner.SetAvatar(gltfHolder);
-
-            Debug.Log($"[RPMAvatarOperation] Loaded {src}");
         }
 
-        private bool WaitWhile(float started, GameObject gltfHolder, AvatarOwner owner, out string reason)
-        {
-            if (Time.time > started + timeout) {
-                reason = "Timeout";
-                return false;
-            }
-            
-            if (gltfHolder.transform.childCount > 0) {
-                reason = "Model ready";
-                return false;
-            }
-            
-            if (!owner.IsVisible) {
-                reason = "View of the model is not visible anymore";
-                return false;
-            }
-            
-            reason = "";
-            return true;
+        private void LoadFailed(GltfAsset gltfAsset, GameObject gltfHolder, string reason) {
+            gltfAsset.Dispose();
+            Object.Destroy(gltfHolder);
+            Debug.LogWarning($"[RPMAvatarOperation] Failed to load {Owner.Src}, because {reason}. Skipped.");
+            Owner.SetAvatar(null);
         }
     }
 }
