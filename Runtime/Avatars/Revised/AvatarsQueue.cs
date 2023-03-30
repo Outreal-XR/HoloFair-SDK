@@ -8,13 +8,6 @@ namespace com.outrealxr.avatars.revised
     {
         private static readonly Queue<AvatarOwner> Queue = new();
 
-        private const string RpmAnimationAvatarPath = "";
-        private const string RpmAnimatorControllerPath = "";
-
-        private static UnityEngine.Avatar _rpmAvatar;
-        private static RuntimeAnimatorController _rpmAnimatorController;
-        
-        
         public static void Enqueue(AvatarOwner owner)
         {
             Queue.Enqueue(owner);
@@ -28,27 +21,17 @@ namespace com.outrealxr.avatars.revised
         private static async void StartOperation() {
             if (Queue.Count == 0) return;
 
-            if (_rpmAvatar == null)
-                _rpmAvatar = await Resources.LoadAsync<UnityEngine.Avatar>(RpmAnimationAvatarPath) as UnityEngine.Avatar;
-            if (_rpmAnimatorController == null)
-                _rpmAnimatorController = await Resources.LoadAsync<RuntimeAnimatorController>(RpmAnimatorControllerPath) as RuntimeAnimatorController;
-
-            if (_rpmAvatar == null || _rpmAnimatorController == null)
-                Debug.LogError("[AvatarsQueue] Could not load resources for " + 
-                               (_rpmAvatar == null ? "AnimationAvatar" : "") + 
-                               (_rpmAnimatorController == null ? ", RuntimeAnimatorController" : ""));
-            
-            var owner = Queue.Dequeue();
+            var owner = Queue.Peek();
             owner.SetDequeued();
 
-            AvatarLoadingOperation operation = owner.Src.EndsWith("glb") || owner.Src.EndsWith("gltf")
-                ? new RPMAvatarOperation(owner, null, null)
-                : new AddressableAvatarOperation(owner);
+            if (owner.IsVisible) {
+                var operation = await AvatarOperationFactory.GetOperation(owner);
+                await operation.Operate();
+            }
 
-            operation.OnOperationCompleted += StartOperation;
+            Queue.Dequeue();
             
-            if (owner.IsVisible) 
-                operation.Handle();
+            if (Queue.Count != 0) StartOperation();
         }
     }
 }

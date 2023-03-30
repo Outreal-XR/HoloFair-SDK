@@ -1,5 +1,5 @@
-using System;
 using com.outrealxr.avatars.revised;
+using Cysharp.Threading.Tasks;
 
 namespace com.outrealxr.avatars
 {
@@ -7,9 +7,6 @@ namespace com.outrealxr.avatars
     {
         protected AvatarOwner Owner;
         
-        public abstract void Handle();
-
-        public event Action OnOperationCompleted;
-        protected void InvokeOnOperationCompleted() => OnOperationCompleted?.Invoke();
+        public abstract UniTask Operate();
     }
 }

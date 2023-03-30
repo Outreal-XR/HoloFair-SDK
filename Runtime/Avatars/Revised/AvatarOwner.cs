@@ -1,4 +1,5 @@
 using System;
+using GLTFast;
 using UnityEngine;
 
 namespace com.outrealxr.avatars.revised
@@ -20,15 +21,21 @@ namespace com.outrealxr.avatars.revised
         private GameObject _avatar;
         
         private void OnEnable() {
-            SetState(State.None);
-            Reveal();
+            if (!HasAvatar) {
+                SetState(State.None);
+                Reveal();
+            }
+        }
+
+        private void OnDisable() {
+            ReleaseAvatar();
         }
 
         /// <summary>
         /// Intended to be triggered by user input
         /// </summary>
         public void Reveal() {
-            if (!_avatar) AvatarsQueue.Enqueue(this);
+            if (!HasAvatar) AvatarsQueue.Enqueue(this);
         }
 
         public void SetSrc(string src) {
@@ -41,23 +48,34 @@ namespace com.outrealxr.avatars.revised
         public void SetDequeued() => SetState(State.Loading);
 
         public void SetAvatar(GameObject avatar) {
-            if (_avatar) Destroy(_avatar);
+            if (_avatar) ReleaseAvatar();
             _avatar = avatar;
             if (_avatar) {
                 _avatar.transform.parent = transform;
                 _avatar.transform.localPosition = Vector3.zero;
                 _avatar.transform.localRotation = Quaternion.identity;
             }
-            if(!gameObject.activeInHierarchy) Destroy(_avatar);
+            if(!gameObject.activeInHierarchy) ReleaseAvatar();
             SetState(_avatar ? State.Set : State.None);
         }
-        
+
+        private void ReleaseAvatar() {
+            if (!HasAvatar) return;
+
+            var gltfAsset = _avatar.GetComponentInChildren<GltfAsset>();
+            if (gltfAsset) {
+                print("disposed");
+                gltfAsset.Dispose();
+            }
+            
+            Destroy(_avatar);
+        }
         
         private void SetState(State state)
         {
             _loading.SetActive(state == State.Loading);
             _queue.SetActive(state == State.Queued);
-            _placeholder.SetActive(state == State.None);
+            _placeholder.SetActive(state is State.Queued or State.None);
             
             switch (state) {
                 case State.None:
@@ -76,6 +94,6 @@ namespace com.outrealxr.avatars.revised
         }
 
         public bool IsVisible => gameObject.activeInHierarchy;
-        public bool HasAvatar => throw new NotImplementedException();
+        public bool HasAvatar => _avatar != null;
     }
 }

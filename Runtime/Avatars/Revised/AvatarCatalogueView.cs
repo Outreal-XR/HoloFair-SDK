@@ -1,7 +1,6 @@
-using com.outrealxr.avatars.revised;
 using UnityEngine;
 
-namespace com.outrealxr.avatars
+namespace com.outrealxr.avatars.revised
 {
     public abstract class AvatarCatalogueView : MonoBehaviour
     {
