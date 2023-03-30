@@ -15,6 +15,7 @@ namespace com.outrealxr.holomod
         public static int authMode = (int) AuthMode.ThirdParty;
         public static int userid = -1;
         public static string username = "", roomName = "";
+        public static bool skip_version_check = false;
 
         public static void LoadPlayerPrefs()
         {
@@ -54,6 +55,12 @@ namespace com.outrealxr.holomod
             if (!int.TryParse(val, out authMode)) Debug.Log($"[InputDataModel] Invalid value for auto mode: {val}. Expected a int from 0 ({AuthMode.ThirdParty}) to 1 ({AuthMode.HoloFair})");
         }
 
+        public static void SkipVersionVersion()
+        {
+            skip_version_check = true;
+            Debug.Log($"[InputDataModel] {DeepLinkMap.skip_version_check} is set to {skip_version_check}");
+        }
+
         public static void SetDebug(string val) {
             throw new NotImplementedException();
         }
@@ -76,6 +83,7 @@ namespace com.outrealxr.holomod
             public const string avatar = "avatar";
             public const string authMode = "authMode";
             public const string debug = "debug";
+            public const string skip_version_check = "skip_version_check";
         }
     }
 }
