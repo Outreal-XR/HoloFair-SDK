@@ -12,7 +12,7 @@ namespace com.outrealxr.avatars.ManyToMany
 {
     public static class AvatarCatalogueFetcher
     {
-        private const string UrlFormat = "{0}{1}";
+        private const string UrlFormat = "https://api.holofair.net/avatarset/read.php?code={0}&platformid={1}";
 
         private static readonly List<AvatarCatalogueSet.Data> _datas = new();
 
