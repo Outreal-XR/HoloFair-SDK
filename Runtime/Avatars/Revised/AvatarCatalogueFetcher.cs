@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using com.outrealxr.holomod;
 using Cysharp.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace com.outrealxr.avatars.ManyToMany
 
         private static readonly List<AvatarCatalogueSet.Data> _datas = new();
 
+        public static event Action<List<AvatarCatalogueSet.Data>> OnCatalogueReceived;
+        
         public static void FetchCatalogue() {
             _datas.Clear();
 
@@ -60,6 +63,8 @@ namespace com.outrealxr.avatars.ManyToMany
                     _datas.Add(data);
                 }
             }
+            
+            OnCatalogueReceived?.Invoke(_datas);
         }
 
         private static int PlatformId {

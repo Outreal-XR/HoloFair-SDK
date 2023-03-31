@@ -55,7 +55,7 @@ namespace com.outrealxr.avatars.revised
                 _avatar.transform.localPosition = Vector3.zero;
                 _avatar.transform.localRotation = Quaternion.identity;
             }
-            if(!gameObject.activeInHierarchy) ReleaseAvatar();
+            if(!IsVisible) ReleaseAvatar();
             SetState(_avatar ? State.Set : State.None);
         }
 

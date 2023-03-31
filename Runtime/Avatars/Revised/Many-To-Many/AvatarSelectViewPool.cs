@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using com.outrealxr.avatars.revised;
 using UnityEngine;
 using UnityEngine.Pool;
 
 namespace com.outrealxr.avatars.ManyToMany
 {
-    public class AvatarSetViewPool : MonoBehaviour
+    public class AvatarSelectViewPool : MonoBehaviour
     {
         [SerializeField] private GameObject _viewPrefab;
         [SerializeField] private Transform _viewParent;
@@ -13,11 +14,21 @@ namespace com.outrealxr.avatars.ManyToMany
         private IObjectPool<AvatarSelectView> _pool;
         private readonly List<AvatarSelectView> _active = new ();
 
-        public static AvatarSetViewPool Instance { get; private set; }
-
         private void Awake() {
-            Instance = this;
             _pool = new ObjectPool<AvatarSelectView>(CreateView, GetView, ReleaseView);
+        }
+        
+        private void Start() {
+            AvatarCatalogueFetcher.FetchCatalogue();
+            AvatarCatalogueFetcher.OnCatalogueReceived += CatalogueReceived;
+        }
+
+        private void CatalogueReceived(List<AvatarCatalogueSet.Data> catalogueData) {
+            foreach (var data in catalogueData) {
+                _pool.Get().UpdateView(data.Image, () => {
+                    LocalAvatarOwner.Instance.SetSrc(data.AvatarAsset.RuntimeKey.ToString());
+                });
+            }
         }
 
         private void GetView(AvatarSelectView view) {
