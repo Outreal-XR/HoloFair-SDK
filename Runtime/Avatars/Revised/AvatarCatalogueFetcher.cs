@@ -59,10 +59,7 @@ namespace com.outrealxr.avatars.ManyToMany
                 await loadAssetHandle;
                 var model = loadAssetHandle.Result;
 
-                foreach (var data in model.CatalogueSetData) {
-                    Debug.Log("Sanity check");
-                    _datas.Add(data);
-                }
+                foreach (var data in model.CatalogueSetData) _datas.Add(data);
             }
             
             OnCatalogueReceived?.Invoke(_datas);

@@ -27,7 +27,6 @@ namespace com.outrealxr.avatars.ManyToMany
                 UpdateView(data.Image, () => {
                     LocalAvatarOwner.Instance.SetSrc(data.AvatarAsset.RuntimeKey.ToString());
                     AvatarCatalogueView.MainView.SetActive(false);
-                    print("test");
                 });
             }
         }
