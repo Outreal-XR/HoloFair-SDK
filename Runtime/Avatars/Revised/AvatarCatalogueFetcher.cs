@@ -60,6 +60,7 @@ namespace com.outrealxr.avatars.ManyToMany
                 var model = loadAssetHandle.Result;
 
                 foreach (var data in model.CatalogueSetData) {
+                    Debug.Log("Sanity check");
                     _datas.Add(data);
                 }
             }

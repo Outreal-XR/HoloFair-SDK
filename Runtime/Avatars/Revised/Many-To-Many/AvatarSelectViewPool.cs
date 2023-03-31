@@ -19,14 +19,15 @@ namespace com.outrealxr.avatars.ManyToMany
         }
         
         private void Start() {
-            AvatarCatalogueFetcher.FetchCatalogue();
             AvatarCatalogueFetcher.OnCatalogueReceived += CatalogueReceived;
         }
 
         private void CatalogueReceived(List<AvatarCatalogueSet.Data> catalogueData) {
             foreach (var data in catalogueData) {
-                _pool.Get().UpdateView(data.Image, () => {
+                UpdateView(data.Image, () => {
                     LocalAvatarOwner.Instance.SetSrc(data.AvatarAsset.RuntimeKey.ToString());
+                    AvatarCatalogueView.MainView.SetActive(false);
+                    print("test");
                 });
             }
         }
@@ -46,7 +47,7 @@ namespace com.outrealxr.avatars.ManyToMany
             _active.Remove(view);
         }
 
-        public void UpdateView(Sprite sprite, Action action) {
+        private void UpdateView(Sprite sprite, Action action) {
             var view = _pool.Get();
             view.UpdateView(sprite, action);
         }
